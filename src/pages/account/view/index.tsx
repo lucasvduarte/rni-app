@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setTheme } from "../../../redux/modules/auth/action";
 import { RootState } from "../../../redux/store";
 
-export const MyAccount = () => {
+export const Account = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state: RootState) => {
     return state.auth;

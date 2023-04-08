@@ -7,7 +7,18 @@ import {
   Menu,
   Notification,
   NotificationDetails,
-  MyAccount,
+  Account,
+  AppInformation,
+  Comments,
+  Datasheet,
+  Details,
+  Document,
+  Gallery,
+  Progress,
+  ReferFriend,
+  Tendencies,
+  Tips,
+  Video,
 } from "../../pages";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -58,10 +69,132 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="MyAccount"
-        component={MyAccount}
+        name="Account"
+        component={Account}
         options={{
           headerTitle: "Minha Conta",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="AppInformation"
+        component={AppInformation}
+        options={{
+          headerTitle: "Informações de Apps",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Comments"
+        component={Comments}
+        options={{
+          headerTitle: "Comentários",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Datasheet"
+        component={Datasheet}
+        options={{
+          headerTitle: "Ficha Técnica",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          headerTitle: "Minha Conta",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Document"
+        component={Document}
+        options={{
+          headerTitle: "Manuais e Documentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Gallery"
+        component={Gallery}
+        options={{
+          headerTitle: "Fotos da Obra",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Progress"
+        component={Progress}
+        options={{
+          headerTitle: "Andamento da Obra",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="ReferFriend"
+        component={ReferFriend}
+        options={{
+          headerTitle: "Indique e Ganhe",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Tendencies"
+        component={Tendencies}
+        options={{
+          headerTitle: "Minha Conta",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Tips"
+        component={Tips}
+        options={{
+          headerTitle: "Minha Conta",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Video"
+        component={Video}
+        options={{
+          headerTitle: "Vídeos e Tutoriais",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

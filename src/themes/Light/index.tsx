@@ -1,8 +1,9 @@
 const light = {
   colors: {
-    black: "#181c24",
+    black: "#111111",
     white: "#FFFFFF",
     suvaGrey: "#8B8B8B",
+    gray15: "#262626",
     gray66: "#a8a8a8",
     gray78: "#c7c7c7",
     gray93: "#ededed",
@@ -23,7 +24,7 @@ const light = {
     whiteDarkGray: "#FFFFFF",
     prussianBlueWhite: "#003865",
     prussianBluePacificBlue: "#003865",
-    blackWhite: "#181c24",
+    blackWhite: "#111111",
     gray66Gray78: "#a8a8a8",
   },
 };

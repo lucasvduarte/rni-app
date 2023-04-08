@@ -1,8 +1,9 @@
 const light = {
   colors: {
-    black: "#181c24",
+    black: "#111111",
     white: "#FFFFFF",
     suvaGrey: "#8B8B8B",
+    gray15: "#262626",
     gray66: "#a8a8a8",
     gray78: "#c7c7c7",
     gray93: "#ededed",
@@ -19,7 +20,7 @@ const light = {
     // Success
     success: "#42CD71",
     // Colors Variant
-    whiteBlack: "#181c24",
+    whiteBlack: "#111111",
     whiteDarkGray: "#3b3b3b",
     prussianBlueWhite: "#f0f0f0",
     prussianBluePacificBlue: "#0085CA",
