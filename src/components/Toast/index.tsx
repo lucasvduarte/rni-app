@@ -30,6 +30,8 @@ export const ToastStyled = () => {
           fontWeight: "300",
         }}
         text2NumberOfLines={4}
+        text1={props.text1 || "Sucesso"}
+        text2={props.text2 || "Sua solicitação foi efetuada com sucesso"}
       />
     ),
 
@@ -53,6 +55,10 @@ export const ToastStyled = () => {
           fontWeight: "300",
         }}
         text2NumberOfLines={4}
+        text1={props.text1 || "Erro"}
+        text2={
+          props.text2 || "Desculpe pelo nosso erro, tente novamente mais tarde"
+        }
       />
     ),
 

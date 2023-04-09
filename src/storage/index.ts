@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TAuth } from "../redux/modules/auth/slice";
+import { TAuth } from "../redux/modules/auth/type";
 export const authStorage = "@authStorage";
 export const themeStorage = "@themeStorage";
 

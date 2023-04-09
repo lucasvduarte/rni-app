@@ -1,37 +1,42 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import * as LocalAuthentication from "expo-local-authentication";
 import { Alert } from "react-native";
-import { TAuth } from "../../redux/modules/auth/slice";
-import { useAppDispatch } from "../../redux/hooks";
-import { setUser } from "../../redux/modules/auth/action";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useQuery } from "react-query";
 import { getUser } from "../../pages/auth/services";
 import Toast from "react-native-toast-message";
+import { setUser } from "../../redux/modules/auth/action";
+import { RootState } from "../../redux/store";
 
 export const useBiometric = () => {
   const dispatch = useAppDispatch();
+  const [enabled, setEnabled] = useState(false);
+  const auth = useAppSelector((state: RootState) => {
+    return state.auth;
+  });
 
-  const query = (user: TAuth) =>
-    useQuery({
-      queryKey: "getUser",
-      enabled: false,
-      queryFn: () => getUser(user),
-      onSuccess: (data) => {
-        //dispatch(setUser(data as any));
-      },
-      onError: () => {
-        Toast.show({
-          type: "error",
-          text1: "Error",
-          text2: "This is an info message",
-        });
-      },
-    });
+  const { isFetching } = useQuery({
+    queryKey: "getUser",
+    enabled: enabled,
+    queryFn: () => getUser({ login: auth?.email, password: auth?.password }),
+    onSuccess: ({ result }) => {
+      if (result && auth?.email) {
+        dispatch(setUser(result, auth.email));
+      }
+      setEnabled(false);
+    },
+    onError: () => {
+      Toast.show({
+        type: "error",
+      });
+      setEnabled(false);
+    },
+  });
 
-  const isBiometricAvailableCallback = useCallback(async (auth: TAuth) => {
+  const isBiometricAvailableCallback = useCallback(async () => {
     const isBiometricAvailable = await LocalAuthentication.hasHardwareAsync();
     if (!!auth.password && isBiometricAvailable) {
-      return handleBiometricAuth(auth);
+      return handleBiometricAuth();
     }
     return null;
   }, []);
@@ -52,7 +57,7 @@ export const useBiometric = () => {
     []
   );
 
-  const handleBiometricAuth = useCallback(async (auth: TAuth) => {
+  const handleBiometricAuth = useCallback(async () => {
     // Verifique se o hardware suporta biometria
     const isBiometricAvailable = await LocalAuthentication.hasHardwareAsync();
 
@@ -89,12 +94,10 @@ export const useBiometric = () => {
 
     // Faça o login do usuário em caso de sucesso
     if (biometricAuth.success) {
-      //fazer login aqui
-
-      query(auth);
+      setEnabled(true);
     }
     return;
   }, []);
 
-  return { isBiometricAvailableCallback };
+  return { isBiometricAvailableCallback, isLoading: isFetching };
 };

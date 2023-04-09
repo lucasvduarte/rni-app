@@ -13,59 +13,57 @@ import { useTheme } from "styled-components/native";
 import { LoginPng } from "../../../../assets";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
-import { setLogin } from "../../../../redux/modules/auth/action";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useQuery } from "react-query";
 import { getUser } from "../../services";
 import { LoginProps } from "../../../../navigation/public/types";
+import { setPassword, setUser } from "../../../../redux/modules/auth/action";
+import { useBiometric } from "../../../../hooks";
 
 export const Login = ({ navigation }: LoginProps) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const { colors } = useTheme();
-  const [user, setUser] = useState<any>({
-    email: "",
-    password: "",
-    remember: false,
-  });
+  const [enabled, setEnabled] = useState(false);
+  const { isBiometricAvailableCallback, isLoading } = useBiometric();
+  const dispatch = useAppDispatch();
   const auth = useAppSelector((state: RootState) => {
     return state.auth;
   });
+  const [value, setValue] = useState<any>({
+    login: auth.email,
+    password: "portal",
+    remember: !!auth.email,
+  });
 
-  const dispatch = useAppDispatch();
+  useLayoutEffect(() => {
+    if (auth.password && auth.email) {
+      isBiometricAvailableCallback();
+    }
+  }, [auth.password, auth.email]);
 
-  const { isLoading, data } = useQuery({
+  const { isFetching } = useQuery({
     queryKey: "getUser",
-    enabled: false,
-    queryFn: () => getUser({ login: "", password: "" }),
-    onSuccess: () => {
-      //  dispatch(setLogin(data as any));
+    enabled: enabled,
+    queryFn: () => getUser({ ...value }),
+    onSuccess: ({ result }) => {
+      if (result) {
+        dispatch(setUser(result, value.login));
+      }
+      setEnabled(false);
     },
     onError: () => {
       Toast.show({
         type: "error",
-        text1: "Error",
-        text2: "This is an info message",
       });
+      setEnabled(false);
     },
   });
 
-  useLayoutEffect(() => {
-    if (auth.email) {
-      const { email, password } = auth;
-      setUser({ email: email, password: password || "", remember: !!password });
-    }
-  }, []);
-
   const submit = (value: any) => {
-    if (!value.remember) {
-      value.password = "";
-      //  setUser({ ...user, password: "", user: { name: "lucas duarte" } });
-    }
     if (value.remember) {
-      //exibir msg de ativar login
-      // setUser({ ...user, user: { name: "lucas duarte" } });
+      dispatch(setPassword(value.password));
     }
-    //  dispatch(setLogin(value));
+    setEnabled(true);
   };
 
   return (
@@ -83,15 +81,15 @@ export const Login = ({ navigation }: LoginProps) => {
           placeholder="E-mail"
           size="large"
           keyboardType="email-address"
-          value={user.email}
-          onChangeText={(value) => setUser({ ...user, email: value })}
+          value={value.login}
+          onChangeText={(item) => setValue({ ...value, login: item })}
         />
         <TextInput
           placeholder="Senha"
           size="large"
           secureTextEntry={secureTextEntry}
-          value={user.password}
-          onChangeText={(value) => setUser({ ...user, password: value })}
+          value={value.password}
+          onChangeText={(item) => setValue({ ...value, password: item })}
           rightIcon={
             <Icon
               type="feather"
@@ -113,9 +111,9 @@ export const Login = ({ navigation }: LoginProps) => {
           onPress={() => navigation.navigate("ResetPassword")}
         />
         <CheckBox
-          checked={user.remember}
+          checked={value.remember}
           checkedColor={colors.easternBlue}
-          onPress={() => setUser({ ...user, remember: !user.remember })}
+          onPress={() => setValue({ ...value, remember: !value.remember })}
           title="Lembrar e-mail e senha"
           iconType="material-community"
           checkedIcon="checkbox-marked"
@@ -123,11 +121,11 @@ export const Login = ({ navigation }: LoginProps) => {
         />
         <Button
           title="ENTRAR"
-          onPress={() => submit(user)}
+          onPress={() => submit(value)}
           mt="2xl"
           isBold
           bg="moderateGreen"
-          loading={isLoading}
+          loading={isFetching || isLoading}
         />
       </Box>
     </KeyboardAwareScrollView>

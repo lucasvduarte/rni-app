@@ -4,12 +4,6 @@ import { NotificationProps } from "../../../../navigation/private/types";
 export const Notification = ({ navigation }: NotificationProps) => {
   return (
     <Box m="xl" flex={1}>
-      {/*<Calendar
-        onChangeText={(day) => {
-          console.log(day);
-        }}
-        isVisible={true}
-      />*/}
       <Box flex={1}>
         <Cards
           borderRadius="xl"

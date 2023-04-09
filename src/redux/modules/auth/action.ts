@@ -8,13 +8,13 @@ import { AppDispatch, GetRootState } from "../../store";
 import {
   putAuth,
   putAuthToken,
-  TAuth,
   putClearAuth,
   putUser,
-  TUser,
   putTheme,
-  TTheme,
+  initialState,
+  putPassword,
 } from "./slice";
+import { TTheme, TUser } from "./type";
 
 export const getLogin = () => async (dispatch: AppDispatch) => {
   try {
@@ -24,7 +24,6 @@ export const getLogin = () => async (dispatch: AppDispatch) => {
       dispatch(putAuth(auth));
       return auth;
     }
-
     return false;
   } catch (error) {
     return false;
@@ -44,11 +43,15 @@ export const getTheme = () => async (dispatch: AppDispatch) => {
   }
 };
 
-export const setLogin =
-  (auth: TAuth) => async (dispatch: AppDispatch, getState: GetRootState) => {
+export const setToken =
+  (token?: string) => async (dispatch: AppDispatch, getState: GetRootState) => {
     try {
-      await setAuthStorage(auth);
-      dispatch(putAuth(auth));
+      if (!token) {
+        return false;
+      }
+      const { email, password, theme } = getState().auth;
+      await setAuthStorage({ email, password, theme, token });
+      dispatch(putAuthToken(token));
 
       return true;
     } catch (error) {
@@ -56,23 +59,24 @@ export const setLogin =
     }
   };
 
-export const setToken = (token?: string) => async (dispatch: AppDispatch) => {
-  try {
-    if (!token) {
+export const setUser =
+  (user: TUser, email: string) =>
+  async (dispatch: AppDispatch, getState: GetRootState) => {
+    try {
+      const { password, theme, token } = getState().auth;
+      await setAuthStorage({ password, theme, token, email });
+      dispatch(putUser(user));
+
+      return true;
+    } catch (error) {
       return false;
     }
+  };
 
-    dispatch(putAuthToken(token));
-
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const setUser = (value: TUser) => async (dispatch: AppDispatch) => {
+export const clearUser = () => async (dispatch: AppDispatch) => {
   try {
-    dispatch(putUser(value));
+    await setAuthStorage({ ...initialState });
+    await dispatch(putClearAuth());
 
     return true;
   } catch (error) {
@@ -80,14 +84,19 @@ export const setUser = (value: TUser) => async (dispatch: AppDispatch) => {
   }
 };
 
-export const clearAuth = () => async (dispatch: AppDispatch) => {
-  try {
-    dispatch(putClearAuth());
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+export const setPassword =
+  (password: string) =>
+  async (dispatch: AppDispatch, getState: GetRootState) => {
+    try {
+      const { theme, token, email } = getState().auth;
+      await setAuthStorage({ theme, token, email, password });
+      dispatch(putPassword(password));
+
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
 
 export const setTheme = (value: TTheme) => async (dispatch: AppDispatch) => {
   try {

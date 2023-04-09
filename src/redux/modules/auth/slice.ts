@@ -1,32 +1,19 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import { TAuth, TTheme, TUser } from "./type";
 
-export type TUser = {
-  name: string;
-};
-
-export type TTheme = "light" | "dark";
-
-export type TAuth = {
-  email: string;
-  password?: string;
-  token?: string;
-  user?: TUser;
-  theme?: TTheme;
-};
-
-const initialState: TAuth = {
-  email: "",
+export const initialState: TAuth = {
+  password: undefined,
   token: "",
+  email: "",
   theme: undefined,
 };
 
 const putAuthSlice = (state: Draft<TAuth>, action: PayloadAction<TAuth>) => {
-  const { email, password, user } = action.payload;
+  const { password, token, email, theme } = action.payload;
+  state.password = password;
+  state.token = token;
   state.email = email;
-  state.user = user;
-  if (password) {
-    state.password = password;
-  }
+  state.theme = theme;
 };
 
 const putAuthTokenSlice = (
@@ -37,11 +24,21 @@ const putAuthTokenSlice = (
 };
 
 const putClearAuthSlice = (state: Draft<TAuth>) => {
-  state = initialState;
+  state.password = undefined;
+  state.email = undefined;
+  state.user = undefined;
+  state.theme = undefined;
 };
 
 const putUserSlice = (state: Draft<TAuth>, action: PayloadAction<TUser>) => {
   state.user = action.payload;
+};
+
+const putPasswordSlice = (
+  state: Draft<TAuth>,
+  action: PayloadAction<string>
+) => {
+  state.password = action.payload;
 };
 
 const putThemeSlice = (
@@ -59,10 +56,17 @@ export const slice = createSlice({
     putAuthToken: putAuthTokenSlice,
     putClearAuth: putClearAuthSlice,
     putUser: putUserSlice,
+    putPassword: putPasswordSlice,
     putTheme: putThemeSlice,
   },
 });
 
-export const { putAuth, putAuthToken, putClearAuth, putUser, putTheme } =
-  slice.actions;
+export const {
+  putAuth,
+  putAuthToken,
+  putClearAuth,
+  putUser,
+  putPassword,
+  putTheme,
+} = slice.actions;
 export default slice.reducer;

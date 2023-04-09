@@ -25,10 +25,10 @@ export const HeaderTitle = () => {
         duration={1200}
       />
       <Box pt="sm" pl="xs">
-        <Text title={`Olá ${auth.user?.name}`} color="blackWhite" />
+        <Text title={`Olá ${auth.user?.cliente.nome}`} color="blackWhite" />
         <Text
           title="Minha Conta >"
-          onPress={() => navigate("MyAccount")}
+          onPress={() => navigate("Account")}
           color="suvaGrey"
         />
       </Box>

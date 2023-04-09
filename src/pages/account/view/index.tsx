@@ -1,7 +1,7 @@
-import { Box, Text } from "../../../components";
+import { Box, Button, Text } from "../../../components";
 import { Switch } from "@rneui/themed";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { setTheme } from "../../../redux/modules/auth/action";
+import { clearUser, setTheme } from "../../../redux/modules/auth/action";
 import { RootState } from "../../../redux/store";
 
 export const Account = () => {
@@ -18,6 +18,13 @@ export const Account = () => {
     <Box m="xl">
       <Text title="Minha Conta" />
       <Switch value={auth.theme === "dark"} onValueChange={toggleSwitch} />
+      <Button
+        title="Sair"
+        onPress={() => {
+          dispatch(clearUser());
+        }}
+        type="clear"
+      />
     </Box>
   );
 };
