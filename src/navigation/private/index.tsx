@@ -12,13 +12,16 @@ import {
   Comments,
   Datasheet,
   Details,
-  Document,
+  DocumentProperty,
   Gallery,
   Progress,
   ReferFriend,
   Tendencies,
-  Tips,
+  TipsService,
   Video,
+  DocumentFinancing,
+  Step,
+  TipsFinancing,
 } from "../../pages";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -125,8 +128,8 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Document"
-        component={Document}
+        name="DocumentProperty"
+        component={DocumentProperty}
         options={{
           headerTitle: "Manuais e Documentos",
           headerRight: () => <HeaderRight />,
@@ -180,8 +183,8 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Tips"
-        component={Tips}
+        name="TipsService"
+        component={TipsService}
         options={{
           headerTitle: "Minha Conta",
           headerRight: () => <HeaderRight />,
@@ -195,6 +198,39 @@ export const PrivateNavigation = () => {
         component={Video}
         options={{
           headerTitle: "Vídeos e Tutoriais",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DocumentFinancing"
+        component={DocumentFinancing}
+        options={{
+          headerTitle: "Documentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Step"
+        component={Step}
+        options={{
+          headerTitle: "Passoa a passo",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="TipsFinancing"
+        component={TipsFinancing}
+        options={{
+          headerTitle: "Dicas",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

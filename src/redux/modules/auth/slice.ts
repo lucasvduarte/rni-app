@@ -6,6 +6,7 @@ export const initialState: TAuth = {
   token: "",
   email: "",
   theme: undefined,
+  isSingIn: false,
 };
 
 const putAuthSlice = (state: Draft<TAuth>, action: PayloadAction<TAuth>) => {
@@ -25,13 +26,19 @@ const putAuthTokenSlice = (
 
 const putClearAuthSlice = (state: Draft<TAuth>) => {
   state.password = undefined;
-  state.email = undefined;
+  state.email = "";
   state.user = undefined;
   state.theme = undefined;
+  state.isSingIn = false;
 };
 
 const putUserSlice = (state: Draft<TAuth>, action: PayloadAction<TUser>) => {
   state.user = action.payload;
+  state.isSingIn = true;
+};
+
+const putIsSingInSlice = (state: Draft<TAuth>) => {
+  state.isSingIn = false;
 };
 
 const putPasswordSlice = (
@@ -58,6 +65,7 @@ export const slice = createSlice({
     putUser: putUserSlice,
     putPassword: putPasswordSlice,
     putTheme: putThemeSlice,
+    putIsSingIn: putIsSingInSlice,
   },
 });
 
@@ -68,5 +76,6 @@ export const {
   putUser,
   putPassword,
   putTheme,
+  putIsSingIn,
 } = slice.actions;
 export default slice.reducer;

@@ -1,55 +1,39 @@
-import { Box, Cards, Text } from "../../../../components";
-import { MenuProps } from "../../../../navigation/private/types";
+import { BottomSheet, Box, Cards, Modal, Text } from "../../../../components";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { RootState } from "../../../../redux/store";
+import { setIsSingIn } from "../../../../redux/modules/auth/action";
 
-export const Menu = ({ navigation }: MenuProps) => {
+export const Menu = () => {
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state: RootState) => {
+    return state.auth;
+  });
+
   return (
     <Box m="xl" flex={1}>
-      <Box flex={1}>
-        <Cards
-          borderRadius="xl"
-          shadow="sm"
-          shadowColor="blackWhite"
-          p="none"
-          bg="moderateGreen"
-          onPress={() =>
-            navigation.navigate("Notification", {
-              data: {},
-              isTechnicalVisit: false,
-            })
-          }
-        >
-          <Box flexDir="row" pl="xl" pt="md" pb="sm">
-            <Text title="Agendado para:" color="white" />
-            <Text
-              title="05/02/2023 - 09:00h"
-              color="prussianBlue"
-              pl="lg"
-              fontWeight="700"
-            />
-          </Box>
-
-          <Cards borderRadius="xl" bg="whiteDarkGray" borderWidth={0}>
-            <Box flexDir="row" justifyContent="space-between">
-              <Text
-                title="Tiago Luis Quemelo"
-                color="prussianBlueWhite"
-                fontWeight="700"
-              />
-              <Text
-                title="005584482"
-                color="moderateGreen"
-                pt="sm"
-                fontSize="3xl"
-              />
-            </Box>
-            <Text
-              title="I394 - Bloco A 0074"
-              color="prussianBlueWhite"
-              mb="sm"
-            />
-          </Cards>
+      <BottomSheet visible={auth.isSingIn} isOnBackdropPress={false}>
+        <Cards m="2xl" mb="2xl" borderRadius="lg" shadow="md">
+          {auth.user?.item
+            .filter((item) => item.CTRCLATIP === 1)
+            .map((item) => {
+              return (
+                <Text
+                  title="HOME"
+                  key={item.EMPCOD}
+                  onPress={() => {
+                    dispatch(setIsSingIn());
+                  }}
+                />
+              );
+            })}
         </Cards>
-      </Box>
+      </BottomSheet>
+
+      <Modal type="custom" isVisible={false} title="HOME">
+        <Box bg="atlantis">
+          <Text title="HOME" color="black" />
+        </Box>
+      </Modal>
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import { Box, Text } from "../../../../components";
 
-export const Tips = () => {
+export const TipsService = () => {
   return (
     <Box m="xl">
       <Text title="Minha Conta" />

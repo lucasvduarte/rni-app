@@ -13,6 +13,7 @@ import {
   putTheme,
   initialState,
   putPassword,
+  putIsSingIn,
 } from "./slice";
 import { TTheme, TUser } from "./type";
 
@@ -102,6 +103,15 @@ export const setTheme = (value: TTheme) => async (dispatch: AppDispatch) => {
   try {
     setThemeStorage(value);
     dispatch(putTheme(value));
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const setIsSingIn = () => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(putIsSingIn());
     return true;
   } catch (error) {
     return false;

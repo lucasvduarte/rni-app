@@ -11,3 +11,4 @@ export { Icon } from "./Icon";
 export { Calendar } from "./Calendar";
 export { Modal } from "./Modal";
 export { Skeleton } from "./Skeleton";
+export { BottomSheet } from "./BottomSheet";

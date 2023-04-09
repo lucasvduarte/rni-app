@@ -6,7 +6,7 @@ export type RootStackParamList = {
   Notification: { data: any; isTechnicalVisit: boolean };
   NotificationDetails: undefined;
   Datasheet: undefined;
-  Document: undefined;
+  DocumentProperty: undefined;
   Gallery: undefined;
   Progress: undefined;
   AppInformation: undefined;
@@ -14,8 +14,11 @@ export type RootStackParamList = {
   Details: undefined;
   ReferFriend: undefined;
   Tendencies: undefined;
-  Tips: undefined;
+  TipsService: undefined;
   Video: undefined;
+  DocumentFinancing: undefined;
+  Step: undefined;
+  TipsFinancing: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;

@@ -1,6 +1,6 @@
 import { Box, Text } from "../../../../components";
 
-export const DocumentProperty = () => {
+export const Step = () => {
   return (
     <Box m="xl">
       <Text title="Minha Conta" />

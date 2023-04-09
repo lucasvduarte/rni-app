@@ -74,6 +74,7 @@ export type TAuth = {
   token?: string;
   user?: TUser;
   theme?: TTheme;
+  isSingIn?: boolean;
 };
 
 export type TItem = {
