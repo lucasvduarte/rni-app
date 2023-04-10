@@ -2,7 +2,6 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components/native";
 import { RootStackParamList } from "./types";
-import { HeaderRight } from "../../components";
 import { Welcome, Login, Register, ResetPassword } from "../../pages";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

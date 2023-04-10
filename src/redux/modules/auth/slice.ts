@@ -1,5 +1,5 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
-import { TAuth, TTheme, TUser } from "./type";
+import { TAuth, TItem, TTheme, TUser } from "./type";
 
 export const initialState: TAuth = {
   password: undefined,
@@ -7,6 +7,7 @@ export const initialState: TAuth = {
   email: "",
   theme: undefined,
   isSingIn: false,
+  enterpriseSelect: undefined,
 };
 
 const putAuthSlice = (state: Draft<TAuth>, action: PayloadAction<TAuth>) => {
@@ -29,6 +30,7 @@ const putClearAuthSlice = (state: Draft<TAuth>) => {
   state.email = "";
   state.user = undefined;
   state.theme = undefined;
+  state.enterpriseSelect = undefined;
   state.isSingIn = false;
 };
 
@@ -39,6 +41,13 @@ const putUserSlice = (state: Draft<TAuth>, action: PayloadAction<TUser>) => {
 
 const putIsSingInSlice = (state: Draft<TAuth>) => {
   state.isSingIn = false;
+};
+
+const putEnterpriseSelectSlice = (
+  state: Draft<TAuth>,
+  action: PayloadAction<TItem>
+) => {
+  state.enterpriseSelect = action.payload;
 };
 
 const putPasswordSlice = (
@@ -66,6 +75,7 @@ export const slice = createSlice({
     putPassword: putPasswordSlice,
     putTheme: putThemeSlice,
     putIsSingIn: putIsSingInSlice,
+    putEnterpriseSelect: putEnterpriseSelectSlice,
   },
 });
 
@@ -77,5 +87,6 @@ export const {
   putPassword,
   putTheme,
   putIsSingIn,
+  putEnterpriseSelect,
 } = slice.actions;
 export default slice.reducer;

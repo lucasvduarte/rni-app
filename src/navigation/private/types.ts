@@ -12,7 +12,7 @@ export type RootStackParamList = {
   AppInformation: undefined;
   Comments: undefined;
   Details: undefined;
-  ReferFriend: undefined;
+  ReferAndWin: undefined;
   Tendencies: undefined;
   TipsService: undefined;
   Video: undefined;

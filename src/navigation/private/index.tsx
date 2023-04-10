@@ -15,7 +15,7 @@ import {
   DocumentProperty,
   Gallery,
   Progress,
-  ReferFriend,
+  ReferAndWin,
   Tendencies,
   TipsService,
   Video,
@@ -161,8 +161,8 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="ReferFriend"
-        component={ReferFriend}
+        name="ReferAndWin"
+        component={ReferAndWin}
         options={{
           headerTitle: "Indique e Ganhe",
           headerRight: () => <HeaderRight />,

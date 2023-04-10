@@ -32,5 +32,4 @@ export interface BottomSheetProps
     VariantPropsType {
   children: ReactNode;
   visible?: boolean;
-  isOnBackdropPress?: boolean;
 }

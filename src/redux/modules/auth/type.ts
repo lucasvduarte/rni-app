@@ -75,6 +75,7 @@ export type TAuth = {
   user?: TUser;
   theme?: TTheme;
   isSingIn?: boolean;
+  enterpriseSelect?: TItem;
 };
 
 export type TItem = {

@@ -14,8 +14,9 @@ import {
   initialState,
   putPassword,
   putIsSingIn,
+  putEnterpriseSelect,
 } from "./slice";
-import { TTheme, TUser } from "./type";
+import { TItem, TTheme, TUser } from "./type";
 
 export const getLogin = () => async (dispatch: AppDispatch) => {
   try {
@@ -117,3 +118,18 @@ export const setIsSingIn = () => async (dispatch: AppDispatch) => {
     return false;
   }
 };
+
+export const setEnterpriseSelect =
+  (item: TItem) => async (dispatch: AppDispatch, getState: GetRootState) => {
+    try {
+      const { isSingIn } = getState().auth;
+      if (isSingIn) {
+        dispatch(setIsSingIn());
+      }
+      dispatch(putEnterpriseSelect(item));
+
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };

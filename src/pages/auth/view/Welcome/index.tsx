@@ -1,10 +1,22 @@
 import { Box, Button } from "../../../../components";
 import * as Animatable from "react-native-animatable";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { LoginPng } from "../../../../assets";
 import { WelcomeProps } from "../../../../navigation/public/types";
+import { useAppSelector } from "../../../../redux/hooks";
+import { RootState } from "../../../../redux/store";
 
 export const Welcome = ({ navigation }: WelcomeProps) => {
+  const { email } = useAppSelector((state: RootState) => {
+    return state.auth;
+  });
+
+  useLayoutEffect(() => {
+    if (email) {
+      return navigation.navigate("Login");
+    }
+  }, []);
+
   return (
     <Box px="xl" flex={1}>
       <Box alignItems="center" justifyContent="center">

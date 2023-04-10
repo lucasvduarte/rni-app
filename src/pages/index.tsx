@@ -11,7 +11,7 @@ export {
   AppInformation,
   Comments,
   Details,
-  ReferFriend,
+  ReferAndWin,
   Tendencies,
   TipsService,
   Video,

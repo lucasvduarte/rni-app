@@ -1,4 +1,4 @@
-import { Box, Cards, Text } from "../../../../components";
+import { Box, Card, Text } from "../../../../components";
 import { NotificationDetailsProps } from "../../../../navigation/private/types";
 
 export const NotificationDetails = ({
@@ -7,7 +7,7 @@ export const NotificationDetails = ({
   return (
     <Box m="xl" flex={1}>
       <Box flex={1}>
-        <Cards
+        <Card
           borderRadius="xl"
           shadow="sm"
           shadowColor="blackWhite"
@@ -30,7 +30,7 @@ export const NotificationDetails = ({
             />
           </Box>
 
-          <Cards borderRadius="xl" bg="whiteDarkGray" borderWidth={0}>
+          <Card borderRadius="xl" bg="whiteDarkGray" borderWidth={0}>
             <Box flexDir="row" justifyContent="space-between">
               <Text
                 title="Tiago Luis Quemelo"
@@ -49,8 +49,8 @@ export const NotificationDetails = ({
               color="prussianBlueWhite"
               mb="sm"
             />
-          </Cards>
-        </Cards>
+          </Card>
+        </Card>
       </Box>
     </Box>
   );

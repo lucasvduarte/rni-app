@@ -9,7 +9,6 @@ import {
 } from "../../../../components";
 import * as Animatable from "react-native-animatable";
 import React, { useLayoutEffect, useState } from "react";
-import { useTheme } from "styled-components/native";
 import { LoginPng } from "../../../../assets";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -22,7 +21,6 @@ import { useBiometric } from "../../../../hooks";
 
 export const Login = ({ navigation }: LoginProps) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const { colors } = useTheme();
   const [enabled, setEnabled] = useState(false);
   const { isBiometricAvailableCallback, isLoading } = useBiometric();
   const dispatch = useAppDispatch();
@@ -45,17 +43,20 @@ export const Login = ({ navigation }: LoginProps) => {
     queryKey: "getUser",
     enabled: enabled,
     queryFn: () => getUser({ ...value }),
+    onSettled: () => {
+      setEnabled(false);
+    },
     onSuccess: ({ result }) => {
       if (result) {
         dispatch(setUser(result, value.login));
       }
-      setEnabled(false);
+      // setEnabled(false);
     },
     onError: () => {
       Toast.show({
         type: "error",
       });
-      setEnabled(false);
+      //setEnabled(false);
     },
   });
 
@@ -112,7 +113,7 @@ export const Login = ({ navigation }: LoginProps) => {
         />
         <CheckBox
           checked={value.remember}
-          checkedColor={colors.easternBlue}
+          color="easternBlue"
           onPress={() => setValue({ ...value, remember: !value.remember })}
           title="Lembrar e-mail e senha"
           iconType="material-community"

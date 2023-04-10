@@ -4,5 +4,13 @@ import { CheckBoxProps } from "./type";
 
 export const CheckBox = (props: CheckBoxProps) => {
   const { colors } = useTheme();
-  return <CheckBoxStyled {...props} textStyle={{ color: colors.blackWhite }} />;
+  const { color = "easternBlue" } = props;
+
+  return (
+    <CheckBoxStyled
+      {...props}
+      textStyle={{ color: colors.blackWhite }}
+      checkedColor={colors[color]}
+    />
+  );
 };

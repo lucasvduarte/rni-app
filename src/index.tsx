@@ -22,6 +22,9 @@ export default function App() {
   const { isLoading } = useQuery({
     queryKey: "getToken",
     queryFn: getToken,
+    //refetchInterval: 50 * 60 * 1000,
+    staleTime: 50 * 60 * 1000,
+    refetchIntervalInBackground: false,
     onSuccess: ({ token }) => {
       dispatch(setToken(token));
     },
@@ -37,7 +40,7 @@ export default function App() {
 
   const themeSelect = auth.theme || deviceTheme || "light";
 
-  if (isLoading) {
+  if (isLoading && !auth.token) {
     return null;
   }
 
