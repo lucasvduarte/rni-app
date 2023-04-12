@@ -36,7 +36,7 @@ export type TClient = {
   aux5?: string | number;
   nome: string;
   apelido: string;
-  cpfcnpj: number | string;
+  cpfcnpj: string;
   guidcontrol: string;
   sindico: boolean;
   termoadesao: boolean;

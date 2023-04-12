@@ -1,10 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { TNotification } from "../../pages/notification/services/type";
 
 export type RootStackParamList = {
   Menu: undefined;
   Account: undefined;
   Notification: { data: any; isTechnicalVisit: boolean };
-  NotificationDetails: undefined;
+  NotificationDetails: { notification: TNotification };
   Datasheet: undefined;
   DocumentProperty: undefined;
   Gallery: undefined;

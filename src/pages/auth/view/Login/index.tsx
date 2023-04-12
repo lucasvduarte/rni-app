@@ -43,10 +43,9 @@ export const Login = ({ navigation }: LoginProps) => {
     queryKey: "getUser",
     enabled: false,
     queryFn: () => getUser({ ...value }),
-
-    onSuccess: ({ result }) => {
-      if (result) {
-        dispatch(setUser(result, value.login));
+    onSuccess: ({ data }) => {
+      if (data.result) {
+        dispatch(setUser(data.result, value.login));
       }
     },
     onError: () => {

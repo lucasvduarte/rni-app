@@ -15,6 +15,7 @@ import { TItem } from "../../../../redux/modules/auth/type";
 import { listCard } from "./helps";
 import { MenuProps } from "../../../../navigation/private/types";
 import { Dimensions, SectionList } from "react-native";
+import { ListItem } from "@rneui/base";
 const { width } = Dimensions.get("window");
 
 export const Menu = ({ navigation }: MenuProps) => {
@@ -50,21 +51,43 @@ export const Menu = ({ navigation }: MenuProps) => {
         }}
       >
         <Card m="2xl" mb="2xl" borderRadius="lg" shadow="md">
+          <Text
+            title="Alterar empreendimento"
+            pb="xl"
+            color="easternBlue"
+            fontWeight="bold"
+          />
+
           {user?.item
             .filter((item) => item.CTRCLATIP === 1)
             .map((item) => {
               return (
-                <Box pb="lg" key={item.EMPCOD}>
-                  <CheckBox
-                    checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
-                    color="easternBlue"
-                    onPress={() => onPressSelect(item)}
-                    title={item.EMPDESCOM}
-                    iconType="material-community"
-                    checkedIcon="circle"
-                    uncheckedIcon="circle-outline"
-                  />
-                </Box>
+                <ListItem>
+                  <Box pb="lg" key={item.EMPCOD}>
+                    <CheckBox
+                      checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
+                      color="easternBlue"
+                      onPress={() => onPressSelect(item)}
+                      title={item.EMPDESCOM}
+                      iconType="material-community"
+                      checkedIcon="circle"
+                      uncheckedIcon="circle-outline"
+                    />
+                    <Box flexDir="row" ml="2xl" mt="-xs">
+                      <Text
+                        title={`Unidade: ${item.UNICOD}`}
+                        color="suvaGrey"
+                        fontSize="md"
+                      />
+                      <Text
+                        title={`Torre: ${item.TORCOD}`}
+                        color="suvaGrey"
+                        fontSize="md"
+                        pl="xl"
+                      />
+                    </Box>
+                  </Box>
+                </ListItem>
               );
             })}
         </Card>
@@ -121,7 +144,7 @@ export const Menu = ({ navigation }: MenuProps) => {
                         <Text
                           title={item.name}
                           textAlign="center"
-                          color="blackWhite"
+                          color="blackSuvaGrey"
                           flex={1}
                         />
 

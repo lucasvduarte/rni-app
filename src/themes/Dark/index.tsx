@@ -8,6 +8,7 @@ const light = {
     gray78: "#c7c7c7",
     gray93: "#ededed",
     darkGray: "#3b3b3b",
+    matterhorn: "#f0f0f0",
     easternBlue: "#008d97",
     pacificBlue: "#0085CA",
     prussianBlue: "#003865",
@@ -20,6 +21,7 @@ const light = {
     // Success
     success: "#42CD71",
     // Colors Variant
+    blackSuvaGrey: "#8B8B8B",
     whiteBlack: "#111111",
     whiteDarkGray: "#3b3b3b",
     prussianBlueWhite: "#f0f0f0",

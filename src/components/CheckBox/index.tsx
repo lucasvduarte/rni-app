@@ -9,7 +9,7 @@ export const CheckBox = (props: CheckBoxProps) => {
   return (
     <CheckBoxStyled
       {...props}
-      textStyle={{ color: colors.blackWhite }}
+      textStyle={{ color: colors.matterhorn }}
       checkedColor={colors[color]}
     />
   );

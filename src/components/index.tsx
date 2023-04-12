@@ -14,3 +14,4 @@ export { Skeleton } from "./Skeleton";
 export { BottomSheet } from "./BottomSheet";
 export { WebViewPage } from "./WebView";
 export { FlatList } from "./FlashList";
+export { Divider } from "./Divider";

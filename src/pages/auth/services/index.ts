@@ -8,10 +8,10 @@ const URL: string = "/clients";
 
 export const getUser = async (user: any) => {
   delete user.remember;
-  const response = api.get<Promise<TResponseUser>>(`${URL}/validlogin`, {
+  const response = api.get<TResponseUser>(`${URL}/validlogin`, {
     headers: { ...user },
   });
-  return (await response).data;
+  return response;
 };
 
 export const getToken = async () => {

@@ -19,9 +19,9 @@ export const useBiometric = () => {
     queryKey: "getUser",
     enabled: false,
     queryFn: () => getUser({ login: auth?.email, password: auth?.password }),
-    onSuccess: ({ result }) => {
-      if (result && auth?.email) {
-        dispatch(setUser(result, auth.email));
+    onSuccess: ({ data }) => {
+      if (data.result && auth?.email) {
+        dispatch(setUser(data.result, auth.email));
       }
     },
     onError: () => {
@@ -67,13 +67,7 @@ export const useBiometric = () => {
         "OK",
         () => fallBackToDefaultAuth()
       );
-    // Verifique os tipos de biometria disponíveis (impressão digital, reconhecimento facial, reconhecimento de íris)
-    /* let supportedBiometrics;
-    if (isBiometricAvailable) {
-      supportedBiometrics =
-        await LocalAuthentication.supportedAuthenticationTypesAsync();
-    }
-*/
+
     // Verifique se os dados biométricos são salvos localmente no dispositivo do usuário
     const savedBiometrics = await LocalAuthentication.isEnrolledAsync();
     if (!savedBiometrics)

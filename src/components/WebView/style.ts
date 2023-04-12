@@ -12,5 +12,5 @@ export const Indicator = styled(ActivityIndicator).attrs(() => ({
   right: 0;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.whiteBlack};
 `;
