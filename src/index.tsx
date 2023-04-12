@@ -26,6 +26,7 @@ export default function App() {
     staleTime: 50 * 60 * 1000,
     refetchIntervalInBackground: false,
     onSuccess: ({ token }) => {
+      console.log({ token });
       dispatch(setToken(token));
     },
   });

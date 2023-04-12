@@ -3,8 +3,11 @@ import { RootStackParamList } from "../../../../navigation/private/types";
 type TListCard = {
   title: string;
   numColuns: number;
-  data: Array<{ name: string; router: keyof RootStackParamList }>;
-  // icon: string;
+  data: Array<{
+    name: string;
+    router: keyof RootStackParamList;
+    icon: string;
+  }>;
 };
 
 export const listCard: TListCard[] = [
@@ -15,14 +18,17 @@ export const listCard: TListCard[] = [
       {
         name: "Passo a passo",
         router: "Step",
+        icon: "clipboard-list",
       },
       {
         name: "Documentos",
         router: "DocumentFinancing",
+        icon: "file-document",
       },
       {
         name: "Dicas",
         router: "TipsFinancing",
+        icon: "lightbulb-on",
       },
     ],
   },
@@ -33,22 +39,27 @@ export const listCard: TListCard[] = [
       {
         name: "Andamento da Obra",
         router: "Progress",
+        icon: "progress-check",
       },
       {
         name: "Galeria de Imagens",
         router: "Gallery",
+        icon: "view-gallery",
       },
       {
         name: "Fotos da Obra",
         router: "Gallery",
+        icon: "camera",
       },
       {
         name: "Ficha Técnica",
         router: "Datasheet",
+        icon: "text-long",
       },
       {
         name: "Manuais e Documentos",
         router: "DocumentProperty",
+        icon: "file-document",
       },
     ],
   },
@@ -59,22 +70,28 @@ export const listCard: TListCard[] = [
       {
         name: "2° via de Boleto",
         router: "DocumentProperty",
+        icon: "text-box",
       },
       {
         name: "Extrato",
         router: "DocumentProperty",
+        icon: "file-account",
       },
       {
         name: "Informe de pagamentos",
         router: "DocumentProperty",
+        icon: "cash-register",
       },
       {
         name: "Antecipação",
         router: "DocumentProperty",
+        icon: "cash-check",
       },
       {
         name: "Quitação",
         router: "DocumentProperty",
+
+        icon: "file-sign",
       },
     ],
   },
@@ -85,22 +102,27 @@ export const listCard: TListCard[] = [
       {
         name: "Atendimentos",
         router: "DocumentProperty",
+        icon: "face-agent",
       },
       {
         name: "Assistência Técnica",
         router: "DocumentProperty",
+        icon: "account-wrench",
       },
       {
         name: "Pesquisas",
         router: "DocumentProperty",
+        icon: "feature-search",
       },
       {
         name: "Perguntas Frequentes",
         router: "DocumentProperty",
+        icon: "frequently-asked-questions",
       },
       {
         name: "Manuais",
         router: "DocumentProperty",
+        icon: "book-open-variant",
       },
     ],
   },
@@ -111,22 +133,27 @@ export const listCard: TListCard[] = [
       {
         name: "Indique e ganhe",
         router: "ReferAndWin",
+        icon: "emoticon-wink",
       },
       {
         name: "Dicas",
         router: "TipsService",
+        icon: "lightbulb-on",
       },
       {
         name: "Tendências",
         router: "Tendencies",
+        icon: "finance",
       },
       {
         name: "Vídeos e Tutoriais",
         router: "Video",
+        icon: "cast-education",
       },
       {
         name: "Informações de Apps",
         router: "AppInformation",
+        icon: "apps",
       },
     ],
   },

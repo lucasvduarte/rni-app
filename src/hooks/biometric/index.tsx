@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import * as LocalAuthentication from "expo-local-authentication";
 import { Alert } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -10,26 +10,24 @@ import { RootState } from "../../redux/store";
 
 export const useBiometric = () => {
   const dispatch = useAppDispatch();
-  const [enabled, setEnabled] = useState(false);
+
   const auth = useAppSelector((state: RootState) => {
     return state.auth;
   });
 
-  const { isFetching } = useQuery({
+  const { isLoading, refetch } = useQuery({
     queryKey: "getUser",
-    enabled: enabled,
+    enabled: false,
     queryFn: () => getUser({ login: auth?.email, password: auth?.password }),
     onSuccess: ({ result }) => {
       if (result && auth?.email) {
         dispatch(setUser(result, auth.email));
       }
-      setEnabled(false);
     },
     onError: () => {
       Toast.show({
         type: "error",
       });
-      setEnabled(false);
     },
   });
 
@@ -94,10 +92,10 @@ export const useBiometric = () => {
 
     // Faça o login do usuário em caso de sucesso
     if (biometricAuth.success) {
-      setEnabled(true);
+      refetch();
     }
     return;
   }, []);
 
-  return { isBiometricAvailableCallback, isLoading: isFetching };
+  return { isBiometricAvailableCallback, isLoading };
 };

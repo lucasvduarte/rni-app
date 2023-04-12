@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
 import { BottomSheetProps } from "./type";
-import { Button } from "../Button";
 import { BottomSheet as RNBottomSheet } from "@rneui/themed";
 
 export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
@@ -14,21 +13,18 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
   }, [visible]);
 
   return (
-    <>
-      <Button title="Open Bottom Sheet" onPress={() => setIsVisible(true)} />
-      <RNBottomSheet
-        modalProps={{}}
-        isVisible={isVisible}
-        containerStyle={{
-          backgroundColor: "transparent",
-        }}
-        onBackdropPress={() => {
-          setIsVisible(false);
-        }}
-        {...props}
-      >
-        {children}
-      </RNBottomSheet>
-    </>
+    <RNBottomSheet
+      modalProps={{}}
+      isVisible={isVisible}
+      containerStyle={{
+        backgroundColor: "transparent",
+      }}
+      onBackdropPress={() => {
+        setIsVisible(false);
+      }}
+      {...props}
+    >
+      {children}
+    </RNBottomSheet>
   );
 };

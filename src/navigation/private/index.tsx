@@ -23,6 +23,7 @@ import {
   Step,
   TipsFinancing,
 } from "../../pages";
+import { HeaderRightMenu } from "../../components/Header";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -43,7 +44,7 @@ export const PrivateNavigation = () => {
         component={Menu}
         options={{
           headerTitle: () => <HeaderTitle />,
-          headerRight: () => <HeaderRight />,
+          headerRight: () => <HeaderRightMenu />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
           headerStyle: { backgroundColor: colors.whiteBlack },
@@ -53,7 +54,7 @@ export const PrivateNavigation = () => {
         name="Notification"
         component={Notification}
         options={{
-          headerTitle: "Minha Conta",
+          headerTitle: "Notificações",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
@@ -64,7 +65,7 @@ export const PrivateNavigation = () => {
         name="NotificationDetails"
         component={NotificationDetails}
         options={{
-          headerTitle: "Detalhes do Caso",
+          headerTitle: "Detalhes da notificações",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

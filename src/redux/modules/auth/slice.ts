@@ -5,17 +5,16 @@ export const initialState: TAuth = {
   password: undefined,
   token: "",
   email: "",
-  theme: undefined,
+  theme: "light",
   isSingIn: false,
   enterpriseSelect: undefined,
 };
 
 const putAuthSlice = (state: Draft<TAuth>, action: PayloadAction<TAuth>) => {
-  const { password, token, email, theme } = action.payload;
+  const { password, token, email } = action.payload;
   state.password = password;
   state.token = token;
   state.email = email;
-  state.theme = theme;
 };
 
 const putAuthTokenSlice = (
@@ -29,7 +28,7 @@ const putClearAuthSlice = (state: Draft<TAuth>) => {
   state.password = undefined;
   state.email = "";
   state.user = undefined;
-  state.theme = undefined;
+  state.theme = "light";
   state.enterpriseSelect = undefined;
   state.isSingIn = false;
 };

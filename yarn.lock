@@ -3446,10 +3446,10 @@ expo-keep-awake@~12.0.1:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-12.0.1.tgz#19c5ab55391394ded3f6c262b0707c7140658a11"
   integrity sha512-hqeCnb4033TyuZaXs93zTK7rjVJ3bywXATyMmKmKkLEsH2PKBAl/VmjlCOPQL/2Ncqz6aj7Wo//tjeJTARBD4g==
 
-expo-local-authentication@~13.2.1:
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/expo-local-authentication/-/expo-local-authentication-13.2.1.tgz#7139a67d4a980e55347ac2b079015e52eb7da974"
-  integrity sha512-DugTdymppsXyW0EDuYwUO6l2I9YK+FkDOUmuPQRGXPkYvmETSGEoGI7JQf0i/unihhS1uzyYvqNBAT3mPM4Tpg==
+expo-local-authentication@~13.3.0:
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/expo-local-authentication/-/expo-local-authentication-13.3.0.tgz#884f6f5c1d1412b053c2ed7cf3899f405b91adde"
+  integrity sha512-HZ2L9GOQGooV+6kT2wLrR42BlxczT4N18kPY6HF82S31/a/YHslgUUt1lmHNU64NJViSCOBaTeVCjh8t/BeNEA==
   dependencies:
     invariant "^2.2.4"
 
@@ -6098,10 +6098,10 @@ react-native-web@~0.18.11:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.2"
 
-react-native-webview@^12.0.2:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-12.0.2.tgz#6f75bc74f75a7585fb06743ffc20c267048512df"
-  integrity sha512-vEnFOgVIYaUAQb437BOZdwTteUv3dkXkYOajalUkMDHNz91Zb35HaG6L49uUSFp4qYw46y/U3licKS1BOISDrg==
+react-native-webview@11.26.0:
+  version "11.26.0"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.26.0.tgz#e524992876fe4a79e69905f0fab8949b470e9f16"
+  integrity sha512-4T4CKRm8xlaQDz9h/bCMPGAvtkesrhkRWqCX9FDJEzBToaVUIsV0ZOqtC4w/JSnCtFKKYiaC1ReJtCGv+4mFeQ==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"

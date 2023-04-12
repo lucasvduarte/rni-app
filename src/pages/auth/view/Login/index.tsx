@@ -21,7 +21,7 @@ import { useBiometric } from "../../../../hooks";
 
 export const Login = ({ navigation }: LoginProps) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const [enabled, setEnabled] = useState(false);
+
   const { isBiometricAvailableCallback, isLoading } = useBiometric();
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state: RootState) => {
@@ -29,7 +29,7 @@ export const Login = ({ navigation }: LoginProps) => {
   });
   const [value, setValue] = useState<any>({
     login: auth.email,
-    password: "portal",
+    password: "",
     remember: !!auth.email,
   });
 
@@ -39,24 +39,20 @@ export const Login = ({ navigation }: LoginProps) => {
     }
   }, [auth.password, auth.email]);
 
-  const { isFetching } = useQuery({
+  const { isFetching, refetch } = useQuery({
     queryKey: "getUser",
-    enabled: enabled,
+    enabled: false,
     queryFn: () => getUser({ ...value }),
-    onSettled: () => {
-      setEnabled(false);
-    },
+
     onSuccess: ({ result }) => {
       if (result) {
         dispatch(setUser(result, value.login));
       }
-      // setEnabled(false);
     },
     onError: () => {
       Toast.show({
         type: "error",
       });
-      //setEnabled(false);
     },
   });
 
@@ -64,7 +60,7 @@ export const Login = ({ navigation }: LoginProps) => {
     if (value.remember) {
       dispatch(setPassword(value.password));
     }
-    setEnabled(true);
+    refetch();
   };
 
   return (

@@ -9,7 +9,7 @@ export const Card = (props: CardProps) => {
   const {
     children,
     animation,
-    bg = "white",
+    bg = "whiteDarkGray",
     onPress,
     shadowColor = "black",
   } = props;

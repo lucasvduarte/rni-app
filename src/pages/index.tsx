@@ -1,5 +1,6 @@
 export { Account } from "./account";
-export { Menu, Notification, NotificationDetails } from "./home/view";
+export { Menu } from "./home/view";
+export { Notification, NotificationDetails } from "./notification/view";
 export { Login, Register, ResetPassword, Welcome } from "./auth/view";
 export {
   Datasheet,

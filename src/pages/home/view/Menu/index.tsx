@@ -4,6 +4,7 @@ import {
   Card,
   CheckBox,
   FlatList,
+  Icon,
   Text,
 } from "../../../../components";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -40,7 +41,6 @@ export const Menu = ({ navigation }: MenuProps) => {
 
   return (
     <Box flex={1}>
-      <Text title="Alterar" onPress={() => setVisible(true)} p="xl" />
       <BottomSheet
         visible={visible}
         onBackdropPress={() => {
@@ -73,6 +73,15 @@ export const Menu = ({ navigation }: MenuProps) => {
       <SectionList
         sections={listCard}
         keyExtractor={(item) => item.name}
+        ListHeaderComponent={
+          <Text
+            title="Alterar empreendimento"
+            onPress={() => setVisible(true)}
+            p="xl"
+            color="prussianBlueWhite"
+            textAlign="right"
+          />
+        }
         renderItem={() => <></>}
         showsVerticalScrollIndicator={false}
         renderSectionHeader={({ section }) => (
@@ -83,7 +92,8 @@ export const Menu = ({ navigation }: MenuProps) => {
               pb="xl"
               pl="xl"
               fontWeight="bold"
-              color="prussianBlue"
+              color="prussianBlueWhite"
+              fontSize="2xl"
             />
             <FlatList
               data={section.data}
@@ -99,15 +109,28 @@ export const Menu = ({ navigation }: MenuProps) => {
               renderItem={({ item }) => {
                 return (
                   <Box w={width / 3 - 22} mb="xl" mx="md" key={item.name}>
-                    <Card key={item.name} borderRadius="xl" p="lg">
+                    <Card
+                      key={item.name}
+                      borderRadius="xl"
+                      p="lg"
+                      onPress={() => {
+                        navigation.navigate(item.router as never);
+                      }}
+                    >
                       <Box h={80} w="100%">
                         <Text
                           title={item.name}
-                          onPress={() => {
-                            navigation.navigate(item.router as never);
-                          }}
                           textAlign="center"
+                          color="blackWhite"
                           flex={1}
+                        />
+
+                        <Icon
+                          name={item.icon}
+                          type="material-community"
+                          size={28}
+                          iconColor="prussianBlueWhite"
+                          mb="md"
                         />
                       </Box>
                     </Card>

@@ -25,7 +25,7 @@ export const HeaderTitle = () => {
         duration={1200}
       />
       <Box pt="sm" pl="xs">
-        <Text title={`Olá ${auth.user?.cliente.nome}`} color="blackWhite" />
+        <Text title={`Olá, ${auth.user?.cliente.nome}`} color="blackWhite" />
         <Text
           title="Minha Conta >"
           onPress={() => navigate("Account")}
@@ -38,24 +38,25 @@ export const HeaderTitle = () => {
 export const HeaderRight = () => {
   const { navigate } = useNavigation<ScreenNavigationProp>();
   return (
-    <Box flexDir="row">
-      <Icon
-        type="material"
-        name="search"
-        size={30}
-        iconColor="prussianBlueWhite"
-        onPress={() => {
-          console.log("OK");
-        }}
-      />
-      <Box ml="sm" />
-      <Icon
-        type="material"
-        name="notifications-none"
-        size={30}
-        iconColor="prussianBlueWhite"
-        onPress={() => console.log("OK")}
-      />
-    </Box>
+    <Icon
+      type="material"
+      name="menu-open"
+      size={30}
+      iconColor="prussianBlueWhite"
+      onPress={() => navigate("Menu")}
+    />
+  );
+};
+
+export const HeaderRightMenu = () => {
+  const { navigate } = useNavigation<ScreenNavigationProp>();
+  return (
+    <Icon
+      type="material"
+      name="notifications-none"
+      size={30}
+      iconColor="prussianBlueWhite"
+      onPress={() => navigate("Notification")}
+    />
   );
 };

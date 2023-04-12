@@ -36,9 +36,8 @@ export const getTheme = () => async (dispatch: AppDispatch) => {
   try {
     const theme = await getThemeStorage();
 
-    if (theme) {
-      dispatch(putTheme(theme));
-    }
+    dispatch(putTheme(theme));
+
     return false;
   } catch (error) {
     return false;
