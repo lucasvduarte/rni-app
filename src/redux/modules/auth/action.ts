@@ -12,7 +12,6 @@ import {
   putUser,
   putTheme,
   initialState,
-  putPassword,
   putIsSingIn,
   putEnterpriseSelect,
 } from "./slice";
@@ -61,11 +60,16 @@ export const setToken =
   };
 
 export const setUser =
-  (user: TUser, email: string) =>
+  (user: TUser, email: string, rememberPassword: string | undefined) =>
   async (dispatch: AppDispatch, getState: GetRootState) => {
     try {
-      const { password, theme, token } = getState().auth;
-      await setAuthStorage({ password, theme, token, email });
+      const { theme, token, password } = getState().auth;
+      await setAuthStorage({
+        password: rememberPassword || password,
+        theme,
+        token,
+        email,
+      });
       dispatch(putUser(user));
 
       return true;
@@ -84,20 +88,6 @@ export const clearUser = () => async (dispatch: AppDispatch) => {
     return false;
   }
 };
-
-export const setPassword =
-  (password: string) =>
-  async (dispatch: AppDispatch, getState: GetRootState) => {
-    try {
-      const { theme, token, email } = getState().auth;
-      await setAuthStorage({ theme, token, email, password });
-      dispatch(putPassword(password));
-
-      return true;
-    } catch (error) {
-      return false;
-    }
-  };
 
 export const setTheme = (value: TTheme) => async (dispatch: AppDispatch) => {
   try {

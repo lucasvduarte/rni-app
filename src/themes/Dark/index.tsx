@@ -9,7 +9,7 @@ const light = {
     gray93: "#ededed",
     darkGray: "#3b3b3b",
     matterhorn: "#f0f0f0",
-    easternBlue: "#008d97",
+    easternBlue: "#00bac7",
     pacificBlue: "#0085CA",
     prussianBlue: "#003865",
     moderateGreen: "#8DC63F",

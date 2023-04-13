@@ -11,7 +11,7 @@ export const Card = (props: CardProps) => {
     animation,
     bg = "whiteDarkGray",
     onPress,
-    shadowColor = "black",
+    shadowColor = "blackWhite",
   } = props;
 
   if (onPress) {

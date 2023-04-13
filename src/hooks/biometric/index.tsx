@@ -18,10 +18,10 @@ export const useBiometric = () => {
   const { isLoading, refetch } = useQuery({
     queryKey: "getUser",
     enabled: false,
-    queryFn: () => getUser({ login: auth?.email, password: auth?.password }),
+    queryFn: () => getUser(auth?.email || "", auth?.password || ""),
     onSuccess: ({ data }) => {
       if (data.result && auth?.email) {
-        dispatch(setUser(data.result, auth.email));
+        dispatch(setUser(data.result, auth.email, auth?.password));
       }
     },
     onError: () => {

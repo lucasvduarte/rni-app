@@ -49,13 +49,6 @@ const putEnterpriseSelectSlice = (
   state.enterpriseSelect = action.payload;
 };
 
-const putPasswordSlice = (
-  state: Draft<TAuth>,
-  action: PayloadAction<string>
-) => {
-  state.password = action.payload;
-};
-
 const putThemeSlice = (
   state: Draft<TAuth>,
   action: PayloadAction<TTheme | undefined>
@@ -71,7 +64,6 @@ export const slice = createSlice({
     putAuthToken: putAuthTokenSlice,
     putClearAuth: putClearAuthSlice,
     putUser: putUserSlice,
-    putPassword: putPasswordSlice,
     putTheme: putThemeSlice,
     putIsSingIn: putIsSingInSlice,
     putEnterpriseSelect: putEnterpriseSelectSlice,
@@ -83,7 +75,6 @@ export const {
   putAuthToken,
   putClearAuth,
   putUser,
-  putPassword,
   putTheme,
   putIsSingIn,
   putEnterpriseSelect,

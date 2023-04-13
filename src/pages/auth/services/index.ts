@@ -6,10 +6,9 @@ const CLIENT_SECRET = "fad6c34d-1187-4c6a-a3b3-586fd1d25377";
 
 const URL: string = "/clients";
 
-export const getUser = async (user: any) => {
-  delete user.remember;
+export const getUser = async (login: string, password: string) => {
   const response = api.get<TResponseUser>(`${URL}/validlogin`, {
-    headers: { ...user },
+    headers: { login, password },
   });
   return response;
 };

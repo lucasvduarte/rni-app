@@ -2,10 +2,15 @@ import {
   BottomSheet,
   Box,
   Card,
-  CheckBox,
   FlatList,
   Icon,
   Text,
+  ListItem,
+  ListItemAccordion,
+  ListItemSubtitle,
+  ListItemTitle,
+  ListItemContent,
+  CheckBox,
 } from "../../../../components";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -15,7 +20,8 @@ import { TItem } from "../../../../redux/modules/auth/type";
 import { listCard } from "./helps";
 import { MenuProps } from "../../../../navigation/private/types";
 import { Dimensions, SectionList } from "react-native";
-import { ListItem } from "@rneui/base";
+import { Avatar } from "@rneui/base";
+
 const { width } = Dimensions.get("window");
 
 export const Menu = ({ navigation }: MenuProps) => {
@@ -37,7 +43,7 @@ export const Menu = ({ navigation }: MenuProps) => {
     dispatch(setEnterpriseSelect(item));
     setTimeout(() => {
       setVisible(false);
-    }, 250);
+    }, 300);
   };
 
   return (
@@ -50,43 +56,48 @@ export const Menu = ({ navigation }: MenuProps) => {
           }
         }}
       >
-        <Card m="2xl" mb="2xl" borderRadius="lg" shadow="md">
+        <Card mx="xl" mb="2xl" borderRadius="lg" shadow="md">
           <Text
             title="Alterar empreendimento"
-            pb="xl"
+            pb="md"
             color="easternBlue"
+            fontSize="xl"
             fontWeight="bold"
           />
 
           {user?.item
             .filter((item) => item.CTRCLATIP === 1)
-            .map((item) => {
+            .map((item, index) => {
               return (
-                <ListItem>
-                  <Box pb="lg" key={item.EMPCOD}>
-                    <CheckBox
-                      checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
-                      color="easternBlue"
-                      onPress={() => onPressSelect(item)}
-                      title={item.EMPDESCOM}
-                      iconType="material-community"
-                      checkedIcon="circle"
-                      uncheckedIcon="circle-outline"
-                    />
-                    <Box flexDir="row" ml="2xl" mt="-xs">
+                <ListItem
+                  topDivider={!!index}
+                  onPress={() => onPressSelect(item)}
+                  px="md"
+                  py="lg"
+                  key={item.EMPCOD}
+                >
+                  <CheckBox
+                    checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
+                    color="easternBlue"
+                    iconType="material-community"
+                    checkedIcon="circle"
+                    uncheckedIcon="circle-outline"
+                    disabled
+                  />
+                  <ListItemContent>
+                    <ListItemTitle>
+                      <Text color="matterhorn" fontSize="md">
+                        {item.EMPDESCOM}
+                      </Text>
+                    </ListItemTitle>
+                    <ListItemSubtitle>
                       <Text
-                        title={`Unidade: ${item.UNICOD}`}
+                        title={`Unidade: ${item.UNICOD}    Torre: ${item.TORCOD}`}
                         color="suvaGrey"
                         fontSize="md"
                       />
-                      <Text
-                        title={`Torre: ${item.TORCOD}`}
-                        color="suvaGrey"
-                        fontSize="md"
-                        pl="xl"
-                      />
-                    </Box>
-                  </Box>
+                    </ListItemSubtitle>
+                  </ListItemContent>
                 </ListItem>
               );
             })}
@@ -130,6 +141,9 @@ export const Menu = ({ navigation }: MenuProps) => {
                 paddingHorizontal: 8,
               }}
               renderItem={({ item }) => {
+                if (item.disabled) {
+                  return null;
+                }
                 return (
                   <Box w={width / 3 - 22} mb="xl" mx="md" key={item.name}>
                     <Card
@@ -139,6 +153,7 @@ export const Menu = ({ navigation }: MenuProps) => {
                       onPress={() => {
                         navigation.navigate(item.router as never);
                       }}
+                      shadow="sm"
                     >
                       <Box h={80} w="100%">
                         <Text

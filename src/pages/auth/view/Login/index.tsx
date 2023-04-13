@@ -16,7 +16,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { useQuery } from "react-query";
 import { getUser } from "../../services";
 import { LoginProps } from "../../../../navigation/public/types";
-import { setPassword, setUser } from "../../../../redux/modules/auth/action";
+import { setUser } from "../../../../redux/modules/auth/action";
 import { useBiometric } from "../../../../hooks";
 
 export const Login = ({ navigation }: LoginProps) => {
@@ -42,10 +42,16 @@ export const Login = ({ navigation }: LoginProps) => {
   const { isFetching, refetch } = useQuery({
     queryKey: "getUser",
     enabled: false,
-    queryFn: () => getUser({ ...value }),
+    queryFn: () => getUser(value.login, value.password),
     onSuccess: ({ data }) => {
       if (data.result) {
-        dispatch(setUser(data.result, value.login));
+        dispatch(
+          setUser(
+            data.result,
+            value.login,
+            value.remember ? value.password : undefined
+          )
+        );
       }
     },
     onError: () => {
@@ -54,13 +60,6 @@ export const Login = ({ navigation }: LoginProps) => {
       });
     },
   });
-
-  const submit = (value: any) => {
-    if (value.remember) {
-      dispatch(setPassword(value.password));
-    }
-    refetch();
-  };
 
   return (
     <KeyboardAwareScrollView fadingEdgeLength={500}>
@@ -103,7 +102,7 @@ export const Login = ({ navigation }: LoginProps) => {
           textAlign="right"
           mt="-sm"
           pb="md"
-          color="pacificBlue"
+          color="easternBlue"
           onPress={() => navigation.navigate("ResetPassword")}
         />
         <CheckBox
@@ -117,7 +116,7 @@ export const Login = ({ navigation }: LoginProps) => {
         />
         <Button
           title="ENTRAR"
-          onPress={() => submit(value)}
+          onPress={() => refetch()}
           mt="2xl"
           isBold
           bg="moderateGreen"

@@ -7,6 +7,7 @@ type TListCard = {
     name: string;
     router: keyof RootStackParamList;
     icon: string;
+    disabled?: boolean;
   }>;
 };
 
@@ -154,6 +155,7 @@ export const listCard: TListCard[] = [
         name: "Informações de Apps",
         router: "AppInformation",
         icon: "apps",
+        disabled: true,
       },
     ],
   },

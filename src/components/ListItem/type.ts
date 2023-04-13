@@ -1,27 +1,28 @@
-import { CheckBoxProps as RNCheckBoxProps } from "@rneui/themed";
+import { ListItemProps as RNListItemProps } from "@rneui/themed";
 import {
   BackgroundPropsType,
+  OpacityPropsType,
+  ZIndexPropsType,
+  SpacingPropsType,
+  VariantPropsType,
+  AnimatableProperties,
   BorderPropsType,
   DimensionPropsType,
   FlexPropsType,
-  OpacityPropsType,
   OverflowPropsType,
   ShadowPropsType,
-  VariantPropsType,
-  ZIndexPropsType,
 } from "../Ui/type";
-import themes from "../../themes";
 
-export interface CheckBoxProps
-  extends RNCheckBoxProps,
+export interface ListItemProps
+  extends SpacingPropsType,
     BorderPropsType,
     DimensionPropsType,
     OverflowPropsType,
     OpacityPropsType,
     ZIndexPropsType,
     ShadowPropsType,
+    AnimatableProperties<{}>,
     Pick<BackgroundPropsType, "bg">,
     Pick<FlexPropsType, "flex">,
-    VariantPropsType {
-  color?: keyof typeof themes.light.colors;
-}
+    RNListItemProps,
+    VariantPropsType {}
