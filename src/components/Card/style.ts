@@ -6,6 +6,7 @@ import {
   createBorderRadius,
   createBorderWidth,
   createShadow,
+  createBorderColor,
 } from "../Ui";
 
 export const CardStyled = styled(Card).attrs<CardProps>((props) => ({
@@ -15,6 +16,7 @@ export const CardStyled = styled(Card).attrs<CardProps>((props) => ({
     ...createBorderRadius(props, true),
     ...createSpacing(props, true),
     ...createBorderWidth(props, true),
+    ...createBorderColor(props, true),
     ...createShadow(props),
   },
 }))<CardProps>``;

@@ -51,7 +51,7 @@ export const borderProps = [
   "borderStyle",
 ] as const;
 export interface BorderPropsType {
-  borderColor?: string;
+  borderColor?: keyof typeof themes.light.colors;
   borderTopColor?: string;
   borderRightColor?: string;
   borderBottomColor?: string;
@@ -368,7 +368,7 @@ export interface ThemeType {
 
 type TSizesNumber = number;
 
-export type TShadow = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | number;
+export type TShadow = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export type TFontSize =
   | "xs"

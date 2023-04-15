@@ -12,7 +12,6 @@ export const Datasheet = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: "getDatasheet",
-    enabled: false,
     queryFn: () => getDatasheet(enterpriseSelect?.EMPCOD || ""),
     onError: () => {
       Toast.show({
@@ -21,7 +20,9 @@ export const Datasheet = () => {
     },
   });
 
-  console.log(JSON.stringify(data, null, 2));
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <Box m="xl">

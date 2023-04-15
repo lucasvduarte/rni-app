@@ -22,3 +22,5 @@ export {
   ListItemSubtitle,
   ListItemTitle,
 } from "./ListItem";
+export { Carousel } from "./Carousel";
+export { CarouselGallery } from "./Gallery";

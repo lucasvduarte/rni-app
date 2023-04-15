@@ -19,3 +19,11 @@ export {
 } from "./service/view";
 
 export { DocumentFinancing, Step, TipsFinancing } from "./financing/view";
+export {
+  Attendance,
+  CommonQuestions,
+  DocumentAttendance,
+  Search,
+  SearchDetails,
+  TechnicalAssistance,
+} from "./attendance/view";

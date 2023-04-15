@@ -20,6 +20,12 @@ export type RootStackParamList = {
   DocumentFinancing: undefined;
   Step: undefined;
   TipsFinancing: undefined;
+  Attendance: undefined;
+  CommonQuestions: undefined;
+  DocumentAttendance: undefined;
+  Search: undefined;
+  SearchDetails: undefined;
+  TechnicalAssistance: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;

@@ -5,6 +5,8 @@ import Toast from "react-native-toast-message";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { NotificationProps } from "../../../../navigation/private/types";
+import React from "react";
+import { View } from "react-native";
 
 export const Notification = ({ navigation }: NotificationProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
@@ -14,40 +16,36 @@ export const Notification = ({ navigation }: NotificationProps) => {
 
   const { data, isLoading } = useQuery({
     queryKey: "getByNotification",
-    enabled: false,
     queryFn: () =>
       getByNotification(
         user?.cliente.cpfcnpj || "",
         enterpriseSelect?.EMPCOD || ""
       ),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
       });
     },
   });
 
-  console.log(JSON.stringify(data, null, 2));
-
   if (isLoading) {
     return null;
   }
 
   return (
-    <Box m="xl" flex={1}>
+    <Box flex={1} m="xl">
       <FlatList
         data={data?.data.result}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 8,
-        }}
         renderItem={({ item }) => {
           return (
             <Card
               borderRadius="xl"
               bg="whiteDarkGray"
-              borderWidth={0}
+              shadow="md"
+              shadowColor="pantone"
+              borderColor="pantone"
               onPress={() => {
                 navigation.navigate("NotificationDetails", {
                   notification: item,

@@ -9,7 +9,6 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
 
   const { data, isLoading } = useQuery({
     queryKey: "getUser",
-    enabled: false,
     queryFn: () => getNotificationText(notification.guidcontrol),
     onError: () => {
       Toast.show({
@@ -33,7 +32,7 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
         }}
         renderItem={({ item }) => {
           return (
-            <Card borderRadius="xl" bg="whiteDarkGray" borderWidth={0}>
+            <Card borderRadius="xl" bg="whiteDarkGray" borderWidth={1}>
               <Text
                 title="Tiago Luis Quemelo"
                 color="prussianBlueWhite"

@@ -6,6 +6,7 @@ const light = {
     gray15: "#262626",
     gray66: "#a8a8a8",
     gray78: "#c7c7c7",
+    veryLightGray: "#e4e4e4",
     gray93: "#ededed",
     darkGray: "#3b3b3b",
     matterhorn: "#535353",

@@ -4,9 +4,9 @@ import { requestFields } from "../../../../config/request";
 
 const URL: string = "/tips";
 
-export const getTips = (active: Boolean, cpfcnpj: string) => {
+export const getTips = (cpfcnpj: string) => {
   return api.get<TResponseTips>(`${URL}/filters`, {
-    params: { active, cpfcnpj },
+    params: { active: true, cpfcnpj },
   });
 };
 

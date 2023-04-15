@@ -4,13 +4,13 @@ import { requestFields } from "../../../../config/request";
 
 const URL: string = "/tendencies";
 
-export const getTips = (active: Boolean, cpfcnpj: string) => {
+export const getTendencies = (cpfcnpj: string) => {
   return api.get<TResponseTips>(`${URL}/filters`, {
-    params: { active, cpfcnpj },
+    params: { active: true, cpfcnpj },
   });
 };
 
-export const putTipsLike = (id: string, value: TLike) => {
+export const putTendenciesLike = (id: string, value: TLike) => {
   return api.put<any>(
     `${URL}likes/${id}`,
     requestFields({
@@ -19,7 +19,7 @@ export const putTipsLike = (id: string, value: TLike) => {
   );
 };
 
-export const postTipsLike = (value: TLike) => {
+export const postTendenciesLike = (value: TLike) => {
   return api.post<any>(
     `${URL}likes/`,
     requestFields({
