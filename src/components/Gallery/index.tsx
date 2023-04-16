@@ -1,15 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
-import {
-  FlatList,
-  Image,
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  Pressable,
-  ViewToken,
-} from "react-native";
+import { FlatList, Image, Dimensions, StyleSheet } from "react-native";
+import { CarouselGallerySmall } from "./small";
+import { useDebounce } from "../../hooks";
+import { Box } from "../Box";
+import { Text } from "../Text";
+
 const { width, height } = Dimensions.get("screen");
 
 const API_KEY = "hd1Ln3gAxRI9OU10fPJC063TolpmrWTM2rjsiu24IQi8JUxxI1Q5IYfd";
@@ -26,23 +22,13 @@ const fetchImagesFromPexels = async () => {
 };
 
 const IMAGE_SIZE = 80;
-const SPACIN = 10;
+const SPACING = 10;
 
 export const CarouselGallery = () => {
   const [images, setImages] = useState<any[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const topRef = useRef<FlatList>(null);
   const thumbRef = useRef<FlatList>(null);
-  const [index, setIndex] = useState(0);
-
-  const handleOnViewableItemsChanged = useRef<
-    | ((info: { viewableItems: ViewToken[]; changed: ViewToken[] }) => void)
-    | null
-    | undefined
-  >(({ viewableItems }) => {
-    const viewableIndex = viewableItems[0]?.index ?? 0;
-    setIndex(viewableIndex);
-  }).current;
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -52,22 +38,23 @@ export const CarouselGallery = () => {
     fetchImages();
   }, []);
 
-  useEffect(() => {
-    if (images.length) {
-      scrollToActiveIndex(index);
-    }
-  }, [index, images.length]);
-
   const scrollToActiveIndex = (index: number) => {
+    topRef?.current?.scrollToIndex({
+      index,
+      animated: true,
+    });
+  };
+
+  const scrollThumbRef = (index: number) => {
     setActiveIndex(index);
-    topRef?.current?.scrollToOffset({
-      offset: index * width,
+    thumbRef?.current?.scrollToIndex({
+      index: index,
       animated: true,
     });
 
-    if (index * (IMAGE_SIZE + SPACIN) - IMAGE_SIZE / 2 > width / 2) {
+    if (index * (IMAGE_SIZE + SPACING) - IMAGE_SIZE / 2 > width / 2) {
       thumbRef?.current?.scrollToOffset({
-        offset: index * (IMAGE_SIZE + SPACIN) - width / 2 + IMAGE_SIZE / 2,
+        offset: index * (IMAGE_SIZE + SPACING) - width / 2 + IMAGE_SIZE / 2,
         animated: true,
       });
     } else {
@@ -78,16 +65,18 @@ export const CarouselGallery = () => {
     }
   };
 
+  const debounce = useDebounce(scrollThumbRef, 200);
+
   const viewabilityConfig = useRef({
-    itemVisiblePercentThreshold: 70,
+    itemVisiblePercentThreshold: 40,
   }).current;
 
   if (!images) {
-    return <Text>loading</Text>;
+    return <Text title="loading ...." />;
   }
 
   return (
-    <View>
+    <Box>
       <FlatList
         ref={topRef}
         data={images}
@@ -95,46 +84,35 @@ export const CarouselGallery = () => {
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={handleOnViewableItemsChanged}
+        onScroll={(event) => {
+          const x = event.nativeEvent?.contentOffset.x || 0;
+          if (x && x !== activeIndex) {
+            const indexAux = Number((x / width).toFixed(0));
+            debounce(indexAux);
+          }
+        }}
+        scrollEventThrottle={16}
         viewabilityConfig={viewabilityConfig}
         renderItem={({ item }) => {
           return (
-            <View style={{ width, height }}>
+            <Box w={width} h={height}>
               <Image
                 source={{ uri: item.src.portrait }}
                 style={[StyleSheet.absoluteFillObject]}
               />
-            </View>
+            </Box>
           );
         }}
       />
 
-      <FlatList
-        ref={thumbRef}
+      <CarouselGallerySmall
+        thumbRef={thumbRef}
         data={images}
-        keyExtractor={(item) => item.id.toString()}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{ position: "absolute", bottom: IMAGE_SIZE }}
-        contentContainerStyle={{ paddingHorizontal: SPACIN }}
-        renderItem={({ item, index }) => {
-          return (
-            <Pressable onPress={() => scrollToActiveIndex(index)}>
-              <Image
-                source={{ uri: item.src.portrait }}
-                style={{
-                  width: IMAGE_SIZE,
-                  height: IMAGE_SIZE,
-                  borderRadius: 12,
-                  marginRight: SPACIN,
-                  borderWidth: 2,
-                  borderColor: activeIndex === index ? "#fff" : "transparent",
-                }}
-              />
-            </Pressable>
-          );
-        }}
+        activeIndex={activeIndex}
+        scrollToActiveIndex={scrollToActiveIndex}
+        imageSize={IMAGE_SIZE}
+        spacing={SPACING}
       />
-    </View>
+    </Box>
   );
 };

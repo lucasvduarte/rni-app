@@ -1,9 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TNotification } from "../../pages/notification/services/type";
+import { TSearch } from "../../pages/attendance/service/Search/type";
+import { TAttendance } from "../../pages/attendance/service/Attendance/type";
 
 export type RootStackParamList = {
   Menu: undefined;
-  Account: undefined;
+  AccountMenu: undefined;
+  PolicyAndPrivacy: undefined;
   Notification: { data: any; isTechnicalVisit: boolean };
   NotificationDetails: { notification: TNotification };
   Datasheet: undefined;
@@ -21,18 +24,20 @@ export type RootStackParamList = {
   Step: undefined;
   TipsFinancing: undefined;
   Attendance: undefined;
+  AttendanceDetails: { data: TAttendance };
   CommonQuestions: undefined;
   DocumentAttendance: undefined;
   Search: undefined;
-  SearchDetails: undefined;
+  SearchDetails: { data: TSearch };
   TechnicalAssistance: undefined;
+  TechnicalAssistanceDetails: { data: TAttendance };
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
 
-export type AccountProps = NativeStackScreenProps<
+export type AccountMenuProps = NativeStackScreenProps<
   RootStackParamList,
-  "Account"
+  "AccountMenu"
 >;
 
 export type NotificationProps = NativeStackScreenProps<
@@ -43,4 +48,21 @@ export type NotificationProps = NativeStackScreenProps<
 export type NotificationDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   "NotificationDetails"
+>;
+
+export type SearchProps = NativeStackScreenProps<RootStackParamList, "Search">;
+
+export type SearchDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "SearchDetails"
+>;
+
+export type AttendanceProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Attendance"
+>;
+
+export type TechnicalAssistanceProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Attendance"
 >;

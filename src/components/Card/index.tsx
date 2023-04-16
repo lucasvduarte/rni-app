@@ -6,7 +6,7 @@ import { Pressable } from "react-native";
 import { Box } from "../Box";
 
 const defaultTheme = {
-  xl: {
+  xs: {
     padding: 1,
   },
   sm: {
@@ -18,7 +18,7 @@ const defaultTheme = {
   lg: {
     padding: 12,
   },
-  xs: {
+  xl: {
     padding: 16,
   },
   "2xl": {

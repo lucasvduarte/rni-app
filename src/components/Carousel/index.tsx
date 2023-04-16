@@ -1,50 +1,30 @@
-import { Animated, FlatList, View } from "react-native";
-import React, { useRef } from "react";
-import SlideItem from "./Item";
+import { Animated, Dimensions, FlatList, ListRenderItem } from "react-native";
+import React, { useRef, useState } from "react";
 import Pagination from "./Pagination";
+import { Box } from "../Box";
+const { width } = Dimensions.get("window");
 
-export const Slides = [
-  {
-    id: 1,
-    img: require("../../assets/login/login.png"),
-    title: "Apple Watch Series 7",
-    description: "The future of health is on your wrist",
-    price: "$399",
-  },
-  {
-    id: 2,
-    img: require("../../assets/login/login.png"),
-    title: "AirPods Pro",
-    description: "Active noise cancellation for immersive sound",
-    price: "$249",
-  },
-  {
-    id: 3,
-    img: require("../../assets/login/login.png"),
-    title: "AirPods Max",
-    description: "Effortless AirPods experience",
-    price: "$549",
-  },
-  {
-    id: 4,
-    img: require("../../assets/login/login.png"),
-    title: "Charger",
-    description: "It's not magic, it's just science",
-    price: "$49",
-  },
-  {
-    id: 5,
-    img: require("../../assets/login/login.png"),
-    title: "Smart Lock",
-    description: "Unlock your door with your phone",
-    price: "$199",
-  },
-];
+type TCarousel<T> = {
+  data?: T[];
+  renderItem: ListRenderItem<T> | null | undefined;
+};
 
-export const Carousel = () => {
+export const Carousel = <T extends object>({
+  data = [],
+  renderItem,
+}: TCarousel<T>) => {
   const scrollX = useRef(new Animated.Value(0)).current;
+  const [currentIndex, setCurrentIndex] = useState<any>(0);
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 10,
+  }).current;
+  const ref = useRef<any>();
 
   const handleOnScroll = (event: any) => {
+    const x = event.nativeEvent?.contentOffset.x || 0;
+    if (x && x !== currentIndex)
+      setCurrentIndex(Number((x / (width - 50)).toFixed(0)));
+
     Animated.event(
       [
         {
@@ -61,15 +41,22 @@ export const Carousel = () => {
     )(event);
   };
 
-  const viewabilityConfig = useRef({
-    itemVisiblePercentThreshold: 50,
-  }).current;
+  const onPressPagination = (isBack: boolean) => {
+    ref.current.scrollToIndex({
+      animated: true,
+      index: parseInt(currentIndex) + (isBack ? -1 : 1),
+    });
+    setTimeout(() => {
+      setCurrentIndex(currentIndex + (isBack ? -1 : 1));
+    }, 1000);
+  };
 
   return (
-    <View>
+    <Box>
       <FlatList
-        data={Slides}
-        renderItem={({ item }) => <SlideItem item={item} />}
+        ref={ref}
+        data={data}
+        renderItem={renderItem}
         horizontal
         pagingEnabled
         snapToAlignment="center"
@@ -77,7 +64,35 @@ export const Carousel = () => {
         onScroll={handleOnScroll}
         viewabilityConfig={viewabilityConfig}
       />
-      <Pagination data={Slides} scrollX={scrollX} />
-    </View>
+
+      <Pagination
+        data={data}
+        scrollX={scrollX}
+        /*     onPressBack={() => {
+           ref.current.scrollToIndex({
+              animated: true,
+              index: parseInt(currentIndex) - 1,
+            });
+            setTimeout(() => {
+              setCurrentIndex(currentIndex - 1);
+            }, 1000);
+     
+            onPressPagination(true)
+          }}
+          onPressNext={() => {
+           ref.current.scrollToIndex({
+              animated: true,
+              index: parseInt(currentIndex) + 1,
+            });
+            setTimeout(() => {
+              setCurrentIndex(currentIndex + 1);
+            }, 1000);
+           onPressPagination(false);
+        }}
+         */
+        onPressBackNext={(value) => onPressPagination(value)}
+        currentIndex={currentIndex}
+      />
+    </Box>
   );
 };

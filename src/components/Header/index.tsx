@@ -28,7 +28,7 @@ export const HeaderTitle = () => {
         <Text title={`Olá, ${auth.user?.cliente.nome}`} color="blackWhite" />
         <Text
           title="Minha Conta >"
-          onPress={() => navigate("Account")}
+          onPress={() => navigate("AccountMenu")}
           color="suvaGrey"
         />
       </Box>

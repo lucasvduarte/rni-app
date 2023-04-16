@@ -6,7 +6,6 @@ import {
   Icon,
   Text,
   ListItem,
-  ListItemAccordion,
   ListItemSubtitle,
   ListItemTitle,
   ListItemContent,
@@ -20,7 +19,6 @@ import { TItem } from "../../../../redux/modules/auth/type";
 import { listCard } from "./helps";
 import { MenuProps } from "../../../../navigation/private/types";
 import { Dimensions, SectionList } from "react-native";
-import { Avatar } from "@rneui/base";
 
 const { width } = Dimensions.get("window");
 
@@ -86,9 +84,11 @@ export const Menu = ({ navigation }: MenuProps) => {
                   />
                   <ListItemContent>
                     <ListItemTitle>
-                      <Text color="matterhorn" fontSize="md">
-                        {item.EMPDESCOM}
-                      </Text>
+                      <Text
+                        title={item.EMPDESCOM}
+                        color="matterhorn"
+                        fontSize="md"
+                      />
                     </ListItemTitle>
                     <ListItemSubtitle>
                       <Text

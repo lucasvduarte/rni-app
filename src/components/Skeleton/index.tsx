@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Box } from "../Box";
 import { SkeletonStyled } from "./style";
 import { SkeletonProps } from "./type";
-
+import { Dimensions } from "react-native";
+const { width: fullWidth } = Dimensions.get("screen");
 export const Skeleton = (props: SkeletonProps) => {
   const {
     circle,
-    width = 40,
+    width = fullWidth - 32,
     size = 1,
     mr,
     flexDir = "column",
-    height,
+    height = 32,
     listHeight,
     listWidth,
   } = props;
@@ -50,11 +51,11 @@ export const Skeleton = (props: SkeletonProps) => {
         return (
           <SkeletonStyled
             animation="pulse"
-            {...props}
-            width={listWidth?.length ? listWidth[item] : height}
+            width={listWidth?.length ? listWidth[item] : width}
             height={listHeight?.length ? listHeight[item] : height}
             key={item}
             mr={item === list.length - 1 ? "none" : mr}
+            {...props}
           />
         );
       })}

@@ -8,7 +8,7 @@ import { configCalendar } from "./helper";
 import { ICalendar } from "./type";
 import { TextInput } from "../TextInput";
 import { Pressable } from "react-native";
-import { mask } from "react-native-mask-text";
+
 LocaleConfig.locales["pt-BR"] = configCalendar;
 LocaleConfig.defaultLocale = "pt-BR";
 

@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { ButtonProps } from "./type";
 import { Button } from "@rneui/themed";
-import { createSpacing } from "../Ui";
+import { createSpacing, createDimension } from "../Ui";
 
 export const defaultTheme = {
   sm: {
@@ -25,6 +25,7 @@ export const ButtonStyled = styled(Button).attrs<ButtonProps>((props) => ({
   containerStyle: {
     width: props.fullWidth ? "100%" : "auto",
     ...createSpacing(props, true),
+    ...createDimension(props, true),
   },
   titleStyle: {
     fontWeight: props.isBold ? "bold" : "normal",

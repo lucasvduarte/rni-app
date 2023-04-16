@@ -7,7 +7,8 @@ import {
   Menu,
   Notification,
   NotificationDetails,
-  Account,
+  AccountMenu,
+  PolicyAndPrivacy,
   AppInformation,
   Comments,
   Datasheet,
@@ -73,10 +74,21 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Account"
-        component={Account}
+        name="AccountMenu"
+        component={AccountMenu}
         options={{
           headerTitle: "Minha Conta",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="PolicyAndPrivacy"
+        component={PolicyAndPrivacy}
+        options={{
+          headerTitle: "Política de privacidade",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

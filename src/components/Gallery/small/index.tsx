@@ -1,17 +1,25 @@
 import React from "react";
 import { FlatList, Image, Pressable } from "react-native";
+import { useTheme } from "styled-components/native";
 
-const IMAGE_SIZE = 80;
-const SPACIN = 10;
+type TCarouselGallerySmall<T> = {
+  data: T[];
+  thumbRef: React.RefObject<FlatList<any>>;
+  scrollToActiveIndex: (valeu: number) => void;
+  activeIndex: number;
+  imageSize: number;
+  spacing: number;
+};
 
-export const CarouselGallerySmall = ({
+export const CarouselGallerySmall = <T extends object>({
   data,
-  scrollX,
   scrollToActiveIndex,
   activeIndex,
   thumbRef,
-}: any) => {
-  console.log(scrollX);
+  imageSize,
+  spacing,
+}: TCarouselGallerySmall<T>) => {
+  const { colors } = useTheme();
 
   return (
     <FlatList
@@ -20,20 +28,21 @@ export const CarouselGallerySmall = ({
       keyExtractor={(item) => item.id.toString()}
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={{ position: "absolute", bottom: IMAGE_SIZE }}
-      contentContainerStyle={{ paddingHorizontal: SPACIN }}
+      style={{ position: "absolute", bottom: imageSize }}
+      contentContainerStyle={{ paddingHorizontal: spacing }}
       renderItem={({ item, index }) => {
         return (
           <Pressable onPress={() => scrollToActiveIndex(index)}>
             <Image
               source={{ uri: item.src.portrait }}
               style={{
-                width: IMAGE_SIZE,
-                height: IMAGE_SIZE,
+                width: imageSize,
+                height: imageSize,
                 borderRadius: 12,
-                marginRight: SPACIN,
+                marginRight: spacing,
                 borderWidth: 2,
-                borderColor: activeIndex === index ? "#fff" : "transparent",
+                borderColor:
+                  activeIndex === index ? colors.white : colors.transparent,
               }}
             />
           </Pressable>

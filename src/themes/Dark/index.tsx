@@ -25,10 +25,12 @@ const light = {
     blackSuvaGrey: "#8B8B8B",
     whiteBlack: "#111111",
     whiteDarkGray: "#3b3b3b",
+    darkGrayGray78: "#c7c7c7",
     prussianBlueWhite: "#f0f0f0",
     prussianBluePacificBlue: "#0085CA",
     blackWhite: "#f0f0f0",
     gray66Gray78: "#c7c7c7",
+    veryLightGraySuvaGrey: "#8B8B8B",
   },
 };
 

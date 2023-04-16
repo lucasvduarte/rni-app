@@ -10,7 +10,7 @@ export const Text = (props: TextProps) => {
     children,
     title,
     animation,
-    color = "black",
+    color = "darkGrayGray78",
     iconName,
     iconType = "material-community",
     iconSize = 18,
