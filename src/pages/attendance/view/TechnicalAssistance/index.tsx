@@ -25,7 +25,7 @@ export const TechnicalAssistance = () => {
   }
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <FlatList
         data={data?.data.records.filter(
           (item) =>

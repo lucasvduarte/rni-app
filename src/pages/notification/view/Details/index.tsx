@@ -22,7 +22,7 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
   }
 
   return (
-    <Box m="xl" flex={1}>
+    <Box px="xl" flex={1}>
       <FlatList
         data={data?.data.result}
         keyExtractor={(item) => item.id}

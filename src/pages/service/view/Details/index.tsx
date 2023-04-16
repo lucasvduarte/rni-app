@@ -2,7 +2,7 @@ import { Box, Text } from "../../../../components";
 
 export const Details = () => {
   return (
-    <Box m="xl">
+    <Box px="xl">
       <Text title="Minha Conta" />
     </Box>
   );

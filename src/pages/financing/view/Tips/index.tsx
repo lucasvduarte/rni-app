@@ -1,6 +1,6 @@
 import Toast from "react-native-toast-message";
 import { useQuery } from "react-query";
-import { Box, Card, Carousel, Text } from "../../../../components";
+import { Box, Card, Carousel, Skeleton, Text } from "../../../../components";
 import { getTips } from "../../services/Tips";
 import { Dimensions } from "react-native";
 const { width } = Dimensions.get("screen");
@@ -9,7 +9,7 @@ export const TipsFinancing = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getTips",
     queryFn: () => getTips(),
-    onError: (error) => {
+    onError: () => {
       Toast.show({
         type: "error",
       });
@@ -17,7 +17,7 @@ export const TipsFinancing = () => {
   });
 
   if (isLoading) {
-    return null;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

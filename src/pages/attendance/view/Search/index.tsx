@@ -27,7 +27,7 @@ export const Search = ({ navigation }: SearchProps) => {
   }
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <Text title="Pesquisas" />
       <FlatList
         data={data?.data.result.filter(

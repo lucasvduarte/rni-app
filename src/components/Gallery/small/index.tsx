@@ -9,6 +9,8 @@ type TCarouselGallerySmall<T> = {
   activeIndex: number;
   imageSize: number;
   spacing: number;
+  keyExtractor?: ((item: any, index: number) => string) | undefined;
+  renderImage: (value: T) => string;
 };
 
 export const CarouselGallerySmall = <T extends object>({
@@ -18,6 +20,8 @@ export const CarouselGallerySmall = <T extends object>({
   thumbRef,
   imageSize,
   spacing,
+  keyExtractor,
+  renderImage,
 }: TCarouselGallerySmall<T>) => {
   const { colors } = useTheme();
 
@@ -25,7 +29,7 @@ export const CarouselGallerySmall = <T extends object>({
     <FlatList
       ref={thumbRef}
       data={data}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={keyExtractor}
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{ position: "absolute", bottom: imageSize }}
@@ -34,7 +38,7 @@ export const CarouselGallerySmall = <T extends object>({
         return (
           <Pressable onPress={() => scrollToActiveIndex(index)}>
             <Image
-              source={{ uri: item.src.portrait }}
+              source={{ uri: renderImage(item) }}
               style={{
                 width: imageSize,
                 height: imageSize,

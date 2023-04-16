@@ -24,3 +24,4 @@ export {
 } from "./ListItem";
 export { Carousel } from "./Carousel";
 export { CarouselGallery } from "./Gallery";
+export { LinearProgress } from "./LinearProgress";

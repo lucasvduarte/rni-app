@@ -26,7 +26,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
   }
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <FlatList
         data={data?.data.records.filter(
           (item) =>

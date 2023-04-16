@@ -1,6 +1,6 @@
 import Toast from "react-native-toast-message";
 import { useQuery } from "react-query";
-import { Box, CarouselGallery, Text } from "../../../../components";
+import { Box, CarouselGallery, Skeleton } from "../../../../components";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getImageGallery } from "../../services/Gallery";
@@ -21,13 +21,18 @@ export const Gallery = () => {
   });
 
   if (isLoading) {
-    return null;
+    return <Skeleton size={2} listHeight={[30, 400]} m="xl" />;
   }
 
   return (
-    <Box>
-      <Text title="Galeria" />
-      <CarouselGallery />
+    <Box flex={1}>
+      <CarouselGallery
+        data={data?.data.result}
+        keyExtractor={(item) => item.id.toString()}
+        renderImage={(item) => {
+          return item.url;
+        }}
+      />
     </Box>
   );
 };

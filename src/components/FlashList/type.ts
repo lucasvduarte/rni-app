@@ -1,5 +1,3 @@
-import { VariantPropsType } from "../Ui/type";
+import { FlashListProps as RNFlashListProps } from "@shopify/flash-list";
 
-export interface WebViewProps extends VariantPropsType {
-  uri: string;
-}
+export interface FlashListProps<T> extends RNFlashListProps<T> {}

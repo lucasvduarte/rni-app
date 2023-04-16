@@ -117,6 +117,7 @@ export const Menu = ({ navigation }: MenuProps) => {
           />
         }
         renderItem={() => <></>}
+        contentContainerStyle={{ paddingBottom: 24 }}
         showsVerticalScrollIndicator={false}
         renderSectionHeader={({ section }) => (
           <Box h={144 * section.numColuns + (section.numColuns < 2 ? 16 : 0)}>

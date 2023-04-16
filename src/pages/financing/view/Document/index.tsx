@@ -19,7 +19,7 @@ export const DocumentFinancing = () => {
   }
 
   return (
-    <Box m="xl" flex={1}>
+    <Box px="xl" flex={1}>
       <Text
         title="Para facilitar e agilizar o processo de financiamento do seu imóvel,
         prepare os documentos descritos no checklist abaixo, selecionando

@@ -1,6 +1,6 @@
 import Toast from "react-native-toast-message";
 import { useQuery } from "react-query";
-import { Box, Text } from "../../../../components";
+import { Box, CarouselGallery } from "../../../../components";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getTips } from "../../services/Tips";
@@ -24,9 +24,5 @@ export const TipsService = () => {
     return null;
   }
 
-  return (
-    <Box m="xl">
-      <Text title="Minha Conta" />
-    </Box>
-  );
+  return <Box flex={1}></Box>;
 };

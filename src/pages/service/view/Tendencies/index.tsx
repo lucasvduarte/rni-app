@@ -25,7 +25,7 @@ export const Tendencies = () => {
   }
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <Text title="Minha Conta" />
     </Box>
   );

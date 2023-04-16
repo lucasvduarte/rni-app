@@ -30,7 +30,7 @@ export const CommonQuestions = () => {
   }
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <Text title="Perguntas frequentes" />
       <FlatList
         data={data?.data.result}

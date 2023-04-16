@@ -1,42 +1,28 @@
 import React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FlatList, Image, Dimensions, StyleSheet } from "react-native";
 import { CarouselGallerySmall } from "./small";
 import { useDebounce } from "../../hooks";
 import { Box } from "../Box";
-import { Text } from "../Text";
 
 const { width, height } = Dimensions.get("screen");
 
-const API_KEY = "hd1Ln3gAxRI9OU10fPJC063TolpmrWTM2rjsiu24IQi8JUxxI1Q5IYfd";
-const API_URL =
-  "https://api.pexels.com/v1/search?query=nature&orientation=portrait&size=small&per_page=20";
-
-const fetchImagesFromPexels = async () => {
-  const data = await fetch(API_URL, {
-    headers: { Authorization: API_KEY },
-  });
-
-  const { photos } = await data.json();
-  return photos;
-};
-
 const IMAGE_SIZE = 80;
 const SPACING = 10;
+type TCarouselGallery<T> = {
+  data?: T[];
+  keyExtractor?: ((item: any, index: number) => string) | undefined;
+  renderImage: (value: T) => string;
+};
 
-export const CarouselGallery = () => {
-  const [images, setImages] = useState<any[]>([]);
+export const CarouselGallery = <T extends object>({
+  data = [],
+  keyExtractor,
+  renderImage,
+}: TCarouselGallery<T>) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const topRef = useRef<FlatList>(null);
   const thumbRef = useRef<FlatList>(null);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      const imagens = await fetchImagesFromPexels();
-      setImages(imagens);
-    };
-    fetchImages();
-  }, []);
 
   const scrollToActiveIndex = (index: number) => {
     topRef?.current?.scrollToIndex({
@@ -71,16 +57,12 @@ export const CarouselGallery = () => {
     itemVisiblePercentThreshold: 40,
   }).current;
 
-  if (!images) {
-    return <Text title="loading ...." />;
-  }
-
   return (
     <Box>
       <FlatList
         ref={topRef}
-        data={images}
-        keyExtractor={(item) => item.id.toString()}
+        data={data}
+        keyExtractor={keyExtractor}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -97,7 +79,7 @@ export const CarouselGallery = () => {
           return (
             <Box w={width} h={height}>
               <Image
-                source={{ uri: item.src.portrait }}
+                source={{ uri: renderImage(item) }}
                 style={[StyleSheet.absoluteFillObject]}
               />
             </Box>
@@ -107,11 +89,13 @@ export const CarouselGallery = () => {
 
       <CarouselGallerySmall
         thumbRef={thumbRef}
-        data={images}
+        data={data}
         activeIndex={activeIndex}
         scrollToActiveIndex={scrollToActiveIndex}
         imageSize={IMAGE_SIZE}
         spacing={SPACING}
+        keyExtractor={keyExtractor}
+        renderImage={renderImage}
       />
     </Box>
   );

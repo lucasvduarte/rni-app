@@ -5,7 +5,7 @@ export const SearchDetails = ({ route }: SearchDetailsProps) => {
   const { data } = route.params;
 
   return (
-    <Box m="xl">
+    <Box px="xl">
       <Text title="Minha Conta" />
     </Box>
   );

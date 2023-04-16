@@ -48,7 +48,7 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
   ];
 
   return (
-    <Box m="xl" flex={1}>
+    <Box px="xl" flex={1}>
       <FlatList
         data={list}
         keyExtractor={(item) => item.title}

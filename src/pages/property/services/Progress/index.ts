@@ -1,7 +1,7 @@
 import { api } from "../../../../config/axios";
 import { TResponseProgress } from "./type";
 
-const URL: string = "/images";
+const URL: string = "/enterprisesteps";
 
 export const getProgress = (empreendimentoidsap: string) => {
   return api.get<TResponseProgress>(`${URL}/filters`, {

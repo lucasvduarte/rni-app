@@ -5,11 +5,13 @@ import {
   BorderPropsType,
   SpacingPropsType,
   VariantPropsType,
+  RadiusPropsType,
 } from "../Ui/type";
 
 export interface SkeletonProps
   extends SpacingPropsType,
     BorderPropsType,
+    RadiusPropsType,
     DimensionPropsType,
     FlexPropsType,
     RNSkeletonProps,
