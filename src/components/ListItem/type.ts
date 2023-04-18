@@ -1,4 +1,7 @@
-import { ListItemProps as RNListItemProps } from "@rneui/themed";
+import {
+  ListItemProps as RNListItemProps,
+  ListItemAccordionProps as RNListItemAccordionProps,
+} from "@rneui/themed";
 import {
   BackgroundPropsType,
   OpacityPropsType,
@@ -11,6 +14,7 @@ import {
   FlexPropsType,
   OverflowPropsType,
   ShadowPropsType,
+  TextPropsType,
 } from "../Ui/type";
 
 export interface ListItemProps
@@ -26,3 +30,20 @@ export interface ListItemProps
     Pick<FlexPropsType, "flex">,
     RNListItemProps,
     VariantPropsType {}
+
+export interface ListItemAccordionProps
+  extends SpacingPropsType,
+    SpacingPropsType,
+    BorderPropsType,
+    TextPropsType,
+    DimensionPropsType,
+    OverflowPropsType,
+    OpacityPropsType,
+    ZIndexPropsType,
+    ShadowPropsType,
+    Pick<BackgroundPropsType, "bg">,
+    Pick<FlexPropsType, "flex">,
+    RNListItemAccordionProps,
+    VariantPropsType {
+  title: string;
+}

@@ -37,9 +37,10 @@ export const Welcome = ({ navigation }: WelcomeProps) => {
         <Button
           title="PRIMEIRO ACESSO"
           onPress={() => navigation.navigate("Register")}
-          mt="xl"
+          mt="2lg"
           isBold
           bg="moderateGreen"
+          type="clear"
         />
       </Box>
     </Box>

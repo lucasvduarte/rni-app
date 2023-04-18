@@ -7,6 +7,7 @@ export {
   DocumentProperty,
   Gallery,
   Progress,
+  DocumentDetailsProperty,
 } from "./property/view";
 export {
   AppInformation,

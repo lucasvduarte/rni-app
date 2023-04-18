@@ -1,11 +1,12 @@
 import {
-  ListItemAccordionProps,
   ListItemTitleProps,
   ListItemSubtitleProps,
   ListItemContentProps,
 } from "@rneui/base";
 import { ListItemStyled } from "./style";
-import { ListItemProps } from "./type";
+import { ListItemAccordionProps, ListItemProps } from "./type";
+import { Text } from "../Text";
+import { useState } from "react";
 
 export const ListItem = (props: ListItemProps) => {
   const { children } = props;
@@ -13,9 +14,24 @@ export const ListItem = (props: ListItemProps) => {
 };
 
 export const ListItemAccordion = (props: ListItemAccordionProps) => {
-  const { children } = props;
+  const { children, title, fontSize, color = "blackSuvaGrey" } = props;
+  const [expanded, setExpanded] = useState(false);
   return (
-    <ListItemStyled.Accordion {...props}>{children}</ListItemStyled.Accordion>
+    <ListItemStyled.Accordion
+      content={
+        <ListItemContent>
+          <ListItemTitle>
+            <Text title={title} color={color} fontSize={fontSize} />
+          </ListItemTitle>
+        </ListItemContent>
+      }
+      isExpanded={expanded}
+      onPress={() => {
+        setExpanded(!expanded);
+      }}
+    >
+      {children}
+    </ListItemStyled.Accordion>
   );
 };
 

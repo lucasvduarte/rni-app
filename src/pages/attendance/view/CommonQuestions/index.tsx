@@ -13,7 +13,7 @@ import { getCommonQuestions } from "../../service/CommonQuestions";
 import { useState } from "react";
 
 export const CommonQuestions = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState("");
 
   const { data, isLoading } = useQuery({
     queryKey: "getCommonQuestions",
@@ -30,33 +30,21 @@ export const CommonQuestions = () => {
   }
 
   return (
-    <Box px="xl">
-      <Text title="Perguntas frequentes" />
+    <Box flex={1}>
+      <Text px="xl" pb="xl" title="Perguntas frequentes" />
       <FlatList
         data={data?.data.result}
         keyExtractor={(item) => item.guidcontrol}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
-            <ListItemAccordion
-              content={
-                <ListItemContent>
-                  <ListItemTitle>
-                    <Text
-                      title={item.pergunta}
-                      textAlign="center"
-                      color="blackSuvaGrey"
-                      flex={1}
-                    />
-                  </ListItemTitle>
-                </ListItemContent>
-              }
-              isExpanded={expanded}
-              onPress={() => {
-                setExpanded(!expanded);
-              }}
-            >
-              <Text color="darkGray" title={item.resposta} p="xl" />
+            <ListItemAccordion title={item.pergunta} fontSize="3xl">
+              <Text
+                color="darkGray"
+                title={item.resposta}
+                p="xl"
+                fontSize="2xl"
+              />
             </ListItemAccordion>
           );
         }}

@@ -23,6 +23,10 @@ import {
   DocumentFinancing,
   Step,
   TipsFinancing,
+  DocumentDetailsProperty,
+  DocumentAttendance,
+  CommonQuestions,
+  Search,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -95,7 +99,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="AppInformation"
         component={AppInformation}
@@ -244,6 +247,50 @@ export const PrivateNavigation = () => {
         component={TipsFinancing}
         options={{
           headerTitle: "Dicas",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DocumentDetailsProperty"
+        component={DocumentDetailsProperty}
+        options={{
+          headerTitle: "Documentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DocumentAttendance"
+        component={DocumentAttendance}
+        options={{
+          headerTitle: "Documentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="CommonQuestions"
+        component={CommonQuestions}
+        options={{
+          headerTitle: "Perguntas frequentes",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{
+          headerTitle: "Pesquisas",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

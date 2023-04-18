@@ -102,27 +102,27 @@ export const listCard: TListCard[] = [
     data: [
       {
         name: "Atendimentos",
-        router: "DocumentProperty",
+        router: "Attendance",
         icon: "face-agent",
       },
       {
         name: "Assistência Técnica",
-        router: "DocumentProperty",
+        router: "TechnicalAssistance",
         icon: "account-wrench",
       },
       {
         name: "Pesquisas",
-        router: "DocumentProperty",
+        router: "Search",
         icon: "feature-search",
       },
       {
         name: "Perguntas Frequentes",
-        router: "DocumentProperty",
+        router: "CommonQuestions",
         icon: "frequently-asked-questions",
       },
       {
         name: "Manuais",
-        router: "DocumentProperty",
+        router: "DocumentAttendance",
         icon: "book-open-variant",
       },
     ],

@@ -68,7 +68,7 @@ export const Datasheet = () => {
             return (
               <Box flexDir="row" alignItems="flex-start">
                 <Text
-                  title={item.title || " "}
+                  title={item.title}
                   fontSize="4xl"
                   pb="sm"
                   fontWeight="700"

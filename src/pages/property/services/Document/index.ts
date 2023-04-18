@@ -1,10 +1,13 @@
 import { api } from "../../../../config/axios";
-import { TParams } from "./type";
+import { TResponseDocument } from "./type";
 
 const URL: string = "/guardiaodigital";
 
-export const postDocuments = (send: TParams) => {
-  return api.post<Response>(`${URL}/consultadocumento`, send);
+export const postDocuments = (nome: string, Cpf: string, Titulo: string) => {
+  return api.post<TResponseDocument>(`${URL}/consultadocumento`, {
+    modelo: [{ nome }],
+    filtros: [{ Cpf }, { Titulo }],
+  });
 };
 
 export const getLinkDocument = (idDoc: number) => {

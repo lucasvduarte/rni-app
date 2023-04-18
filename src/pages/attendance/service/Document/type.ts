@@ -14,7 +14,7 @@ type TDoc = {
   vc_nome: string;
 };
 
-export type TDataDocument = {
+type TDataDocument = {
   data: TDoc[];
   erroNum?: string;
   modelo: string;

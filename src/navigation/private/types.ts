@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TNotification } from "../../pages/notification/services/type";
 import { TSearch } from "../../pages/attendance/service/Search/type";
 import { TAttendance } from "../../pages/attendance/service/Attendance/type";
+import { TDocument } from "../../pages/property/services/Document/type";
 
 export type RootStackParamList = {
   Menu: undefined;
@@ -31,6 +32,7 @@ export type RootStackParamList = {
   SearchDetails: { data: TSearch };
   TechnicalAssistance: undefined;
   TechnicalAssistanceDetails: { data: TAttendance };
+  DocumentDetailsProperty: { data: TDocument };
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -65,4 +67,17 @@ export type AttendanceProps = NativeStackScreenProps<
 export type TechnicalAssistanceProps = NativeStackScreenProps<
   RootStackParamList,
   "Attendance"
+>;
+
+export type DocumentAttendanceProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DocumentAttendance"
+>;
+export type DocumentDetailsPropertyProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DocumentDetailsProperty"
+>;
+export type DocumentPropertyProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DocumentProperty"
 >;
