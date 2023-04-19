@@ -4,11 +4,14 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { clearUser, setTheme } from "../../../../redux/modules/auth/action";
 import { RootState } from "../../../../redux/store";
 import { Pressable } from "react-native";
-import { AccountMenuProps } from "../../../../navigation/private/types";
+import {
+  AccountMenuProps,
+  RootStackParamList,
+} from "../../../../navigation/private/types";
 
 type TList = {
   title: string;
-  router?: "PolicyAndPrivacy";
+  router?: keyof RootStackParamList;
   jsx?: JSX.Element;
 };
 
@@ -44,6 +47,14 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
           fontSize="4xl"
         />
       ),
+    },
+    {
+      title: "Perfil",
+      router: "Profile",
+    },
+    {
+      title: "Redefinir senha",
+      router: "RedefinePassword",
     },
   ];
 

@@ -26,7 +26,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
   }
 
   return (
-    <Box px="xl">
+    <Box px="xl" flex={1}>
       <FlatList
         data={data?.data.records.filter(
           (item) =>
@@ -35,6 +35,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
             item.assunto_portal__c !== "Assistência Técnica"
         )}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ paddingVertical: 24 }}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
@@ -45,9 +46,9 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
               shadowColor="pantone"
               borderColor="pantone"
               onPress={() => {
-                //  navigation.navigate("AttendanceDetails", {
-                //    data: item,
-                //  });
+                navigation.navigate("AttendanceDetails", {
+                  data: item,
+                });
               }}
             >
               <Text title="Titulo" color="moderateGreen" fontWeight="700" />

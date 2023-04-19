@@ -1,8 +1,12 @@
 import { api } from "../../../../config/axios";
-import { TResponseTips } from "./type";
+import { requestFields } from "../../../../config/request";
+import { TInput, TResponsePaymentInfo } from "./type";
 
-const URL: string = "/financingtips";
+const URL: string = "/barramentowso2";
 
-export const getTips = () => {
-  return api.get<TResponseTips>(`${URL}`);
+export const postPaymentReport = (INPUT: TInput[]) => {
+  return api.post<TResponsePaymentInfo>(
+    `${URL}/informerendimentos`,
+    requestFields({ INPUT })
+  );
 };

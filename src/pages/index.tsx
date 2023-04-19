@@ -1,4 +1,9 @@
-export { AccountMenu, PolicyAndPrivacy } from "./account/view";
+export {
+  AccountMenu,
+  PolicyAndPrivacy,
+  Profile,
+  RedefinePassword,
+} from "./account/view";
 export { Menu } from "./home/view";
 export { Notification, NotificationDetails } from "./notification/view";
 export { Login, Register, ResetPassword, Welcome } from "./auth/view";

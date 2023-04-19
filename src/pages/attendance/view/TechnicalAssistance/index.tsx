@@ -25,7 +25,7 @@ export const TechnicalAssistance = () => {
   }
 
   return (
-    <Box px="xl">
+    <Box px="xl" flex={1}>
       <FlatList
         data={data?.data.records.filter(
           (item) =>
@@ -34,6 +34,7 @@ export const TechnicalAssistance = () => {
             item.assunto_portal__c === "Assistência Técnica"
         )}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ paddingVertical: 24 }}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (

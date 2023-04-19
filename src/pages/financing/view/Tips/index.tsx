@@ -17,14 +17,16 @@ export const TipsFinancing = () => {
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} />;
+    return (
+      <Skeleton m="xl" size={2} listHeight={[40, 400]} borderRadius="xl" />
+    );
   }
 
   return (
     <Box>
       <Text
         title="Seguem algumas informações que vão ajudá-lo no seu financiamento"
-        color="darkGray"
+        color="darkGrayGray78"
         fontSize={18}
         m="xl"
       />
@@ -40,10 +42,10 @@ export const TipsFinancing = () => {
               mb="sm"
             >
               <Box w={width - 64}>
-                <Text title={item.texto} color="darkGray" fontSize={18} />
+                <Text title={item.texto} color="darkGrayGray78" fontSize={18} />
                 <Text
                   title={item.titulo}
-                  color="darkGray"
+                  color="darkGrayGray78"
                   fontSize={18}
                   mt="lg"
                 />

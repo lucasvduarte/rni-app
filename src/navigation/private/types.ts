@@ -33,6 +33,8 @@ export type RootStackParamList = {
   TechnicalAssistance: undefined;
   TechnicalAssistanceDetails: { data: TAttendance };
   DocumentDetailsProperty: { data: TDocument };
+  Profile: undefined;
+  RedefinePassword: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;

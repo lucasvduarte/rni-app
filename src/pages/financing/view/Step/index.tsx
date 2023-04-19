@@ -17,7 +17,9 @@ export const Step = () => {
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} />;
+    return (
+      <Skeleton m="xl" size={2} listHeight={[80, 400]} borderRadius="xl" />
+    );
   }
 
   return (
@@ -42,10 +44,10 @@ export const Step = () => {
               mb="sm"
             >
               <Box w={width - 64}>
-                <Text title={item.texto} color="darkGray" fontSize={18} />
+                <Text title={item.texto} color="darkGrayGray78" fontSize={18} />
                 <Text
                   title={item.titulo}
-                  color="darkGray"
+                  color="darkGrayGray78"
                   fontSize={18}
                   mt="lg"
                 />

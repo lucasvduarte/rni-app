@@ -1,14 +1,16 @@
 import { useQuery } from "react-query";
-import { Box, Card, FlatList, Text } from "../../../../components";
+import { Box, Skeleton, Text, WebViewPage } from "../../../../components";
 import { getNotificationText } from "../../services";
 import Toast from "react-native-toast-message";
 import { NotificationDetailsProps } from "../../../../navigation/private/types";
+import { Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
 
 export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
   const { notification } = route.params;
 
   const { data, isLoading } = useQuery({
-    queryKey: "getUser",
+    queryKey: "getNotificationText",
     queryFn: () => getNotificationText(notification.guidcontrol),
     onError: () => {
       Toast.show({
@@ -18,35 +20,34 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
   });
 
   if (isLoading) {
-    return null;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (
     <Box px="xl" flex={1}>
-      <FlatList
-        data={data?.data.result}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingHorizontal: 8,
+      <Text
+        title={notification.titulo}
+        color="pantone"
+        fontSize="3xl"
+        fontWeight="bold"
+      />
+
+      <Text
+        title={notification.criado
+          .toString()
+          .split("T")[0]
+          .split("-")
+          .reverse()
+          .join("/")}
+        color="pantone"
+        fontSize="lg"
+        my="sm"
+      />
+      <WebViewPage
+        source={{
+          html: `${data?.data?.result[0].texto}`,
         }}
-        renderItem={({ item }) => {
-          return (
-            <Card borderRadius="xl" bg="whiteDarkGray" borderWidth={1}>
-              <Text
-                title="Tiago Luis Quemelo"
-                color="prussianBlueWhite"
-                fontWeight="700"
-              />
-              <Text
-                title="005584482"
-                color="moderateGreen"
-                pt="sm"
-                fontSize="3xl"
-              />
-            </Card>
-          );
-        }}
+        style={{ width: width }}
       />
     </Box>
   );

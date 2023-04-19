@@ -56,7 +56,7 @@ export const Search = ({ navigation }: SearchProps) => {
               />
               <Text
                 title={item.criado.toString()?.split("-").reverse().join("/")}
-                color="darkGray"
+                color="darkGrayGray78"
                 pt="sm"
               />
             </Card>

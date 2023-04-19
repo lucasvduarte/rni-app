@@ -26,7 +26,7 @@ export type TNotification = {
   observacoes?: string;
   ativo: boolean;
   guidcontrol: string;
-  criado: string | Date;
+  criado: Date;
   alterado: string | Date;
   resumo: string;
   visualizado?: string;

@@ -3,10 +3,10 @@ import * as LocalAuthentication from "expo-local-authentication";
 import { Alert } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useQuery } from "react-query";
-import { getUser } from "../../pages/auth/services";
 import Toast from "react-native-toast-message";
 import { setUser } from "../../redux/modules/auth/action";
 import { RootState } from "../../redux/store";
+import { getUser } from "../../pages/account/services/User";
 
 export const useBiometric = () => {
   const dispatch = useAppDispatch();

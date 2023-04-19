@@ -14,10 +14,10 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useQuery } from "react-query";
-import { getUser } from "../../services";
 import { LoginProps } from "../../../../navigation/public/types";
 import { setUser } from "../../../../redux/modules/auth/action";
 import { useBiometric } from "../../../../hooks";
+import { getUser } from "../../../account/services/User";
 
 export const Login = ({ navigation }: LoginProps) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);

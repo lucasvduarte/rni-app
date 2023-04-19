@@ -4,17 +4,12 @@ import {
   Box,
   FlatList,
   ListItemAccordion,
-  ListItemContent,
-  ListItemTitle,
   Skeleton,
   Text,
 } from "../../../../components";
 import { getCommonQuestions } from "../../service/CommonQuestions";
-import { useState } from "react";
 
 export const CommonQuestions = () => {
-  const [expanded, setExpanded] = useState("");
-
   const { data, isLoading } = useQuery({
     queryKey: "getCommonQuestions",
     queryFn: () => getCommonQuestions(),
@@ -40,7 +35,7 @@ export const CommonQuestions = () => {
           return (
             <ListItemAccordion title={item.pergunta} fontSize="3xl">
               <Text
-                color="darkGray"
+                color="darkGrayGray78"
                 title={item.resposta}
                 p="xl"
                 fontSize="2xl"

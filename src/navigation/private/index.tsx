@@ -27,6 +27,10 @@ import {
   DocumentAttendance,
   CommonQuestions,
   Search,
+  Profile,
+  RedefinePassword,
+  Attendance,
+  TechnicalAssistance,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -291,6 +295,53 @@ export const PrivateNavigation = () => {
         component={Search}
         options={{
           headerTitle: "Pesquisas",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerTitle: "Perfil",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="RedefinePassword"
+        component={RedefinePassword}
+        options={{
+          headerTitle: "Redifinir senhar",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Attendance"
+        component={Attendance}
+        options={{
+          headerTitle: "Atendimentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="TechnicalAssistance"
+        component={TechnicalAssistance}
+        options={{
+          headerTitle: "Assistência Técnica",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

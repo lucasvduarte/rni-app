@@ -26,7 +26,7 @@ export const DocumentFinancing = () => {
         aqueles você já possui:"
         fontSize={18}
         mb="xl"
-        color="darkGray"
+        color="darkGrayGray78"
       />
       <WebViewPage
         source={{
