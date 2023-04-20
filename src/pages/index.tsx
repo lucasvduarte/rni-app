@@ -6,7 +6,7 @@ export {
 } from "./account/view";
 export { Menu } from "./home/view";
 export { Notification, NotificationDetails } from "./notification/view";
-export { Login, Register, ResetPassword, Welcome } from "./auth/view";
+export { Login, Register, ResetPassword, Welcome, OtpPage } from "./auth/view";
 export {
   Datasheet,
   DocumentProperty,

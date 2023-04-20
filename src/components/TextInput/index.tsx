@@ -2,10 +2,6 @@ import { useTheme } from "styled-components/native";
 import { SizeProps } from "../Ui/type";
 import { TextInputStyled } from "./style";
 import { TextInputProps } from "./type";
-import { Calendar } from "../Calendar";
-import { useState } from "react";
-import { Pressable } from "react-native";
-import { Box } from "../Box";
 
 const sizeProps: Record<SizeProps, number> = {
   small: 32,

@@ -120,11 +120,11 @@ export const Menu = ({ navigation }: MenuProps) => {
         contentContainerStyle={{ paddingBottom: 24 }}
         showsVerticalScrollIndicator={false}
         renderSectionHeader={({ section }) => (
-          <Box h={144 * section.numColuns + (section.numColuns < 2 ? 16 : 0)}>
+          <Box h={146 * section.numColuns + (section.numColuns < 2 ? 16 : 0)}>
             <Text
               title={section.title}
               key={section.title}
-              pb="xl"
+              pb="md"
               pl="xl"
               fontWeight="bold"
               color="prussianBlueWhite"

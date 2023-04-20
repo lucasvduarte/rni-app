@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTheme } from "styled-components/native";
 import { RootStackParamList } from "./types";
-import { Welcome, Login, Register, ResetPassword } from "../../pages";
+import { Welcome, Login, Register, ResetPassword, OtpPage } from "../../pages";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -53,6 +53,16 @@ export const PublicNavigation = () => {
         component={ResetPassword}
         options={{
           headerTitle: "Redefinir senha",
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="OtpPage"
+        component={OtpPage}
+        options={{
+          headerTitle: "Verificação de codigo",
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
           headerStyle: { backgroundColor: colors.whiteBlack },

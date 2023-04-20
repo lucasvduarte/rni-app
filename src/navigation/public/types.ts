@@ -5,6 +5,7 @@ export type RootStackParamList = {
   Register: undefined;
   ResetPassword: undefined;
   Welcome: undefined;
+  OtpPage: { headerTitle: string; cpfcnpj: string };
 };
 
 export type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
@@ -22,4 +23,9 @@ export type ResetPasswordProps = NativeStackScreenProps<
 export type WelcomeProps = NativeStackScreenProps<
   RootStackParamList,
   "Welcome"
+>;
+
+export type OtpPageProps = NativeStackScreenProps<
+  RootStackParamList,
+  "OtpPage"
 >;
