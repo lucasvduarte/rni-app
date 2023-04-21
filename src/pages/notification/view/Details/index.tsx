@@ -43,7 +43,7 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
         source={{
           html: `${data?.data?.result[0].texto}`,
         }}
-        style={{ width: width }}
+        style={{ width: width, backgroundColor: "transparent" }}
       />
     </Box>
   );

@@ -3,14 +3,44 @@ import * as Animatable from "react-native-animatable";
 import React, { useState } from "react";
 import { LoginPng } from "../../../../assets";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { TClientRegister } from "../../../account/services/User/type";
+import { postRegister } from "../../../account/services/User";
+import { useMutation } from "react-query";
+import Toast from "react-native-toast-message";
+import { RegisterProps } from "../../../../navigation/public/types";
 
-export const Register = () => {
+const USER = {
+  apelido: "",
+  senha: "",
+  cpfcnpj: "",
+  datanascimento: "",
+  confirmaSenha: "",
+  nome: "",
+};
+
+export const Register = ({ navigation }: RegisterProps) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [user, setUser] = useState<TClientRegister>({ ...USER });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<any>({});
+  const { mutate, isLoading } = useMutation({
+    mutationFn: () => postRegister(user),
+    onSuccess: () => {
+      navigation.navigate("OtpPage", {
+        headerTitle: "Validar primeiro acesso",
+        cpfcnpj: user.cpfcnpj,
+        navigate: "Login",
+      });
+    },
+    onError: () => {
+      Toast.show({
+        type: "error",
+      });
+    },
+  });
 
-  const submit = (value: any) => {};
+  const submit = () => {
+    mutate();
+  };
 
   return (
     <Box flex={1} mb="2lg">
@@ -33,7 +63,7 @@ export const Register = () => {
           />
           <Calendar
             onChangeText={(day) => {
-              setUser({ ...user, datanascimento: day });
+              setUser({ ...user, datanascimento: day || "" });
             }}
             initialDate={user.datanascimento}
             placeholder="Data de nascimento"
@@ -43,8 +73,8 @@ export const Register = () => {
             placeholder="Senha"
             size="large"
             secureTextEntry={secureTextEntry}
-            value={user.password}
-            onChangeText={(value) => setUser({ ...user, password: value })}
+            value={user.senha}
+            onChangeText={(value) => setUser({ ...user, senha: value })}
             rightIcon={
               <Icon
                 type="feather"
@@ -80,13 +110,16 @@ export const Register = () => {
             size="large"
             keyboardType="email-address"
             value={user.apelido}
-            onChangeText={(value) => setUser({ ...user, apelido: value })}
+            onChangeText={(value) => {
+              setUser({ ...user, apelido: value });
+              setUser({ ...user, nome: value });
+            }}
           />
         </Box>
       </KeyboardAwareScrollView>
       <Button
         title="ENVIAR"
-        onPress={() => submit(user)}
+        onPress={submit}
         mx="xl"
         isBold
         bg="moderateGreen"

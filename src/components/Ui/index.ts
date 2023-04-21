@@ -129,14 +129,14 @@ export const createBorderRadius = (props: any, isMakeStyles?: boolean) => {
 
   propKeys = {
     borderRadius: "border-radius",
-    borderTopLeft: "border-top-left-radius",
-    borderTopRight: "border-top-right-radius",
-    borderBottomLeft: "border-bottom-left-radius",
-    borderBottomRight: "border-bottom-right-radius",
-    borderTop: ["border-top-left-radius", "border-top-right-radius"],
-    borderLeft: ["border-top-left-radius", "border-bottom-left-radius"],
-    borderRight: ["border-top-right-radius", "border-bottom-right-radius"],
-    borderBottom: ["border-bottom-left-radius", "border-bottom-right-radius"],
+    radiusTopLeft: "border-top-left-radius",
+    radiusTopRight: "border-top-right-radius",
+    radiusBottomLeft: "border-bottom-left-radius",
+    radiusBottomRight: "border-bottom-right-radius",
+    radiusTop: ["border-top-left-radius", "border-top-right-radius"],
+    radiusLeft: ["border-top-left-radius", "border-bottom-left-radius"],
+    radiusRight: ["border-top-right-radius", "border-bottom-right-radius"],
+    radiusBottom: ["border-bottom-left-radius", "border-bottom-right-radius"],
   };
 
   const computedStyle: any = {};

@@ -2,9 +2,15 @@ import { useLayoutEffect, useState } from "react";
 import { Box, Button, Otp, Text, TimerCountdown } from "../../../../components";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { OtpPageProps } from "../../../../navigation/public/types";
+import Toast from "react-native-toast-message";
+import { useMutation } from "react-query";
+import {
+  postCodeResend,
+  postCodeValidation,
+} from "../../../account/services/User";
 
 export const OtpPage = ({ route, navigation }: OtpPageProps) => {
-  const { headerTitle, cpfcnpj } = route.params;
+  const { headerTitle, cpfcnpj, navigate } = route.params;
   const [resetTime, setResetTime] = useState(false);
   const [timeExpired, setTimeExpired] = useState(false);
   const [code, setCode] = useState("");
@@ -13,8 +19,36 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     navigation.setOptions({ headerTitle });
   }, []);
 
+  const { mutate, isLoading } = useMutation({
+    mutationFn: () => postCodeValidation(cpfcnpj, code),
+    onSuccess: () => {
+      navigation.navigate(navigate, { cpfcnpj, code });
+    },
+    onError: () => {
+      Toast.show({
+        type: "error",
+      });
+    },
+  });
+
+  const { mutate: postResetCode, isLoading: isLoadingResetCode } = useMutation({
+    mutationFn: () => postCodeResend(cpfcnpj),
+    onSuccess: () => {
+      setResetTime(!resetTime);
+    },
+    onError: () => {
+      Toast.show({
+        type: "error",
+      });
+    },
+  });
+
   const submit = () => {
-    setResetTime(!resetTime);
+    mutate();
+  };
+
+  const resetCode = () => {
+    postResetCode();
   };
 
   return (
@@ -40,11 +74,16 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
             title="Redefinir código de autorização"
             pt="xl"
             color="easternBlue"
-            onPress={submit}
+            onPress={resetCode}
           />
         </Box>
       </KeyboardAwareScrollView>
-      <Button title="Enviar" onPress={() => {}} disabled={timeExpired} />
+      <Button
+        title="Enviar"
+        onPress={submit}
+        disabled={timeExpired}
+        loading={isLoading || isLoadingResetCode}
+      />
     </Box>
   );
 };

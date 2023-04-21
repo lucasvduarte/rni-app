@@ -66,3 +66,13 @@ export type TClientSap = {
   UFE: string;
   Z_ENVBOL?: string;
 };
+
+export type TClientRegister = {
+  apelido: string;
+  senha: string;
+  cpfcnpj: string;
+  email?: string;
+  datanascimento: string;
+  confirmaSenha?: string;
+  nome: string;
+};

@@ -10,11 +10,9 @@ export const Box = (props: BoxProps) => {
 
   if (onPress) {
     return (
-      <Pressable {...props}>
-        <ViewStyled {...props} borderColor={colors[borderColor] as any}>
-          {children}
-        </ViewStyled>
-      </Pressable>
+      <ViewStyled {...props} borderColor={colors[borderColor] as any}>
+        <Pressable {...props}>{children}</Pressable>
+      </ViewStyled>
     );
   }
   if (animation) {

@@ -121,10 +121,10 @@ export interface RadiusPropsType {
   radiusTopRight?: TBorderRadiusSize;
   radiusBottomLeft?: TBorderRadiusSize;
   radiusBottomRight?: TBorderRadiusSize;
-  radiusTop?: TBorderRadiusSize;
-  radiusLeft?: TBorderRadiusSize;
-  radiusRight?: TBorderRadiusSize;
-  radiusBottom?: TBorderRadiusSize;
+  radiusTop?: TBorderRadiusSize[];
+  radiusLeft?: TBorderRadiusSize[];
+  radiusRight?: TBorderRadiusSize[];
+  radiusBottom?: TBorderRadiusSize[];
 }
 
 export const shadowProps = ["shadow", "shadowColor"] as const;

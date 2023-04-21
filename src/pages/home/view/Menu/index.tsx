@@ -110,9 +110,9 @@ export const Menu = ({ navigation }: MenuProps) => {
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
           <Box alignItems="flex-end" p="xl">
-            <Box flexDir="row" onPress={() => setVisible(true)}>
+            <Box flexDir="row">
               {enterpriseSelect && (
-                <Box>
+                <Box onPress={() => setVisible(true)}>
                   <Text
                     title={enterpriseSelect?.EMPDESCOM}
                     color="matterhorn"
@@ -134,7 +134,12 @@ export const Menu = ({ navigation }: MenuProps) => {
                 h={26}
                 borderRadius="md"
               >
-                <Text title="Alterar" color="prussianBlueWhite" fontSize="md" />
+                <Text
+                  title="Alterar"
+                  color="prussianBlueWhite"
+                  fontSize="md"
+                  onPress={() => setVisible(true)}
+                />
               </Box>
             </Box>
           </Box>

@@ -3,11 +3,33 @@ import * as Animatable from "react-native-animatable";
 import React, { useState } from "react";
 import { LoginPng } from "../../../../assets";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Toast from "react-native-toast-message";
+import { useMutation } from "react-query";
+import { getResetPassword } from "../../../account/services/User";
+import { ResetPasswordProps } from "../../../../navigation/public/types";
 
-export const ResetPassword = () => {
+export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
   const [cpfcnpj, setCpfcnpj] = useState("");
 
-  const submit = (value: any) => {};
+  const { mutate, isLoading } = useMutation({
+    mutationFn: () => getResetPassword(cpfcnpj),
+    onSuccess: () => {
+      navigation.navigate("OtpPage", {
+        headerTitle: "Esqueci minha senha",
+        cpfcnpj: cpfcnpj,
+        navigate: "NewPassword",
+      });
+    },
+    onError: () => {
+      Toast.show({
+        type: "error",
+      });
+    },
+  });
+
+  const submit = () => {
+    mutate();
+  };
 
   return (
     <Box flex={1} mb="2lg">
@@ -32,7 +54,8 @@ export const ResetPassword = () => {
       </KeyboardAwareScrollView>
       <Button
         title="ENVIAR"
-        onPress={() => submit(cpfcnpj)}
+        onPress={submit}
+        loading={isLoading}
         mx="xl"
         isBold
         bg="moderateGreen"

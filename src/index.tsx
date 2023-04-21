@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { getLogin, getTheme, setToken } from "./redux/modules/auth/action";
 import { RootState } from "./redux/store";
 import themes from "./themes";
-import { getToken } from "./pages/auth/services";
+import { getToken } from "./pages/auth/services/Token";
 import { useQuery } from "react-query";
 
 export default function App() {

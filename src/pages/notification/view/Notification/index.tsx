@@ -1,12 +1,13 @@
 import { useQuery } from "react-query";
-import { Box, Card, FlatList, Text } from "../../../../components";
+import { Box, Card, FlatList, Icon, Text } from "../../../../components";
 import { getByNotification } from "../../services";
 import Toast from "react-native-toast-message";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { NotificationProps } from "../../../../navigation/private/types";
 import React from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
+import { formatDatePtBr } from "../../../../config/utils/format/data";
 
 export const Notification = ({ navigation }: NotificationProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
@@ -51,18 +52,56 @@ export const Notification = ({ navigation }: NotificationProps) => {
                   notification: item,
                 });
               }}
+              p="none"
             >
-              <Text
-                title="Tiago Luis Quemelo"
-                color="prussianBlueWhite"
-                fontWeight="700"
-              />
-              <Text
-                title="005584482"
-                color="moderateGreen"
-                pt="sm"
-                fontSize="3xl"
-              />
+              <Box flexDir="row" justifyContent="space-between">
+                <Box p="xl">
+                  <Text
+                    title={item.titulo}
+                    color="prussianBlueWhite"
+                    fontWeight="bold"
+                    fontSize="2xl"
+                  />
+                  <Text
+                    title={
+                      formatDatePtBr(item.criado) === formatDatePtBr(new Date())
+                        ? "Hoje"
+                        : formatDatePtBr(item.criado)
+                    }
+                    py="sm"
+                  />
+
+                  <Text
+                    title="Detalhes"
+                    onPress={() => {
+                      navigation.navigate("NotificationDetails", {
+                        notification: item,
+                      });
+                    }}
+                    color="easternBlue"
+                    fontWeight="bold"
+                    fontSize="xl"
+                    w={60}
+                  />
+                </Box>
+
+                <Box
+                  justifyContent="center"
+                  bg="pacificBlue"
+                  radiusTopRight="xl"
+                  radiusBottomRight="xl"
+                  px="xl"
+                  onPress={() => {}}
+                >
+                  <Icon
+                    name="delete"
+                    type="material-community"
+                    size={28}
+                    iconColor="prussianBlueWhite"
+                    mb="sm"
+                  />
+                </Box>
+              </Box>
             </Card>
           );
         }}
