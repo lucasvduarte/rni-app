@@ -13,6 +13,7 @@ import {
   ShadowPropsType,
   AnimatableProperties,
 } from "../Ui/type";
+import { GestureResponderEvent } from "react-native";
 
 export interface BoxProps
   extends SpacingPropsType,
@@ -28,4 +29,5 @@ export interface BoxProps
     Pick<BackgroundPropsType, "bg">,
     VariantPropsType {
   children?: ReactNode;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
 }

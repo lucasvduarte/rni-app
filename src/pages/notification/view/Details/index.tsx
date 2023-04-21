@@ -4,6 +4,7 @@ import { getNotificationText } from "../../services";
 import Toast from "react-native-toast-message";
 import { NotificationDetailsProps } from "../../../../navigation/private/types";
 import { Dimensions } from "react-native";
+import { formatDatePtBr } from "../../../../config/utils/format/data";
 const { width } = Dimensions.get("window");
 
 export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
@@ -33,12 +34,7 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
       />
 
       <Text
-        title={notification.criado
-          .toString()
-          .split("T")[0]
-          .split("-")
-          .reverse()
-          .join("/")}
+        title={formatDatePtBr(notification.criado)}
         color="pantone"
         fontSize="lg"
         my="sm"

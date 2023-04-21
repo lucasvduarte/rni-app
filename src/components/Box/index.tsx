@@ -1,9 +1,22 @@
+import { useTheme } from "styled-components/native";
 import { ViewStyled } from "./style";
 import { BoxProps } from "./type";
 import * as Animatable from "react-native-animatable";
+import { Pressable } from "react-native";
 
 export const Box = (props: BoxProps) => {
-  const { children, animation } = props;
+  const { colors } = useTheme();
+  const { children, animation, borderColor = "transparent", onPress } = props;
+
+  if (onPress) {
+    return (
+      <Pressable {...props}>
+        <ViewStyled {...props} borderColor={colors[borderColor] as any}>
+          {children}
+        </ViewStyled>
+      </Pressable>
+    );
+  }
   if (animation) {
     return (
       <Animatable.View {...props}>
@@ -11,5 +24,9 @@ export const Box = (props: BoxProps) => {
       </Animatable.View>
     );
   }
-  return <ViewStyled {...props}>{children}</ViewStyled>;
+  return (
+    <ViewStyled {...props} borderColor={colors[borderColor] as any}>
+      {children}
+    </ViewStyled>
+  );
 };

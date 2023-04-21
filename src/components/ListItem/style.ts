@@ -6,6 +6,7 @@ import {
   createBorderRadius,
   createBorderWidth,
   createShadow,
+  createText,
 } from "../Ui";
 
 export const ListItemStyled = styled(ListItem).attrs<ListItemProps>(
@@ -16,6 +17,7 @@ export const ListItemStyled = styled(ListItem).attrs<ListItemProps>(
       ...createSpacing(props, true),
       ...createBorderWidth(props, true),
       ...createShadow(props),
+      ...createText(props, true),
     },
   })
 )<ListItemProps>``;

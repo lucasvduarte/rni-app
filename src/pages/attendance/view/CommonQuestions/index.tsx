@@ -33,7 +33,11 @@ export const CommonQuestions = () => {
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
-            <ListItemAccordion title={item.pergunta} fontSize="3xl">
+            <ListItemAccordion
+              title={item.pergunta}
+              fontSize="3xl"
+              bg="transparent"
+            >
               <Text
                 color="darkGrayGray78"
                 title={item.resposta}

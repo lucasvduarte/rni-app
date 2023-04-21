@@ -3,7 +3,6 @@ import { CardProps } from "./type";
 import * as Animatable from "react-native-animatable";
 import { useTheme } from "styled-components/native";
 import { Pressable } from "react-native";
-import { Box } from "../Box";
 
 const defaultTheme = {
   xs: {

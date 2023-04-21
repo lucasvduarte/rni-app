@@ -1,7 +1,7 @@
 import { TDataDocument } from "../../services/Document/type";
 
 export const formateLisDocument = (value?: TDataDocument) => {
-  if (!value) {
+  if (!value || !value?.data[0]?.pastas) {
     return [];
   }
 
@@ -18,7 +18,7 @@ export const formateLisDocument = (value?: TDataDocument) => {
     "",
   ];
 
-  const documents = value.data[0].pastas.filter((item) => {
+  const documents = value?.data[0]?.pastas.filter((item) => {
     return (
       item.arquivos.length &&
       list.includes(item.vc_descricao.toLocaleUpperCase())

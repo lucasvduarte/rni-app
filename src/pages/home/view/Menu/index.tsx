@@ -10,6 +10,7 @@ import {
   ListItemTitle,
   ListItemContent,
   CheckBox,
+  Button,
 } from "../../../../components";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -108,13 +109,35 @@ export const Menu = ({ navigation }: MenuProps) => {
         sections={listCard}
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
-          <Text
-            title="Alterar empreendimento"
-            onPress={() => setVisible(true)}
-            p="xl"
-            color="prussianBlueWhite"
-            textAlign="right"
-          />
+          <Box alignItems="flex-end" p="xl">
+            <Box flexDir="row" onPress={() => setVisible(true)}>
+              {enterpriseSelect && (
+                <Box>
+                  <Text
+                    title={enterpriseSelect?.EMPDESCOM}
+                    color="matterhorn"
+                    fontSize="md"
+                  />
+                  <Text
+                    title={`Unidade: ${enterpriseSelect?.UNICOD}    Torre: ${enterpriseSelect?.TORCOD}`}
+                    color="suvaGrey"
+                    fontSize="md"
+                  />
+                </Box>
+              )}
+              <Box
+                borderColor="gray66Gray78"
+                borderWidth={1}
+                py="xs"
+                px="sm"
+                ml="md"
+                h={26}
+                borderRadius="md"
+              >
+                <Text title="Alterar" color="prussianBlueWhite" fontSize="md" />
+              </Box>
+            </Box>
+          </Box>
         }
         renderItem={() => <></>}
         contentContainerStyle={{ paddingBottom: 24 }}
@@ -157,19 +180,21 @@ export const Menu = ({ navigation }: MenuProps) => {
                       shadow="sm"
                     >
                       <Box h={80} w="100%">
-                        <Text
-                          title={item.name}
-                          textAlign="center"
-                          color="blackSuvaGrey"
-                          flex={1}
-                        />
+                        <Box flex={1}>
+                          <Text
+                            title={item.name}
+                            textAlign="center"
+                            color="blackSuvaGrey"
+                            flex={1}
+                          />
+                        </Box>
 
                         <Icon
                           name={item.icon}
                           type="material-community"
                           size={28}
                           iconColor="prussianBlueWhite"
-                          mb="md"
+                          mb="sm"
                         />
                       </Box>
                     </Card>

@@ -5,7 +5,7 @@ import { createSpacing, createDimension } from "../Ui";
 
 export const defaultTheme = {
   sm: {
-    height: 40,
+    height: 38,
     fontSize: 16,
     loadingSize: 20,
   },

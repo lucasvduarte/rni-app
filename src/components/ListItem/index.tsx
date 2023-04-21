@@ -7,6 +7,7 @@ import { ListItemStyled } from "./style";
 import { ListItemAccordionProps, ListItemProps } from "./type";
 import { Text } from "../Text";
 import { useState } from "react";
+import { Icon } from "../Icon";
 
 export const ListItem = (props: ListItemProps) => {
   const { children } = props;
@@ -29,6 +30,18 @@ export const ListItemAccordion = (props: ListItemAccordionProps) => {
       onPress={() => {
         setExpanded(!expanded);
       }}
+      containerStyle={{
+        backgroundColor: "transparent",
+      }}
+      icon={
+        <Icon
+          name="chevron-down"
+          type="material-community"
+          size={28}
+          iconColor={color}
+          mb="sm"
+        />
+      }
     >
       {children}
     </ListItemStyled.Accordion>

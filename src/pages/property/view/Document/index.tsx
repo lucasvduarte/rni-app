@@ -1,5 +1,12 @@
 import { useMutation } from "react-query";
-import { Box, Card, FlatList, Skeleton, Text } from "../../../../components";
+import {
+  Box,
+  Button,
+  Card,
+  FlatList,
+  Skeleton,
+  Text,
+} from "../../../../components";
 import Toast from "react-native-toast-message";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -7,6 +14,7 @@ import { postDocuments } from "../../services/Document";
 import { useEffect } from "react";
 import { DocumentPropertyProps } from "../../../../navigation/private/types";
 import { formateLisDocument } from "./helps";
+import { formatDatePtBr } from "../../../../config/utils/format/data";
 
 export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
   const { enterpriseSelect, user } = useAppSelector((state: RootState) => {
@@ -54,15 +62,26 @@ export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
               borderWidth={1}
               shadow="sm"
               my="lg"
-              onPress={() =>
-                navigation.navigate("DocumentDetailsProperty", { data: item })
-              }
             >
               <Text
                 title={item.vc_descricao}
-                fontWeight="700"
-                iconName="download-box"
-                iconSize={30}
+                fontWeight="bold"
+                fontSize="2xl"
+              />
+
+              <Text title={formatDatePtBr(item.ts_cadastro)} py="sm" />
+
+              <Text
+                title="Baixar"
+                onPress={() => {
+                  navigation.navigate("DocumentDetailsProperty", {
+                    data: item,
+                  });
+                }}
+                color="easternBlue"
+                fontWeight="bold"
+                fontSize="xl"
+                w={50}
               />
             </Card>
           );

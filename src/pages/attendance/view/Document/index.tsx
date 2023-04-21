@@ -6,7 +6,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { postDocuments } from "../../service/Document";
 import { DocumentAttendanceProps } from "../../../../navigation/private/types";
-import { formateLisDocument } from "./helps";
+import { formatDatePtBr } from "../../../../config/utils/format/data";
 
 export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
   const { enterpriseSelect, user } = useAppSelector((state: RootState) => {
@@ -53,15 +53,25 @@ export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
               borderWidth={1}
               shadow="sm"
               my="lg"
-              onPress={() =>
-                navigation.navigate("DocumentDetailsProperty", { data: item })
-              }
             >
               <Text
                 title={item.vc_descricao}
-                fontWeight="700"
-                iconName="download-box"
-                iconSize={30}
+                fontWeight="bold"
+                fontSize="2xl"
+              />
+
+              <Text title={formatDatePtBr(item.ts_cadastro)} py="sm" />
+              <Text
+                title="Baixar"
+                onPress={() => {
+                  navigation.navigate("DocumentDetailsProperty", {
+                    data: item,
+                  });
+                }}
+                color="easternBlue"
+                fontWeight="bold"
+                fontSize="xl"
+                w={50}
               />
             </Card>
           );
