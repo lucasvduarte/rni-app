@@ -1,10 +1,12 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { TAuth, TItem, TTheme, TUser } from "./type";
+import { TClient, TClientSap } from "../../../pages/account/services/User/type";
 
 export const initialState: TAuth = {
   password: undefined,
   token: "",
   email: "",
+  user: undefined,
   theme: "light",
   isSingIn: false,
   enterpriseSelect: undefined,
@@ -29,13 +31,35 @@ const putClearAuthSlice = (state: Draft<TAuth>) => {
   state.email = "";
   state.user = undefined;
   state.theme = "light";
-  state.enterpriseSelect = undefined;
   state.isSingIn = false;
+  state.enterpriseSelect = undefined;
 };
 
 const putUserSlice = (state: Draft<TAuth>, action: PayloadAction<TUser>) => {
   state.user = action.payload;
   state.isSingIn = true;
+};
+
+const putClientSlice = (
+  state: Draft<TAuth>,
+  action: PayloadAction<TClient>
+) => {
+  if (state.user?.cliente) {
+    let user = { ...state.user };
+    user.cliente = action.payload;
+    state.user = user;
+  }
+};
+
+const putClientSapSlice = (
+  state: Draft<TAuth>,
+  action: PayloadAction<TClientSap[]>
+) => {
+  if (state.user?.cliente_sap) {
+    let user = { ...state.user };
+    user.cliente_sap = action.payload;
+    state.user = user;
+  }
 };
 
 const putIsSingInSlice = (state: Draft<TAuth>) => {
@@ -67,6 +91,8 @@ export const slice = createSlice({
     putTheme: putThemeSlice,
     putIsSingIn: putIsSingInSlice,
     putEnterpriseSelect: putEnterpriseSelectSlice,
+    putClient: putClientSlice,
+    putClientSap: putClientSapSlice,
   },
 });
 
@@ -78,5 +104,7 @@ export const {
   putTheme,
   putIsSingIn,
   putEnterpriseSelect,
+  putClient,
+  putClientSap,
 } = slice.actions;
 export default slice.reducer;

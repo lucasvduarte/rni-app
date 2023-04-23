@@ -43,14 +43,6 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     },
   });
 
-  const submit = () => {
-    mutate();
-  };
-
-  const resetCode = () => {
-    postResetCode();
-  };
-
   return (
     <Box px="xl" py="2lg" flex={1}>
       <KeyboardAwareScrollView
@@ -74,13 +66,13 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
             title="Redefinir código de autorização"
             pt="xl"
             color="easternBlue"
-            onPress={resetCode}
+            onPress={() => postResetCode()}
           />
         </Box>
       </KeyboardAwareScrollView>
       <Button
         title="Enviar"
-        onPress={submit}
+        onPress={() => mutate()}
         disabled={timeExpired}
         loading={isLoading || isLoadingResetCode}
       />

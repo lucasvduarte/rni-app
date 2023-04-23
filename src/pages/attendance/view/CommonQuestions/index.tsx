@@ -21,7 +21,7 @@ export const CommonQuestions = () => {
   });
 
   if (isLoading) {
-    return <Skeleton size={6} m="xl" height={40} />;
+    return <Skeleton size={6} m="xl" height={40} borderRadius="xl" />;
   }
 
   return (

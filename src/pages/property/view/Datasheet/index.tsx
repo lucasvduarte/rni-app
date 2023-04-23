@@ -50,7 +50,7 @@ export const Datasheet = () => {
   };
 
   if (isLoading) {
-    return <Skeleton size={2} height={30} m="xl" />;
+    return <Skeleton size={2} height={30} m="xl" borderRadius="xl" />;
   }
 
   return (

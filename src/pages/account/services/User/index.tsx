@@ -20,8 +20,18 @@ export const putRedefinePassword = (senha: string, id: string) => {
   );
 };
 
-export const putPersonalData = (user: TClient, id: string) => {
-  return api.put<TResponseUser>(`${URL}/${id}`, requestFields({ ...user }));
+export const putPersonalData = (user: TClient) => {
+  delete user.active;
+  delete user.aux1;
+  delete user.aux2;
+  delete user.aux3;
+  delete user.aux4;
+  delete user.aux5;
+  delete user.notes;
+  return api.put<TResponseUser>(
+    `${URL}/${user.guidcontrol}`,
+    requestFields({ ...user })
+  );
 };
 
 export const putClientAuthorization = (value: boolean, id: string) => {

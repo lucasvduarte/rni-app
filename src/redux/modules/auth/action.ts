@@ -1,3 +1,4 @@
+import { TClient, TClientSap } from "../../../pages/account/services/User/type";
 import {
   getAuthStorage,
   getThemeStorage,
@@ -14,6 +15,8 @@ import {
   initialState,
   putIsSingIn,
   putEnterpriseSelect,
+  putClient,
+  putClientSap,
 } from "./slice";
 import { TItem, TTheme, TUser } from "./type";
 
@@ -116,6 +119,27 @@ export const setEnterpriseSelect =
         dispatch(setIsSingIn());
       }
       dispatch(putEnterpriseSelect(item));
+
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+export const setClient = (client: TClient) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(putClient(client));
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const setClientSap =
+  (clientSap: TClientSap[]) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(putClientSap(clientSap));
 
       return true;
     } catch (error) {

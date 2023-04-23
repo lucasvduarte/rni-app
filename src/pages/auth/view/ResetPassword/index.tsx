@@ -27,10 +27,6 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
     },
   });
 
-  const submit = () => {
-    mutate();
-  };
-
   return (
     <Box flex={1} mb="2lg">
       <KeyboardAwareScrollView fadingEdgeLength={500}>
@@ -54,7 +50,7 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
       </KeyboardAwareScrollView>
       <Button
         title="ENVIAR"
-        onPress={submit}
+        onPress={() => mutate()}
         loading={isLoading}
         mx="xl"
         isBold

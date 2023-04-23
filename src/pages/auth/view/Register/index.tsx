@@ -38,10 +38,6 @@ export const Register = ({ navigation }: RegisterProps) => {
     },
   });
 
-  const submit = () => {
-    mutate();
-  };
-
   return (
     <Box flex={1} mb="2lg">
       <KeyboardAwareScrollView fadingEdgeLength={500}>
@@ -119,7 +115,7 @@ export const Register = ({ navigation }: RegisterProps) => {
       </KeyboardAwareScrollView>
       <Button
         title="ENVIAR"
-        onPress={submit}
+        onPress={() => mutate()}
         mx="xl"
         isBold
         bg="moderateGreen"

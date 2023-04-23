@@ -22,7 +22,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} />;
+    return <Skeleton m="xl" height={400} borderRadius="xl" />;
   }
 
   return (

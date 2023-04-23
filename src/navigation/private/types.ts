@@ -35,6 +35,9 @@ export type RootStackParamList = {
   DocumentDetailsProperty: { data: TDocument };
   Profile: undefined;
   RedefinePassword: undefined;
+  NotificationAuthorization: undefined;
+  PaymentSlipAuthorization: undefined;
+  SharingAuthorization: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;

@@ -31,6 +31,9 @@ import {
   RedefinePassword,
   Attendance,
   TechnicalAssistance,
+  NotificationAuthorization,
+  PaymentSlipAuthorization,
+  SharingAuthorization,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -342,6 +345,42 @@ export const PrivateNavigation = () => {
         component={TechnicalAssistance}
         options={{
           headerTitle: "Assistência Técnica",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="NotificationAuthorization"
+        component={NotificationAuthorization}
+        options={{
+          headerTitle: "Comunicação Digital",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="PaymentSlipAuthorization"
+        component={PaymentSlipAuthorization}
+        options={{
+          headerTitle: "Boleto digital",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="SharingAuthorization"
+        component={SharingAuthorization}
+        options={{
+          headerTitle: "Privacidade",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

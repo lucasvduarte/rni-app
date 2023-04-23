@@ -14,8 +14,7 @@ export const Profile = () => {
   const [user, setUser] = useState<any>({});
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () =>
-      putPersonalData(user.senha, auth.user?.cliente.guidcontrol || ""),
+    mutationFn: async () => await putPersonalData(user?.cliente),
     onError: () => {
       Toast.show({
         type: "error",

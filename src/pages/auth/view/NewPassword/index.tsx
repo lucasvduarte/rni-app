@@ -14,7 +14,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
   const [secureTextEntry2, setSecureTextEntry2] = useState(true);
   const [value, setValue] = useState({
     senha: "",
-    confirmPassword: "",
+    confirmaSenha: "",
   });
 
   const { mutate, isLoading } = useMutation({
@@ -31,9 +31,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
     },
   });
 
-  const submit = () => {
-    mutate();
-  };
+  const validPassword = !!value.confirmaSenha && !!value.senha;
 
   return (
     <KeyboardAwareScrollView fadingEdgeLength={500}>
@@ -68,8 +66,8 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
           placeholder="Confirma senha"
           size="large"
           secureTextEntry={secureTextEntry2}
-          value={value.confirmPassword}
-          onChangeText={(item) => setValue({ ...value, confirmPassword: item })}
+          value={value.confirmaSenha}
+          onChangeText={(item) => setValue({ ...value, confirmaSenha: item })}
           rightIcon={
             <Icon
               type="feather"
@@ -81,11 +79,16 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               }}
             />
           }
+          errorMessage={
+            validPassword && value.confirmaSenha !== value.senha
+              ? "senhas não conferem"
+              : ""
+          }
         />
 
         <Button
           title="ENVIAR"
-          onPress={submit}
+          onPress={() => mutate()}
           mt="2xl"
           isBold
           bg="moderateGreen"

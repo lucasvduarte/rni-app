@@ -1,19 +1,24 @@
-import { useQuery } from "react-query";
-import { Box, Card, FlatList, Icon, Text } from "../../../../components";
-import { getByNotification } from "../../services";
+import { useMutation, useQuery } from "react-query";
+import {
+  Box,
+  Card,
+  FlatList,
+  Icon,
+  Skeleton,
+  Text,
+} from "../../../../components";
+import { deleteNotification, getByNotification } from "../../services";
 import Toast from "react-native-toast-message";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { NotificationProps } from "../../../../navigation/private/types";
 import React from "react";
-import { Pressable, View } from "react-native";
 import { formatDatePtBr } from "../../../../config/utils/format/data";
 
 export const Notification = ({ navigation }: NotificationProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
     return state.auth;
   });
-  const dispatch = useAppDispatch();
 
   const { data, isLoading } = useQuery({
     queryKey: "getByNotification",
@@ -22,16 +27,31 @@ export const Notification = ({ navigation }: NotificationProps) => {
         user?.cliente.cpfcnpj || "",
         enterpriseSelect?.EMPCOD || ""
       ),
-    onError: (error) => {
+    onError: () => {
       Toast.show({
         type: "error",
       });
     },
   });
 
+  const { mutate, isLoading: isLoadingDeleteNotification } = useMutation(
+    async ({ idNotification, id }: any) =>
+      await deleteNotification(idNotification, user?.cliente.cpfcnpj || "", id),
+    {
+      onError: (error) => {
+        console.log({ error });
+        Toast.show({
+          type: "error",
+        });
+      },
+    }
+  );
+
   if (isLoading) {
-    return null;
+    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
   }
+
+  console.log({ isLoadingDeleteNotification });
 
   return (
     <Box flex={1} m="xl">
@@ -87,11 +107,20 @@ export const Notification = ({ navigation }: NotificationProps) => {
 
                 <Box
                   justifyContent="center"
-                  bg="pacificBlue"
+                  bg={
+                    isLoadingDeleteNotification
+                      ? "darkGrayGray78"
+                      : "pacificBlue"
+                  }
                   radiusTopRight="xl"
                   radiusBottomRight="xl"
                   px="xl"
-                  onPress={() => {}}
+                  onPress={() => {
+                    mutate({
+                      idNotification: item.guildcontrolcontrole,
+                      id: item.guidcontrol,
+                    });
+                  }}
                 >
                   <Icon
                     name="delete"
@@ -99,6 +128,7 @@ export const Notification = ({ navigation }: NotificationProps) => {
                     size={28}
                     iconColor="prussianBlueWhite"
                     mb="sm"
+                    disabled={isLoadingDeleteNotification}
                   />
                 </Box>
               </Box>

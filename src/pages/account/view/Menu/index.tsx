@@ -56,10 +56,22 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
       title: "Redefinir senha",
       router: "RedefinePassword",
     },
+    {
+      title: "Comunicação Digital",
+      router: "NotificationAuthorization",
+    },
+    {
+      title: "Boleto digital",
+      router: "PaymentSlipAuthorization",
+    },
+    {
+      title: "Privacidade",
+      router: "SharingAuthorization",
+    },
   ];
 
   return (
-    <Box px="xl" flex={1}>
+    <Box px="xl" flex={1} animation="fadeInUp" delay={100}>
       <FlatList
         data={list}
         keyExtractor={(item) => item.title}

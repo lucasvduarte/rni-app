@@ -15,10 +15,7 @@ export const RedefinePassword = () => {
   const { user } = useAppSelector((state: RootState) => {
     return state.auth;
   });
-  const [value, setValue] = useState<{
-    confirmaSenha: string;
-    senha: string;
-  }>({
+  const [value, setValue] = useState({
     confirmaSenha: "",
     senha: "",
   });

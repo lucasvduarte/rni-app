@@ -15,7 +15,9 @@ export const DocumentFinancing = () => {
   });
 
   if (isLoading) {
-    return <Skeleton size={2} listHeight={[30, 400]} m="xl" />;
+    return (
+      <Skeleton size={2} listHeight={[30, 400]} m="xl" borderRadius="xl" />
+    );
   }
 
   return (

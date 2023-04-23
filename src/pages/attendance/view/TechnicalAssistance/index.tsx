@@ -21,7 +21,7 @@ export const TechnicalAssistance = () => {
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} />;
+    return <Skeleton m="xl" height={400} borderRadius="xl" />;
   }
 
   return (

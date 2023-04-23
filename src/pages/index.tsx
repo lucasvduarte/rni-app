@@ -3,6 +3,9 @@ export {
   PolicyAndPrivacy,
   Profile,
   RedefinePassword,
+  NotificationAuthorization,
+  PaymentSlipAuthorization,
+  SharingAuthorization,
 } from "./account/view";
 export { Menu } from "./home/view";
 export { Notification, NotificationDetails } from "./notification/view";
