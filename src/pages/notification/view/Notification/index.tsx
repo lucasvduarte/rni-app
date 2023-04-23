@@ -39,7 +39,6 @@ export const Notification = ({ navigation }: NotificationProps) => {
       await deleteNotification(idNotification, user?.cliente.cpfcnpj || "", id),
     {
       onError: (error) => {
-        console.log({ error });
         Toast.show({
           type: "error",
         });
@@ -50,8 +49,6 @@ export const Notification = ({ navigation }: NotificationProps) => {
   if (isLoading) {
     return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
   }
-
-  console.log({ isLoadingDeleteNotification });
 
   return (
     <Box flex={1} m="xl">

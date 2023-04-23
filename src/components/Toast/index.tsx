@@ -35,32 +35,40 @@ export const ToastStyled = () => {
       />
     ),
 
-    error: (props: ToastShowParams) => (
-      <ErrorToast
-        {...props}
-        style={{
-          borderLeftColor: colors.error,
-          backgroundColor: colors.white,
-          height: "auto",
-          minHeight: 60,
-          paddingVertical: 8,
-          width: "90%",
-        }}
-        text1Style={{
-          fontSize: 16,
-          fontWeight: "400",
-        }}
-        text2Style={{
-          fontSize: 14,
-          fontWeight: "300",
-        }}
-        text2NumberOfLines={4}
-        text1={props.text1 || "Erro"}
-        text2={
-          props.text2 || "Desculpe pelo nosso erro, tente novamente mais tarde"
-        }
-      />
-    ),
+    error: (props: ToastShowParams) => {
+      const text1Api = props.props?.error?.response?.data.message;
+      const text2Api =
+        props.props?.error?.response?.data.originalMessage.message;
+
+      return (
+        <ErrorToast
+          {...props}
+          style={{
+            borderLeftColor: colors.error,
+            backgroundColor: colors.white,
+            height: "auto",
+            minHeight: 60,
+            paddingVertical: 8,
+            width: "90%",
+          }}
+          text1Style={{
+            fontSize: 16,
+            fontWeight: "400",
+          }}
+          text2Style={{
+            fontSize: 14,
+            fontWeight: "300",
+          }}
+          text2NumberOfLines={4}
+          text1={text1Api || props.text1 || "Erro"}
+          text2={
+            text2Api ||
+            props.text2 ||
+            "Desculpe pelo nosso erro, tente novamente mais tarde"
+          }
+        />
+      );
+    },
 
     tomatoToast: ({ text1, props }: ToastShowParams) => (
       <View style={{ height: 60, width: "100%", backgroundColor: "tomato" }}>

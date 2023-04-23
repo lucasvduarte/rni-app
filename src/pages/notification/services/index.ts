@@ -37,7 +37,6 @@ export const deleteNotification = (
   cpf: string,
   mensagensimportantesguid: string
 ) => {
-  console.log({ id, cpf, mensagensimportantesguid });
   if (!id) {
     return postNotification(cpf, mensagensimportantesguid);
   }

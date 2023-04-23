@@ -7,6 +7,7 @@ import {
   getLgpd,
   putSharingAuthorization,
 } from "../../services/SharingAuthorization";
+import Toast from "react-native-toast-message";
 
 export const SharingAuthorization = () => {
   const { user } = useAppSelector((state: RootState) => {
@@ -21,6 +22,14 @@ export const SharingAuthorization = () => {
   const { mutate, isLoading: isLoadingSharingAuthorization } = useMutation(
     async (value: "Não autorizo" | "Autorizo") => {
       await putSharingAuthorization(value, data?.data.records[0].id || "");
+    },
+    {
+      onError: (error) => {
+        Toast.show({
+          type: "error",
+          props: { error },
+        });
+      },
     }
   );
 
