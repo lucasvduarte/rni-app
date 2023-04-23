@@ -10,7 +10,6 @@ import {
   ListItemTitle,
   ListItemContent,
   CheckBox,
-  Button,
 } from "../../../../components";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -110,8 +109,8 @@ export const Menu = ({ navigation }: MenuProps) => {
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
           <Box alignItems="flex-end" p="xl">
-            <Box flexDir="row">
-              {enterpriseSelect && (
+            {enterpriseSelect && (
+              <Box flexDir="row">
                 <Box onPress={() => setVisible(true)}>
                   <Text
                     title={enterpriseSelect?.EMPDESCOM}
@@ -124,24 +123,24 @@ export const Menu = ({ navigation }: MenuProps) => {
                     fontSize="md"
                   />
                 </Box>
-              )}
-              <Box
-                borderColor="gray66Gray78"
-                borderWidth={1}
-                py="xs"
-                px="sm"
-                ml="md"
-                h={26}
-                borderRadius="md"
-              >
-                <Text
-                  title="Alterar"
-                  color="prussianBlueWhite"
-                  fontSize="md"
-                  onPress={() => setVisible(true)}
-                />
+                <Box
+                  borderColor="gray66Gray78"
+                  borderWidth={1}
+                  py="xs"
+                  px="sm"
+                  ml="md"
+                  h={26}
+                  borderRadius="md"
+                >
+                  <Text
+                    title="Alterar"
+                    color="prussianBlueWhite"
+                    fontSize="md"
+                    onPress={() => setVisible(true)}
+                  />
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         }
         renderItem={() => <></>}

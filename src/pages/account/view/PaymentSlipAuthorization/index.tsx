@@ -4,8 +4,8 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { useMutation } from "react-query";
-import { putPaymentSlipAuthorization } from "../../services/PaymentSlipAuthorization";
 import { setClientSap } from "../../../../redux/modules/auth/action";
+import { putPaymentSlipAuthorization } from "../../../financial/services/Financial";
 
 export const PaymentSlipAuthorization = () => {
   const { user } = useAppSelector((state: RootState) => {
