@@ -20,9 +20,10 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
         navigate: "NewPassword",
       });
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -45,6 +46,7 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
             keyboardType="numeric"
             value={cpfcnpj}
             onChangeText={(value) => setCpfcnpj(value)}
+            maxLength={16}
           />
         </Box>
       </KeyboardAwareScrollView>

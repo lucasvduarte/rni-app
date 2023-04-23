@@ -15,8 +15,14 @@ export const SharingAuthorization = () => {
   });
 
   const { data, isLoading } = useQuery({
-    queryKey: "getAttendance",
+    queryKey: "getLgpd",
     queryFn: () => getLgpd(user?.cliente.cpfcnpj || ""),
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
   });
 
   const { mutate, isLoading: isLoadingSharingAuthorization } = useMutation(

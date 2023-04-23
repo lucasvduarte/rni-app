@@ -15,8 +15,7 @@ export const putSharingAuthorization = (
 };
 
 export const getLgpd = async (cpfcnpj: string) => {
-  const response = api.get<TResponseLgpd>(`${URL}/account`, {
+  return api.get<TResponseLgpd>(`${URL}/account`, {
     params: { Numero_Documento__c: cpfcnpj },
   });
-  return response;
 };

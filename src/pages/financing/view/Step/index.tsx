@@ -9,9 +9,10 @@ export const Step = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getStep",
     queryFn: () => getStep(),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

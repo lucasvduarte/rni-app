@@ -13,9 +13,10 @@ export const TechnicalAssistance = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getAttendance",
     queryFn: () => getAttendance(user?.cliente.cpfcnpj || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

@@ -27,9 +27,10 @@ export const Notification = ({ navigation }: NotificationProps) => {
         user?.cliente.cpfcnpj || "",
         enterpriseSelect?.EMPCOD || ""
       ),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -41,6 +42,7 @@ export const Notification = ({ navigation }: NotificationProps) => {
       onError: (error) => {
         Toast.show({
           type: "error",
+          props: { error },
         });
       },
     }

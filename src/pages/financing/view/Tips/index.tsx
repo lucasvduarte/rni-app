@@ -9,9 +9,10 @@ export const TipsFinancing = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getTips",
     queryFn: () => getTips(),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

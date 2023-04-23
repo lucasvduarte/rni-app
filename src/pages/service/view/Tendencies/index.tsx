@@ -13,9 +13,10 @@ export const Tendencies = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getTendencies",
     queryFn: () => getTendencies(user?.cliente.cpfcnpj || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

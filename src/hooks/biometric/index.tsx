@@ -24,9 +24,10 @@ export const useBiometric = () => {
         dispatch(setUser(data.result, auth.email, auth?.password));
       }
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

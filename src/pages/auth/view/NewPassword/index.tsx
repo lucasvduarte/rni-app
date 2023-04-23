@@ -24,9 +24,10 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
         navigation.navigate("Login");
       }, 1000);
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -61,6 +62,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               }}
             />
           }
+          maxLength={80}
         />
         <TextInput
           placeholder="Confirma senha"
@@ -84,6 +86,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               ? "senhas não conferem"
               : ""
           }
+          maxLength={80}
         />
 
         <Button

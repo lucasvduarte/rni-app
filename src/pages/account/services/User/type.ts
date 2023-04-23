@@ -21,7 +21,7 @@ export type TClient = {
   datanascimento: string | Date;
   email: string;
   endereco_logradouro: string;
-  endereco_numero: number;
+  endereco_numero: number | string;
   endereco_complemento: string;
   endereco_bairro: string;
   endereco_cidade: string;

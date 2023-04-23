@@ -13,9 +13,10 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
   const { data, isLoading } = useQuery({
     queryKey: "getNotificationText",
     queryFn: () => getNotificationText(notification.guidcontrol),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

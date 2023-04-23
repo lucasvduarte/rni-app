@@ -23,9 +23,10 @@ export const RedefinePassword = () => {
   const { mutate, isLoading } = useMutation({
     mutationFn: () =>
       putRedefinePassword(value.senha, user?.cliente.guidcontrol || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -60,6 +61,7 @@ export const RedefinePassword = () => {
                 }}
               />
             }
+            maxLength={80}
           />
 
           <TextInput
@@ -84,6 +86,7 @@ export const RedefinePassword = () => {
                 ? "senhas não conferem"
                 : ""
             }
+            maxLength={80}
           />
         </Box>
       </KeyboardAwareScrollView>

@@ -7,9 +7,10 @@ export const Video = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getVideos",
     queryFn: () => getVideos(),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

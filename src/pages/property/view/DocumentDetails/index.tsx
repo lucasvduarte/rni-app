@@ -20,9 +20,10 @@ export const DocumentDetailsProperty = ({
           ? data.arquivos[data.arquivos.length - 1].it_arquivo
           : data.sr_id
       ),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
     onSuccess: (data) => {

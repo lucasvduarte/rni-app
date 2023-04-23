@@ -13,9 +13,10 @@ export const TipsService = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getTips",
     queryFn: () => getTips(user?.cliente.cpfcnpj || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

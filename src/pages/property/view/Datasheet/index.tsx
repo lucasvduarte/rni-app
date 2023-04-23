@@ -10,10 +10,7 @@ import {
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getDatasheet } from "../../services/Datasheet";
-import { TDatasheet } from "../../services/Datasheet/type";
-import { Dimensions } from "react-native";
-import { formatDatasheet } from "./help";
-const { width } = Dimensions.get("window");
+import { formatDatasheet, infoHtml } from "./help";
 
 export const Datasheet = () => {
   const { enterpriseSelect } = useAppSelector((state: RootState) => {
@@ -23,31 +20,13 @@ export const Datasheet = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getDatasheet",
     queryFn: () => getDatasheet(enterpriseSelect?.EMPCOD || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
-
-  const datasheetInfo = (value?: TDatasheet) => {
-    if (!value) {
-      return "<div><div>";
-    }
-    let fontSize: string = `<div style="font-size:${
-      width > 700 ? 24 : 50
-    }px; color:#838383"; font-family:Roboto>`;
-
-    if (value.informacoes_adicionais) {
-      fontSize += value.informacoes_adicionais
-        .replace(/\n/g, "<br/>")
-        .replace(/:\*\*/g, ":</b>")
-        .replace(/: \*\*/g, ":</b>")
-        .replace(/\*\*:/g, ":</b>")
-        .replace(/\*\*/g, "<b>");
-    }
-    return fontSize + "</div>";
-  };
 
   if (isLoading) {
     return <Skeleton size={2} height={30} m="xl" borderRadius="xl" />;
@@ -57,7 +36,7 @@ export const Datasheet = () => {
     <Box px="xl" flex={1}>
       <Text title="Minha Conta" />
       {data?.data.result[0]?.informacoes_adicionais ? (
-        <WebViewPage source={{ html: datasheetInfo(data?.data.result[0]) }} />
+        <WebViewPage source={{ html: infoHtml(data?.data.result[0]) }} />
       ) : (
         <FlatList
           data={formatDatasheet(data?.data.result[0])}

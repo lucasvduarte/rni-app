@@ -34,6 +34,8 @@ import {
   NotificationAuthorization,
   PaymentSlipAuthorization,
   SharingAuthorization,
+  ChangeEmail,
+  Contacts,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -381,6 +383,28 @@ export const PrivateNavigation = () => {
         component={SharingAuthorization}
         options={{
           headerTitle: "Privacidade",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="ChangeEmail"
+        component={ChangeEmail}
+        options={{
+          headerTitle: "Alterar e-mail",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Contacts"
+        component={Contacts}
+        options={{
+          headerTitle: "Contatos",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

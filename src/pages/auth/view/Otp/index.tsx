@@ -24,9 +24,10 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     onSuccess: () => {
       navigation.navigate(navigate, { cpfcnpj, code });
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -36,9 +37,10 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     onSuccess: () => {
       setResetTime(!resetTime);
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

@@ -1,4 +1,6 @@
+import { Dimensions } from "react-native";
 import { TDatasheet } from "../../services/Datasheet/type";
+const { width } = Dimensions.get("window");
 
 export const formatDatasheet = (data?: TDatasheet) => {
   if (!data) {
@@ -22,4 +24,23 @@ export const formatDatasheet = (data?: TDatasheet) => {
   return list.filter((item) => {
     return !!item.value;
   });
+};
+
+export const infoHtml = (value?: TDatasheet) => {
+  if (!value) {
+    return "<div><div>";
+  }
+  let fontSize: string = `<div style="font-size:${
+    width > 700 ? 24 : 50
+  }px; color:#838383"; font-family:Roboto>`;
+
+  if (value.informacoes_adicionais) {
+    fontSize += value.informacoes_adicionais
+      .replace(/\n/g, "<br/>")
+      .replace(/:\*\*/g, ":</b>")
+      .replace(/: \*\*/g, ":</b>")
+      .replace(/\*\*:/g, ":</b>")
+      .replace(/\*\*/g, "<b>");
+  }
+  return fontSize + "</div>";
 };

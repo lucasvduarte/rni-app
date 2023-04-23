@@ -24,6 +24,7 @@ export const NotificationAuthorization = () => {
       onError: (error) => {
         Toast.show({
           type: "error",
+          props: { error },
         });
       },
       onSuccess: () => {

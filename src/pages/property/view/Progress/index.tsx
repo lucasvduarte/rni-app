@@ -20,9 +20,10 @@ export const Progress = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getProgress",
     queryFn: () => getProgress(enterpriseSelect?.EMPCOD || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

@@ -30,9 +30,10 @@ export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
           "0000" + enterpriseSelect?.NSCCOD
         ).slice(-4)}`
       ),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

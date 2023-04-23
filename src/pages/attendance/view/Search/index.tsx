@@ -16,9 +16,10 @@ export const Search = ({ navigation }: SearchProps) => {
     queryKey: "getSearch",
     queryFn: () =>
       getSearch(user?.cliente.cpfcnpj || "", enterpriseSelect?.EMPCOD || ""),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

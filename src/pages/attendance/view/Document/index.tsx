@@ -21,9 +21,10 @@ export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
           : "Manual do Proprietário",
         enterpriseSelect?.EMPCOD || ""
       ),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

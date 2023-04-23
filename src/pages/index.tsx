@@ -6,6 +6,8 @@ export {
   NotificationAuthorization,
   PaymentSlipAuthorization,
   SharingAuthorization,
+  ChangeEmail,
+  Contacts,
 } from "./account/view";
 export { Menu } from "./home/view";
 export { Notification, NotificationDetails } from "./notification/view";

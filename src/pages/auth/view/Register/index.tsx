@@ -31,12 +31,15 @@ export const Register = ({ navigation }: RegisterProps) => {
         navigate: "Login",
       });
     },
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
+
+  const validPassword = !!user.confirmaSenha && !!user.senha;
 
   return (
     <Box flex={1} mb="2lg">
@@ -56,6 +59,7 @@ export const Register = ({ navigation }: RegisterProps) => {
             keyboardType="numeric"
             value={user.cpfcnpj}
             onChangeText={(value) => setUser({ ...user, cpfcnpj: value })}
+            maxLength={16}
           />
           <Calendar
             onChangeText={(day) => {
@@ -82,6 +86,7 @@ export const Register = ({ navigation }: RegisterProps) => {
                 }}
               />
             }
+            maxLength={80}
           />
           <TextInput
             placeholder="Confirme sua senha"
@@ -100,6 +105,12 @@ export const Register = ({ navigation }: RegisterProps) => {
                 }}
               />
             }
+            errorMessage={
+              validPassword && user.confirmaSenha !== user.senha
+                ? "senhas não conferem"
+                : ""
+            }
+            maxLength={80}
           />
           <TextInput
             placeholder="Como deseja ser chamado?"
@@ -110,6 +121,7 @@ export const Register = ({ navigation }: RegisterProps) => {
               setUser({ ...user, apelido: value });
               setUser({ ...user, nome: value });
             }}
+            maxLength={16}
           />
         </Box>
       </KeyboardAwareScrollView>

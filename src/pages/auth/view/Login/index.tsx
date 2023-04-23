@@ -54,9 +54,10 @@ export const Login = ({ navigation }: LoginProps) => {
         );
       }
     },
-    onError: () => {
+    onError: (error: any) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
@@ -78,6 +79,7 @@ export const Login = ({ navigation }: LoginProps) => {
           keyboardType="email-address"
           value={value.login}
           onChangeText={(item) => setValue({ ...value, login: item })}
+          maxLength={80}
         />
         <TextInput
           placeholder="Senha"
@@ -96,6 +98,7 @@ export const Login = ({ navigation }: LoginProps) => {
               }}
             />
           }
+          maxLength={80}
         />
         <Text
           title="Esqueci minha senha"

@@ -49,7 +49,7 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
       ),
     },
     {
-      title: "Perfil",
+      title: "Informações do usuário",
       router: "Profile",
     },
     {
@@ -67,6 +67,14 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
     {
       title: "Privacidade",
       router: "SharingAuthorization",
+    },
+    {
+      title: "Alterar e-mail",
+      router: "ChangeEmail",
+    },
+    {
+      title: "Contatos",
+      router: "Contacts",
     },
   ];
 

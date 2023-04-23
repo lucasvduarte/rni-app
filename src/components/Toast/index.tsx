@@ -36,9 +36,10 @@ export const ToastStyled = () => {
     ),
 
     error: (props: ToastShowParams) => {
-      const text1Api = props.props?.error?.response?.data.message;
+      const text1Api = props.props?.error?.response?.data?.message;
       const text2Api =
-        props.props?.error?.response?.data.originalMessage.message;
+        props.props?.error?.response?.data?.originalMessage?.message ||
+        props.props?.error?.response?.data?.msgError?.message;
 
       return (
         <ErrorToast

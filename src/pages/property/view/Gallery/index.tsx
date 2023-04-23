@@ -13,9 +13,10 @@ export const Gallery = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getImageGallery",
     queryFn: () => getImageGallery(enterpriseSelect?.EMPCOD || "", "galeria"),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

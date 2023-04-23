@@ -5,3 +5,5 @@ export { RedefinePassword } from "./RedefinePassword";
 export { NotificationAuthorization } from "./NotificationAuthorization";
 export { PaymentSlipAuthorization } from "./PaymentSlipAuthorization";
 export { SharingAuthorization } from "./SharingAuthorization";
+export { ChangeEmail } from "./ChangeEmail";
+export { Contacts } from "./Contacts";

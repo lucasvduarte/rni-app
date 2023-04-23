@@ -13,9 +13,10 @@ export const CommonQuestions = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getCommonQuestions",
     queryFn: () => getCommonQuestions(),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });

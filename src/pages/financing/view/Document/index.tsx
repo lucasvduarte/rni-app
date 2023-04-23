@@ -7,9 +7,10 @@ export const DocumentFinancing = () => {
   const { data, isLoading } = useQuery({
     queryKey: "getDocumentFinancing",
     queryFn: () => getDocument(),
-    onError: () => {
+    onError: (error) => {
       Toast.show({
         type: "error",
+        props: { error },
       });
     },
   });
