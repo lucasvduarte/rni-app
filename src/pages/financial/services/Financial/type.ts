@@ -93,7 +93,7 @@ export type TtemHeader = {
   EMP_BAIRRO: string;
   EMP_CEP: string;
   EMP_CIDADE: string;
-  EMP_CNPJ: string | number;
+  EMP_CNPJ: string;
   EMP_STREET: string;
   EMP_UFE: string;
   ETPDES: string;

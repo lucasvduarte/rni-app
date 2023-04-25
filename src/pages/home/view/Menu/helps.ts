@@ -80,7 +80,7 @@ export const listCard: TListCard[] = [
       },
       {
         name: "Informe de pagamentos",
-        router: "DocumentProperty",
+        router: "PaymentInfo",
         icon: "cash-register",
       },
       {

@@ -36,6 +36,7 @@ import {
   SharingAuthorization,
   ChangeEmail,
   Contacts,
+  PaymentInfo,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -306,7 +307,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="Profile"
         component={Profile}
@@ -318,7 +318,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="RedefinePassword"
         component={RedefinePassword}
@@ -341,7 +340,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="TechnicalAssistance"
         component={TechnicalAssistance}
@@ -353,7 +351,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="NotificationAuthorization"
         component={NotificationAuthorization}
@@ -365,7 +362,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="PaymentSlipAuthorization"
         component={PaymentSlipAuthorization}
@@ -377,7 +373,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="SharingAuthorization"
         component={SharingAuthorization}
@@ -405,6 +400,17 @@ export const PrivateNavigation = () => {
         component={Contacts}
         options={{
           headerTitle: "Contatos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="PaymentInfo"
+        component={PaymentInfo}
+        options={{
+          headerTitle: "Informe de pagamentos",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

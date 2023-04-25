@@ -4,7 +4,7 @@ import { getNotificationText } from "../../services";
 import Toast from "react-native-toast-message";
 import { NotificationDetailsProps } from "../../../../navigation/private/types";
 import { Dimensions } from "react-native";
-import { formatDatePtBr } from "../../../../config/utils/format/data";
+import { formatDatePtBr } from "../../../../config/utils";
 const { width } = Dimensions.get("window");
 
 export const NotificationDetails = ({ route }: NotificationDetailsProps) => {

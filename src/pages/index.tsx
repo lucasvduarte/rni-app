@@ -45,3 +45,5 @@ export {
   SearchDetails,
   TechnicalAssistance,
 } from "./attendance/view";
+
+export { PaymentInfo } from "./financial/view";

@@ -13,7 +13,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { NotificationProps } from "../../../../navigation/private/types";
 import React from "react";
-import { formatDatePtBr } from "../../../../config/utils/format/data";
+import { formatDatePtBr } from "../../../../config/utils";
 
 export const Notification = ({ navigation }: NotificationProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {

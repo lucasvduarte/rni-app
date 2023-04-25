@@ -30,6 +30,15 @@ export interface BottomSheetProps
     AnimatableProperties<{}>,
     Pick<BackgroundPropsType, "bg">,
     VariantPropsType {
-  children: ReactNode;
+  children?: ReactNode;
   visible?: boolean;
+  type?: "pdf";
+  source?: {
+    uri?: string;
+    base64?: string;
+    headers?: {
+      [key: string]: string;
+    };
+  };
+  setVisible?: (value: boolean) => void;
 }

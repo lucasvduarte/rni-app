@@ -40,6 +40,7 @@ export type RootStackParamList = {
   SharingAuthorization: undefined;
   ChangeEmail: undefined;
   Contacts: undefined;
+  PaymentInfo: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;

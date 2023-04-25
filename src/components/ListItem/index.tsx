@@ -64,3 +64,24 @@ export const ListItemContent = (props: ListItemContentProps) => {
   const { children } = props;
   return <ListItemStyled.Content {...props}>{children}</ListItemStyled.Content>;
 };
+
+export const ListDescription = (props: ListItemAccordionProps) => {
+  const { title, subtitle } = props;
+  return (
+    <ListItem px="none">
+      <ListItemContent>
+        <ListItemTitle>
+          <Text
+            title={title}
+            color="blackSuvaGrey"
+            fontSize="3xl"
+            fontWeight="bold"
+          />
+        </ListItemTitle>
+        <ListItemSubtitle>
+          <Text title={subtitle} color="blackSuvaGrey" fontSize="xl" />
+        </ListItemSubtitle>
+      </ListItemContent>
+    </ListItem>
+  );
+};

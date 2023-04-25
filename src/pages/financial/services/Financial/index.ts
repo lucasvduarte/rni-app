@@ -19,7 +19,7 @@ import {
 
 const URL: string = "/barramentowso2";
 
-export const postPaymentReport = (value: TInput) => {
+export const postPaymentInfo = (value: TInput) => {
   return api.post<TResponsePaymentInfo>(
     `${URL}/informerendimentos`,
     requestFields({ INPUT: [{ ...value }] })

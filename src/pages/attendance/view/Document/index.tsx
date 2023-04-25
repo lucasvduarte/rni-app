@@ -6,7 +6,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { postDocuments } from "../../service/Document";
 import { DocumentAttendanceProps } from "../../../../navigation/private/types";
-import { formatDatePtBr } from "../../../../config/utils/format/data";
+import { formatDatePtBr } from "../../../../config/utils";
 
 export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
   const { enterpriseSelect, user } = useAppSelector((state: RootState) => {

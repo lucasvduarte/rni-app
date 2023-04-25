@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getSearch } from "../../service/Search";
 import { SearchProps } from "../../../../navigation/private/types";
-import { formatDatePtBr } from "../../../../config/utils/format/data";
+import { formatDatePtBr } from "../../../../config/utils";
 
 export const Search = ({ navigation }: SearchProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
