@@ -10,15 +10,12 @@ import {
   AccountMenu,
   PolicyAndPrivacy,
   AppInformation,
-  Comments,
   Datasheet,
-  Details,
   DocumentProperty,
   Gallery,
   Progress,
   ReferAndWin,
-  Tendencies,
-  TipsService,
+  Blog,
   Video,
   DocumentFinancing,
   Step,
@@ -37,6 +34,11 @@ import {
   ChangeEmail,
   Contacts,
   PaymentInfo,
+  TechnicalAssistanceDetails,
+  AttendanceDetails,
+  Extract,
+  ExtractDatails,
+  Constructions,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -121,32 +123,10 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Comments"
-        component={Comments}
-        options={{
-          headerTitle: "Comentários",
-          headerRight: () => <HeaderRight />,
-          headerShadowVisible: false,
-          headerTintColor: colors.blackWhite,
-          headerStyle: { backgroundColor: colors.whiteBlack },
-        }}
-      />
-      <Stack.Screen
         name="Datasheet"
         component={Datasheet}
         options={{
           headerTitle: "Ficha Técnica",
-          headerRight: () => <HeaderRight />,
-          headerShadowVisible: false,
-          headerTintColor: colors.blackWhite,
-          headerStyle: { backgroundColor: colors.whiteBlack },
-        }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={Details}
-        options={{
-          headerTitle: "Minha Conta",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
@@ -198,21 +178,10 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Tendencies"
-        component={Tendencies}
+        name="BlogRni"
+        component={Blog}
         options={{
-          headerTitle: "Minha Conta",
-          headerRight: () => <HeaderRight />,
-          headerShadowVisible: false,
-          headerTintColor: colors.blackWhite,
-          headerStyle: { backgroundColor: colors.whiteBlack },
-        }}
-      />
-      <Stack.Screen
-        name="TipsService"
-        component={TipsService}
-        options={{
-          headerTitle: "Minha Conta",
+          headerTitle: "Blog Rni",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
@@ -341,8 +310,30 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
+        name="AttendanceDetails"
+        component={AttendanceDetails}
+        options={{
+          headerTitle: "Atendimentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
         name="TechnicalAssistance"
         component={TechnicalAssistance}
+        options={{
+          headerTitle: "Assistência Técnica",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="TechnicalAssistanceDetails"
+        component={TechnicalAssistanceDetails}
         options={{
           headerTitle: "Assistência Técnica",
           headerRight: () => <HeaderRight />,
@@ -411,6 +402,39 @@ export const PrivateNavigation = () => {
         component={PaymentInfo}
         options={{
           headerTitle: "Informe de pagamentos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Extract"
+        component={Extract}
+        options={{
+          headerTitle: "Extrato",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="ExtractDatails"
+        component={ExtractDatails}
+        options={{
+          headerTitle: "Detalhes do Extrato",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Constructions"
+        component={Constructions}
+        options={{
+          headerTitle: "Fotos da obra",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

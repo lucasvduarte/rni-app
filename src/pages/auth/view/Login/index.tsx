@@ -59,6 +59,17 @@ export const Login = ({ navigation }: LoginProps) => {
         type: "error",
         props: { error },
       });
+      const msgError =
+        error.response?.data.msgError.message || error.response?.data.msgError;
+      if (msgError === "Login não está ativo!") {
+        return setTimeout(() => {
+          navigation.navigate("OtpPage", {
+            headerTitle: "Validar primeiro acesso",
+            cpfcnpj: value.login,
+            navigate: "Login",
+          });
+        }, 2000);
+      }
     },
   });
 

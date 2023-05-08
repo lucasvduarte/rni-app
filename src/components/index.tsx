@@ -28,3 +28,5 @@ export { CarouselGallery } from "./Gallery";
 export { LinearProgress } from "./LinearProgress";
 export { Otp } from "./Otp";
 export { TimerCountdown } from "./TimerCountdown";
+export { CardAttendance } from "./Card/Attendance";
+export { Contract } from "./Contract";

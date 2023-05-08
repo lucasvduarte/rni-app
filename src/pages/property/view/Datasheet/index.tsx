@@ -34,9 +34,11 @@ export const Datasheet = () => {
 
   return (
     <Box px="xl" flex={1}>
-      <Text title="Minha Conta" />
       {data?.data.result[0]?.informacoes_adicionais ? (
-        <WebViewPage source={{ html: infoHtml(data?.data.result[0]) }} />
+        <WebViewPage
+          source={{ html: infoHtml(data?.data.result[0]) }}
+          style={{ backgroundColor: "transparent" }}
+        />
       ) : (
         <FlatList
           data={formatDatasheet(data?.data.result[0])}

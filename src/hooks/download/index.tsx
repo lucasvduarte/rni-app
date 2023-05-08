@@ -9,7 +9,6 @@ export const useDownload = () => {
       "http://techslides.com/demos/sample-videos/small.mp4",
       FileSystem.documentDirectory + filename
     );
-    console.log(result);
 
     save(result.uri, filename, result.headers["Content-Type"]);
   };

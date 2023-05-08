@@ -3,7 +3,7 @@ import { api } from "../../../../config/axios";
 import {
   TPostFeed,
   TFileAzure,
-  TAttendanceView,
+  TUpdateAttendance,
   TResponseSubject,
   TResponseAttendance,
   TResponseFeedTask,
@@ -27,7 +27,7 @@ export const postAttendance = (value: any) => {
   }>(`${URL}/case`, value);
 };
 
-export const putViewAttendance = (value: TAttendanceView) => {
+export const putAttendance = (value: TUpdateAttendance) => {
   return api.put<any>(`${URL}/case`, value);
 };
 

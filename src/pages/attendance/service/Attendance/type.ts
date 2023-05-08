@@ -183,7 +183,7 @@ export type TFile = {
   type?: string;
 };
 
-export type TAttendanceView = {
+export type TUpdateAttendance = {
   id: string;
   visualizado_pelo_cliente__c?: boolean;
   resolvido_portal__c?: boolean;

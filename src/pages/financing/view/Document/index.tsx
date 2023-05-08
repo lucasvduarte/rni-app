@@ -35,6 +35,7 @@ export const DocumentFinancing = () => {
         source={{
           html: !data?.data.result.length ? "" : data?.data.result[0].valor,
         }}
+        style={{ backgroundColor: "transparent" }}
       />
     </Box>
   );

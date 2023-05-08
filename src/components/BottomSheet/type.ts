@@ -41,4 +41,9 @@ export interface BottomSheetProps
     };
   };
   setVisible?: (value: boolean) => void;
+  shareData?: {
+    title: string;
+    mimetype: string;
+    base64: string;
+  };
 }

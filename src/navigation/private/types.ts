@@ -3,6 +3,7 @@ import { TNotification } from "../../pages/notification/services/type";
 import { TSearch } from "../../pages/attendance/service/Search/type";
 import { TAttendance } from "../../pages/attendance/service/Attendance/type";
 import { TDocument } from "../../pages/property/services/Document/type";
+import { TExtratc } from "../../pages/financial/services/Financial/type";
 
 export type RootStackParamList = {
   Menu: undefined;
@@ -15,11 +16,8 @@ export type RootStackParamList = {
   Gallery: undefined;
   Progress: undefined;
   AppInformation: undefined;
-  Comments: undefined;
-  Details: undefined;
   ReferAndWin: undefined;
-  Tendencies: undefined;
-  TipsService: undefined;
+  BlogRni: undefined;
   Video: undefined;
   DocumentFinancing: undefined;
   Step: undefined;
@@ -41,6 +39,9 @@ export type RootStackParamList = {
   ChangeEmail: undefined;
   Contacts: undefined;
   PaymentInfo: undefined;
+  Extract: undefined;
+  ExtractDatails: { data: TExtratc };
+  Constructions: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -72,9 +73,14 @@ export type AttendanceProps = NativeStackScreenProps<
   "Attendance"
 >;
 
+export type AttendanceDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "AttendanceDetails"
+>;
+
 export type TechnicalAssistanceProps = NativeStackScreenProps<
   RootStackParamList,
-  "Attendance"
+  "TechnicalAssistance"
 >;
 
 export type DocumentAttendanceProps = NativeStackScreenProps<
@@ -88,4 +94,19 @@ export type DocumentDetailsPropertyProps = NativeStackScreenProps<
 export type DocumentPropertyProps = NativeStackScreenProps<
   RootStackParamList,
   "DocumentProperty"
+>;
+
+export type TechnicalAssistanceDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceDetails"
+>;
+
+export type ExtractProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Extract"
+>;
+
+export type ExtractDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "ExtractDatails"
 >;

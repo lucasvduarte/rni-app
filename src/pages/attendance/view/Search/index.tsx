@@ -30,7 +30,6 @@ export const Search = ({ navigation }: SearchProps) => {
 
   return (
     <Box px="xl" flex={1}>
-      <Text title="Pesquisas" />
       <FlatList
         data={data?.data.result.filter(
           (item) => new Date(item.dtvigenciafim) >= new Date()

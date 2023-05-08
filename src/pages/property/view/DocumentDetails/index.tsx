@@ -43,6 +43,7 @@ export const DocumentDetailsProperty = ({
       source={{
         uri,
       }}
+      style={{ backgroundColor: "transparent" }}
     />
   );
 };

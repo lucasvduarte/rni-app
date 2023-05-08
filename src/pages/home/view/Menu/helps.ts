@@ -49,7 +49,7 @@ export const listCard: TListCard[] = [
       },
       {
         name: "Fotos da Obra",
-        router: "Gallery",
+        router: "Constructions",
         icon: "camera",
       },
       {
@@ -75,7 +75,7 @@ export const listCard: TListCard[] = [
       },
       {
         name: "Extrato",
-        router: "DocumentProperty",
+        router: "Extract",
         icon: "file-account",
       },
       {
@@ -91,7 +91,6 @@ export const listCard: TListCard[] = [
       {
         name: "Quitação",
         router: "DocumentProperty",
-
         icon: "file-sign",
       },
     ],
@@ -137,14 +136,9 @@ export const listCard: TListCard[] = [
         icon: "emoticon-wink",
       },
       {
-        name: "Dicas",
-        router: "TipsService",
-        icon: "lightbulb-on",
-      },
-      {
-        name: "Tendências",
-        router: "Tendencies",
-        icon: "finance",
+        name: "Blog",
+        router: "BlogRni",
+        icon: "post",
       },
       {
         name: "Vídeos e Tutoriais",

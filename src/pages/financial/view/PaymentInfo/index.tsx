@@ -2,10 +2,8 @@ import Toast from "react-native-toast-message";
 import {
   BottomSheet,
   Box,
-  Button,
   FlatList,
   ListDescription,
-  Modal,
   Skeleton,
 } from "../../../../components";
 import { useMutation } from "react-query";
@@ -13,18 +11,14 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { postPaymentInfo } from "../../services/Financial";
 import { formatContract } from "../../../../config/request";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { formatCpf, formatCurrency } from "../../../../config/utils";
-import { useDownload } from "../../../../hooks";
 import { formatCnpj } from "../../../../config/utils/format/cpf";
 
 export const PaymentInfo = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
     return state.auth;
   });
-
-  const { share } = useDownload();
 
   const { mutate, isLoading, data } = useMutation({
     mutationFn: async () =>
@@ -92,29 +86,17 @@ export const PaymentInfo = () => {
       </Box>
 
       {data?.data?.result?.pdfBase64 && (
-        <>
-          <Button
-            title="Visualizar"
-            onPress={() => setIsVisible(true)}
-            type="outline"
-            mb="xl"
-          />
-          <Button
-            title="Compartilhar"
-            onPress={() => {
-              share("informePagamento", "pdf", data?.data?.result?.pdfBase64);
-            }}
-          />
-        </>
+        <BottomSheet
+          source={{
+            base64: `data:application/pdf;base64,${data?.data?.result?.pdfBase64}`,
+          }}
+          shareData={{
+            title: "informePagamento",
+            mimetype: "pdf",
+            base64: data?.data?.result?.pdfBase64,
+          }}
+        />
       )}
-      <BottomSheet
-        visible={isVisible}
-        source={{
-          base64: `data:application/pdf;base64,${data?.data?.result?.pdfBase64}`,
-        }}
-        type="pdf"
-        setVisible={(value) => setIsVisible(value)}
-      />
     </Box>
   );
 };

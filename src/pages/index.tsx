@@ -25,16 +25,9 @@ export {
   Gallery,
   Progress,
   DocumentDetailsProperty,
+  Constructions,
 } from "./property/view";
-export {
-  AppInformation,
-  Comments,
-  Details,
-  ReferAndWin,
-  Tendencies,
-  TipsService,
-  Video,
-} from "./service/view";
+export { AppInformation, ReferAndWin, Blog, Video } from "./service/view";
 
 export { DocumentFinancing, Step, TipsFinancing } from "./financing/view";
 export {
@@ -44,6 +37,8 @@ export {
   Search,
   SearchDetails,
   TechnicalAssistance,
+  TechnicalAssistanceDetails,
+  AttendanceDetails,
 } from "./attendance/view";
 
-export { PaymentInfo } from "./financial/view";
+export { PaymentInfo, Extract, ExtractDatails } from "./financial/view";

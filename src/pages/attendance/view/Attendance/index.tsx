@@ -1,6 +1,11 @@
 import Toast from "react-native-toast-message";
 import { useQuery } from "react-query";
-import { Box, Card, FlatList, Skeleton, Text } from "../../../../components";
+import {
+  Box,
+  CardAttendance,
+  FlatList,
+  Skeleton,
+} from "../../../../components";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getAttendance } from "../../service/Attendance";
@@ -23,7 +28,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
   }
 
   return (
@@ -40,20 +45,14 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => {
           return (
-            <Card
-              borderRadius="xl"
-              bg="whiteDarkGray"
-              shadow="md"
-              shadowColor="pantone"
-              borderColor="pantone"
+            <CardAttendance
+              data={item}
               onPress={() => {
                 navigation.navigate("AttendanceDetails", {
                   data: item,
                 });
               }}
-            >
-              <Text title="Titulo" color="moderateGreen" fontWeight="700" />
-            </Card>
+            />
           );
         }}
       />

@@ -17,9 +17,10 @@ const light = {
     atlantis: "#96C93D",
     pantone: "#FF671F",
     transparent: "transparent",
-
     // Error
     error: "#F84F47",
+    warning: "#ff9892",
+    red: "#ff0d00",
     // Success
     success: "#42CD71",
     // Colors Variant

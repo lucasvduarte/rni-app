@@ -107,9 +107,7 @@ export const Notification = ({ navigation }: NotificationProps) => {
                 <Box
                   justifyContent="center"
                   bg={
-                    isLoadingDeleteNotification
-                      ? "darkGrayGray78"
-                      : "pacificBlue"
+                    isLoadingDeleteNotification ? "darkGrayGray78" : "warning"
                   }
                   radiusTopRight="xl"
                   radiusBottomRight="xl"
@@ -125,7 +123,7 @@ export const Notification = ({ navigation }: NotificationProps) => {
                     name="delete"
                     type="material-community"
                     size={28}
-                    iconColor="prussianBlueWhite"
+                    iconColor="red"
                     mb="sm"
                     disabled={isLoadingDeleteNotification}
                   />
