@@ -32,16 +32,18 @@ export const TextDescription = (props: TextDescriptionProps) => {
         iconSize={iconSize}
         iconColor={iconColor}
       />
-      <Text
-        title={description}
-        fontSize={fontSizeDescription}
-        color={colorDescription}
-        fontWeight={fontWeight}
-        iconType={iconTypeDescription}
-        iconName={iconNameDescription}
-        iconSize={iconSizeDescription}
-        iconColor={iconColorDescription}
-      />
+      {!!description && (
+        <Text
+          title={description}
+          fontSize={fontSizeDescription}
+          color={colorDescription}
+          fontWeight={fontWeight}
+          iconType={iconTypeDescription}
+          iconName={iconNameDescription}
+          iconSize={iconSizeDescription}
+          iconColor={iconColorDescription}
+        />
+      )}
     </Box>
   );
 };

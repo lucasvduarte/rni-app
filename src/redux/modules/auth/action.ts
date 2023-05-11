@@ -81,16 +81,18 @@ export const setUser =
     }
   };
 
-export const clearUser = () => async (dispatch: AppDispatch) => {
-  try {
-    await setAuthStorage({ ...initialState });
-    await dispatch(putClearAuth());
+export const clearUser =
+  () => async (dispatch: AppDispatch, getState: GetRootState) => {
+    try {
+      const { token } = getState().auth;
+      await setAuthStorage({ ...initialState, token });
+      await dispatch(putClearAuth());
 
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
 
 export const setTheme = (value: TTheme) => async (dispatch: AppDispatch) => {
   try {

@@ -7,7 +7,7 @@ import { GestureResponderEvent } from "react-native";
 export const Modal: React.FunctionComponent<ModalProps> = (props) => {
   const {
     isVisible,
-    type = "dialog",
+    type = "action",
     children,
     title,
     titleBody,
@@ -33,7 +33,7 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
     return null;
   }
 
-  if ((type === "dialog" || type === "action") && !titleBody) {
+  if (type === "dialog" && !titleBody) {
     console.warn("titleBody is required");
     return null;
   }
@@ -73,7 +73,7 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
   return (
     <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
       <Dialog.Title title={title} />
-      <Text title={titleBody} />
+      {titleBody && <Text title={titleBody} />}
       <Dialog.Actions>
         <Dialog.Button title={titleOnPressPrimary} onPress={onPressPrimary} />
         <Dialog.Button

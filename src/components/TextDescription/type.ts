@@ -5,7 +5,7 @@ import { VariantPropsType, TFontSize, IconType } from "../Ui/type";
 
 export interface TextDescriptionProps extends TextProps, VariantPropsType {
   title: string | number;
-  description: string | number;
+  description?: string | number;
   colorDescription?: keyof typeof themes.light.colors;
   fontSizeDescription?: TFontSize;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;

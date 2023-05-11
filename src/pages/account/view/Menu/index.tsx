@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FlatList, Text } from "../../../../components";
+import { Box, Divider, FlatList, Modal, Text } from "../../../../components";
 import { Switch } from "@rneui/themed";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { clearUser, setTheme } from "../../../../redux/modules/auth/action";
@@ -8,6 +8,7 @@ import {
   AccountMenuProps,
   RootStackParamList,
 } from "../../../../navigation/private/types";
+import { useState } from "react";
 
 type TList = {
   title: string;
@@ -16,6 +17,7 @@ type TList = {
 };
 
 export const AccountMenu = ({ navigation }: AccountMenuProps) => {
+  const [visible, setVisible] = useState(false);
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state: RootState) => {
     return state.auth;
@@ -36,18 +38,7 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
         <Switch value={auth.theme === "dark"} onValueChange={toggleSwitch} />
       ),
     },
-    {
-      title: "Sair",
-      jsx: (
-        <Text
-          title="Sair"
-          onPress={() => {
-            dispatch(clearUser());
-          }}
-          fontSize="4xl"
-        />
-      ),
-    },
+
     {
       title: "Informações do usuário",
       router: "Profile",
@@ -79,36 +70,55 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
   ];
 
   return (
-    <Box px="xl" flex={1} animation="fadeInUp" delay={100}>
-      <FlatList
-        data={list}
-        keyExtractor={(item) => item.title}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <Divider />}
-        ListFooterComponent={() => <Divider />}
-        renderItem={({ item }) => {
-          if (item?.router) {
+    <Box px="xl" mb="2lg" flex={1} animation="fadeInUp" delay={100}>
+      <Box flex={1}>
+        <FlatList
+          data={list}
+          keyExtractor={(item) => item.title}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <Divider />}
+          ListFooterComponent={() => <Divider />}
+          renderItem={({ item }) => {
+            if (item?.router) {
+              return (
+                <Pressable
+                  style={{ paddingHorizontal: 6 }}
+                  onPress={() => navigation.navigate(item.router as never)}
+                >
+                  <Text title={item.title} py="xl" fontSize="2xl" />
+                </Pressable>
+              );
+            }
             return (
-              <Pressable
-                style={{ paddingHorizontal: 6 }}
-                onPress={() => navigation.navigate(item.router as never)}
+              <Box
+                flexDir="row"
+                justifyContent="space-between"
+                alignItems="center"
+                px="sm"
               >
                 <Text title={item.title} py="xl" fontSize="2xl" />
-              </Pressable>
+                {item.jsx}
+              </Box>
             );
-          }
-          return (
-            <Box
-              flexDir="row"
-              justifyContent="space-between"
-              alignItems="center"
-              px="sm"
-            >
-              <Text title={item.title} py="xl" fontSize="2xl" />
-              {item.jsx}
-            </Box>
-          );
-        }}
+          }}
+        />
+      </Box>
+      <Text
+        title="Sair"
+        onPress={() => setVisible(true)}
+        fontSize="5xl"
+        textAlign="center"
+        pb="2lg"
+      />
+      <Text title="Versão 2.0.0" fontSize="lg" textAlign="center" />
+
+      <Modal
+        title="Deseja realmente sair do APP?"
+        titleBody=""
+        isVisible={visible}
+        onBackdropPress={(value) => setVisible(value)}
+        onPressSecondary={() => setVisible(false)}
+        onPressPrimary={() => dispatch(clearUser())}
       />
     </Box>
   );
