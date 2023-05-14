@@ -3,6 +3,8 @@ import { Dialog } from "@rneui/themed";
 import { ModalProps } from "./type";
 import { Text } from "../Text";
 import { GestureResponderEvent } from "react-native";
+import { DialogStyled } from "./style";
+import { useTheme } from "styled-components/native";
 
 export const Modal: React.FunctionComponent<ModalProps> = (props) => {
   const {
@@ -18,6 +20,7 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
     onBackdropPress,
   } = props;
   const [visible, setVisible] = useState(isVisible || false);
+  const { colors } = useTheme();
 
   useLayoutEffect(() => {
     setVisible(isVisible);
@@ -55,25 +58,37 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
 
   if (type === "custom") {
     return (
-      <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
+      <DialogStyled
+        isVisible={visible}
+        onBackdropPress={toggleDialog}
+        bg={colors.whiteDarkGray as never}
+      >
         {children}
-      </Dialog>
+      </DialogStyled>
     );
   }
 
   if (type === "dialog") {
     return (
-      <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
-        <Dialog.Title title={title} />
-        <Text title={titleBody} />
-      </Dialog>
+      <DialogStyled
+        isVisible={visible}
+        onBackdropPress={toggleDialog}
+        bg={colors.whiteDarkGray as never}
+      >
+        <Dialog.Title title={title} titleStyle={{ color: colors.blackWhite }} />
+        {titleBody && <Text title={titleBody} color="blackWhite" />}
+      </DialogStyled>
     );
   }
 
   return (
-    <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
-      <Dialog.Title title={title} />
-      {titleBody && <Text title={titleBody} />}
+    <DialogStyled
+      isVisible={visible}
+      onBackdropPress={toggleDialog}
+      bg={colors.whiteDarkGray as never}
+    >
+      <Dialog.Title title={title} titleStyle={{ color: colors.blackWhite }} />
+      {titleBody && <Text title={titleBody} color="blackWhite" />}
       <Dialog.Actions>
         <Dialog.Button title={titleOnPressPrimary} onPress={onPressPrimary} />
         <Dialog.Button
@@ -81,6 +96,6 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
           onPress={toggleOnPressSecondary}
         />
       </Dialog.Actions>
-    </Dialog>
+    </DialogStyled>
   );
 };

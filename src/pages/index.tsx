@@ -39,6 +39,16 @@ export {
   TechnicalAssistance,
   TechnicalAssistanceDetails,
   AttendanceDetails,
+  Category,
+  Files,
+  Item,
+  Responsible,
+  Satisfaction,
+  Scheduling,
+  Section,
+  Summary,
+  AttendanceConcluded,
+  TechnicalAssistanceConcluded,
 } from "./attendance/view";
 
 export { PaymentInfo, Extract, ExtractDatails } from "./financial/view";

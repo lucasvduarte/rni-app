@@ -27,6 +27,6 @@ export interface IconProps
     Pick<FlexPropsType, "flex">,
     RNIconProps,
     VariantPropsType {
-  colorStyle?: string;
+  colorStyle?: any;
   iconColor?: keyof typeof themes.light.colors;
 }

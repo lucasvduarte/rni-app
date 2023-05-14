@@ -4,7 +4,7 @@ import { IconStyled } from "./style";
 import { IconProps } from "./type";
 
 export const Icon = (props: IconProps) => {
-  const { onPress, iconColor = "white" } = props;
+  const { onPress, iconColor = "white", color } = props;
   const { colors } = useTheme();
 
   if (onPress) {
@@ -20,5 +20,5 @@ export const Icon = (props: IconProps) => {
       </Pressable>
     );
   }
-  return <IconStyled {...props} colorStyle={colors[iconColor]} />;
+  return <IconStyled {...props} colorStyle={color || colors[iconColor]} />;
 };

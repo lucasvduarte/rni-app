@@ -31,3 +31,4 @@ export { TimerCountdown } from "./TimerCountdown";
 export { CardAttendance } from "./Card/Attendance";
 export { Contract } from "./Contract";
 export { Select } from "./Select";
+export { Sliders } from "./Slider";

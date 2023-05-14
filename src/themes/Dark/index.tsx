@@ -14,7 +14,6 @@ const light = {
     pacificBlue: "#0085CA",
     prussianBlue: "#003865",
     moderateGreen: "#8DC63F",
-    atlantis: "#96C93D",
     pantone: "#FF671F",
     transparent: "transparent",
     // Error

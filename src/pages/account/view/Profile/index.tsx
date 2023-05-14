@@ -45,7 +45,7 @@ export const Profile = () => {
       </KeyboardAwareScrollView>
       <Button
         title="ENVIAR"
-        onPress={() => console.log(user)}
+        onPress={() => mutate()}
         mx="xl"
         isBold
         bg="moderateGreen"

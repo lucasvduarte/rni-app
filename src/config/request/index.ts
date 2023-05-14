@@ -1,9 +1,10 @@
 import { TItem } from "../../redux/modules/auth/type";
+import { getIpStorage } from "../../storage";
 
 export const requestFields = <T extends object>(fields: T) => {
   return {
     device: "Aplicativo",
-    ip: "",
+    ip: getIpStorage(),
     userauth: "rni.portaldocliente@gmail.com",
     fields,
   };

@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-import { useLayoutEffect } from "react";
+import { useCallback, useEffect, useLayoutEffect } from "react";
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from "styled-components";
 import { ToastStyled } from "./components";
@@ -11,6 +11,8 @@ import { RootState } from "./redux/store";
 import themes from "./themes";
 import { getToken } from "./pages/auth/services/Token";
 import { useQuery } from "react-query";
+import * as Network from "expo-network";
+import { setIpStorage } from "./storage";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -37,6 +39,23 @@ export default function App() {
   useLayoutEffect(() => {
     dispatch(getLogin());
   }, [dispatch]);
+
+  const getIpAddressAsync = useCallback(async () => {
+    const ip = await Network.getIpAddressAsync();
+    setIpStorage(ip || "");
+  }, []);
+
+  useEffect(() => {
+    getIpAddressAsync();
+  }, [getIpAddressAsync]);
+
+  const getNetworkStateAsync = useCallback(async () => {
+    const response = await Network.getNetworkStateAsync();
+  }, []);
+
+  useEffect(() => {
+    getNetworkStateAsync();
+  }, [getNetworkStateAsync]);
 
   const themeSelect = auth.theme || deviceTheme || "light";
 

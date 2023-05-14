@@ -394,6 +394,7 @@ export type TSpaceSize =
   | "xl"
   | "2lg"
   | "2xl"
+  | "3xl"
   | "4xl"
   | "-xs"
   | "-sm"
@@ -401,7 +402,7 @@ export type TSpaceSize =
   | "-lg"
   | "-xl"
   | "-2lg"
-  | "-3xl"
+  | "-2xl"
   | number
   | `${TSizesNumber}%`
   | `${TSizesNumber}px`;

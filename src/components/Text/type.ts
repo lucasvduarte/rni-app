@@ -31,4 +31,11 @@ export interface TextProps
     Pick<FlexPropsType, "flex">,
     VariantPropsType {
   title?: string | number;
+  alignItemsIcon?:
+    | "center"
+    | "flex-start"
+    | "flex-end"
+    | "stretch"
+    | "baseline"
+    | undefined;
 }

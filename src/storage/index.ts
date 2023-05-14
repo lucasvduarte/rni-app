@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TAuth } from "../redux/modules/auth/type";
 export const authStorage = "@authStorage";
 export const themeStorage = "@themeStorage";
+export const ipStorage = "@ipStorage";
 
 export const getAuthStorage = async () => {
   const jsonValue = await AsyncStorage.getItem(authStorage);
@@ -23,4 +24,13 @@ export const getThemeStorage = async () => {
 
 export const setThemeStorage = async (theme: "dark" | "light") => {
   return await AsyncStorage.setItem(themeStorage, theme);
+};
+
+export const getIpStorage = async () => {
+  const jsonValue = await AsyncStorage.getItem(ipStorage);
+  return jsonValue;
+};
+
+export const setIpStorage = async (ip: string) => {
+  return await AsyncStorage.setItem(ipStorage, ip);
 };

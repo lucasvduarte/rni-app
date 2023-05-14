@@ -11,7 +11,12 @@ const sizeProps: Record<SizeProps, number> = {
 
 export const TextInput = (props: TextInputProps) => {
   const { colors } = useTheme();
-  const { bg = "gray93", size = "medium", color = "black" } = props;
+  const {
+    bg = "gray93",
+    size = "medium",
+    color = "black",
+    numberOfLines,
+  } = props;
 
   return (
     <TextInputStyled
@@ -21,7 +26,9 @@ export const TextInput = (props: TextInputProps) => {
         backgroundColor: colors[bg],
         borderRadius: 10,
         borderBottomWidth: 0,
-        height: sizeProps[size],
+        height: numberOfLines
+          ? (numberOfLines * sizeProps[size]) / 2
+          : sizeProps[size],
         paddingHorizontal: 12,
         padding: 0,
         marginHorizontal: 0,

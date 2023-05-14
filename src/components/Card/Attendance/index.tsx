@@ -45,8 +45,8 @@ export const CardAttendance = (props: TCardAttendance) => {
       onPress={onPress}
       mb="lg"
     >
-      <Box py="md" px="xl">
-        <Box flexDir="row" justifyContent="space-between" pb="xs">
+      <Box py="sm" px="xl">
+        <Box flexDir="row" justifyContent="space-between">
           <Text title={data.status} color="white" fontSize="3xl" />
           <Text
             title={formatDatePtBr(data.createddate)}
@@ -56,7 +56,7 @@ export const CardAttendance = (props: TCardAttendance) => {
         </Box>
 
         {isSchedulingText && onPressScheduleVisit && (
-          <Box flexDir="row" alignItems="flex-end">
+          <Box flexDir="row" alignItems="flex-end" pt="xs">
             <Text title="Agendado para: " color="white" fontSize="3xl" />
             <Text
               title={`${

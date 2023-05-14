@@ -2,6 +2,7 @@ import Toast from "react-native-toast-message";
 import { useQuery } from "react-query";
 import {
   Box,
+  Text,
   CardAttendance,
   FlatList,
   Skeleton,
@@ -10,6 +11,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getAttendance } from "../../service/Attendance";
 import { TechnicalAssistanceProps } from "../../../../navigation/private/types";
+import { TAttendance } from "../../service/Attendance/type";
 
 export const TechnicalAssistance = ({
   navigation,
@@ -29,18 +31,47 @@ export const TechnicalAssistance = ({
     },
   });
 
+  const formatList = (value: TAttendance[] | undefined) => {
+    if (!value) {
+      return [];
+    }
+    return value.filter(
+      (item) =>
+        item.assunto_portal__c !==
+          "Assistência Técnica - Pesquisa Satisfação" &&
+        item.assunto_portal__c === "Assistência Técnica"
+    );
+  };
+
   if (isLoading) {
     return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
   }
 
   return (
     <Box px="xl" flex={1}>
+      <Text
+        title="Solicitar atendimento"
+        onPress={() => navigation.navigate("TechnicalAssistanceCategory")}
+        textAlign="right"
+        fontSize="3xl"
+        fontWeight="bold"
+        color="easternBlue"
+      />
+      <Text
+        title="Finalizados"
+        py="xl"
+        onPress={() => {
+          navigation.navigate("TechnicalAssistanceConcluded", {
+            data: formatList(data?.data.records).filter(
+              (item) => item.status.toLocaleLowerCase() === "concluído"
+            ),
+          });
+        }}
+        fontSize="2xl"
+      />
       <FlatList
-        data={data?.data.records.filter(
-          (item) =>
-            item.assunto_portal__c !==
-              "Assistência Técnica - Pesquisa Satisfação" &&
-            item.assunto_portal__c === "Assistência Técnica"
+        data={formatList(data?.data.records).filter(
+          (item) => item.status.toLocaleLowerCase() !== "concluído"
         )}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ paddingVertical: 24 }}
@@ -52,6 +83,7 @@ export const TechnicalAssistance = ({
               onPress={() => {
                 navigation.navigate("TechnicalAssistanceDetails", {
                   data: item,
+                  isConcluded: false,
                 });
               }}
               onPressScheduleVisit={() => {}}

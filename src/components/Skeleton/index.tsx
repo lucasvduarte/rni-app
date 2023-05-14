@@ -4,6 +4,7 @@ import { SkeletonStyled } from "./style";
 import { SkeletonProps } from "./type";
 import { Dimensions } from "react-native";
 const { width: fullWidth } = Dimensions.get("screen");
+
 export const Skeleton = (props: SkeletonProps) => {
   const {
     circle,

@@ -4,6 +4,10 @@ import { TSearch } from "../../pages/attendance/service/Search/type";
 import { TAttendance } from "../../pages/attendance/service/Attendance/type";
 import { TDocument } from "../../pages/property/services/Document/type";
 import { TExtratc } from "../../pages/financial/services/Financial/type";
+import {
+  TCategory,
+  TSection,
+} from "../../pages/attendance/service/TechnicalAssistance/type";
 
 export type RootStackParamList = {
   Menu: undefined;
@@ -23,13 +27,15 @@ export type RootStackParamList = {
   Step: undefined;
   TipsFinancing: undefined;
   Attendance: undefined;
-  AttendanceDetails: { data: TAttendance };
+  AttendanceConcluded: { data: TAttendance[] };
+  AttendanceDetails: { data: TAttendance; isConcluded: boolean };
   CommonQuestions: undefined;
   DocumentAttendance: undefined;
   Search: undefined;
   SearchDetails: { data: TSearch };
   TechnicalAssistance: undefined;
-  TechnicalAssistanceDetails: { data: TAttendance };
+  TechnicalAssistanceConcluded: { data: TAttendance[] };
+  TechnicalAssistanceDetails: { data: TAttendance; isConcluded: boolean };
   DocumentDetailsProperty: { data: TDocument };
   Profile: undefined;
   RedefinePassword: undefined;
@@ -42,6 +48,14 @@ export type RootStackParamList = {
   Extract: undefined;
   ExtractDatails: { data: TExtratc };
   Constructions: undefined;
+  Scheduling: { data: any };
+  Satisfaction: { data: any } | undefined;
+  Responsible: { data: any } | undefined;
+  TechnicalAssistanceSection: undefined;
+  TechnicalAssistanceItem: undefined;
+  TechnicalAssistanceCategory: undefined;
+  TechnicalAssistanceFiles: undefined;
+  TechnicalAssistanceSummary: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -109,4 +123,52 @@ export type ExtractProps = NativeStackScreenProps<
 export type ExtractDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   "ExtractDatails"
+>;
+
+export type SchedulingProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Scheduling"
+>;
+
+export type SatisfactionProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Satisfaction"
+>;
+
+export type ResponsibleProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Responsible"
+>;
+
+export type TechnicalAssistanceSectionProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceSection"
+>;
+
+export type TechnicalAssistanceItemProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceItem"
+>;
+
+export type TechnicalAssistanceCategoryProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceCategory"
+>;
+export type TechnicalAssistanceFilesProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceFiles"
+>;
+export type TechnicalAssistanceSummaryProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceSummary"
+>;
+
+export type TechnicalAssistanceConcludedProps = NativeStackScreenProps<
+  RootStackParamList,
+  "TechnicalAssistanceConcluded"
+>;
+
+export type AttendanceConcludedProps = NativeStackScreenProps<
+  RootStackParamList,
+  "AttendanceConcluded"
 >;

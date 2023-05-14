@@ -103,6 +103,7 @@ export const defaultTheme: ThemeType = {
     xl: "16px",
     "2lg": "24px",
     "2xl": "32px",
+    "3xl": "48px",
     "4xl": "64px",
     "-xs": "-4px",
     "-sm": "-6px",
@@ -110,6 +111,6 @@ export const defaultTheme: ThemeType = {
     "-lg": "-12px",
     "-xl": "-16px",
     "-2lg": "-24px",
-    "-3xl": "-32px",
+    "-2xl": "-32px",
   },
 };

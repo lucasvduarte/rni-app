@@ -14,6 +14,7 @@ export const Text = (props: TextProps) => {
     iconName,
     iconType = "material-community",
     iconSize = 18,
+    alignItemsIcon = "center",
   } = props;
   const { colors } = useTheme();
 
@@ -26,7 +27,7 @@ export const Text = (props: TextProps) => {
     return (
       <Animatable.View
         {...props}
-        style={{ flexDirection: "row", alignItems: "center" }}
+        style={{ flexDirection: "row", alignItems: alignItemsIcon }}
       >
         {iconName && (
           <Icon
@@ -45,7 +46,7 @@ export const Text = (props: TextProps) => {
   }
   if (iconName) {
     return (
-      <Box flexDir="row" alignItems="center">
+      <Box flexDir="row" alignItems={alignItemsIcon}>
         {iconName && (
           <Icon
             type={iconType}

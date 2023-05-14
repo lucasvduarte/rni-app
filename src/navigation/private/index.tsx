@@ -39,6 +39,16 @@ import {
   Extract,
   ExtractDatails,
   Constructions,
+  Category,
+  Responsible,
+  Satisfaction,
+  Scheduling,
+  Section,
+  Summary,
+  Item,
+  Files,
+  AttendanceConcluded,
+  TechnicalAssistanceConcluded,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -435,6 +445,119 @@ export const PrivateNavigation = () => {
         component={Constructions}
         options={{
           headerTitle: "Fotos da obra",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="TechnicalAssistanceCategory"
+        component={Category}
+        options={{
+          headerTitle: "Categoria",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="TechnicalAssistanceFiles"
+        component={Files}
+        options={{
+          headerTitle: "Arquivos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
+      <Stack.Screen
+        name="TechnicalAssistanceItem"
+        component={Item}
+        options={{
+          headerTitle: "Item",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="TechnicalAssistanceSection"
+        component={Section}
+        options={{
+          headerTitle: "Seção",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="TechnicalAssistanceSummary"
+        component={Summary}
+        options={{
+          headerTitle: "Resumo",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Responsible"
+        component={Responsible}
+        options={{
+          headerTitle: "Responsável",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Satisfaction"
+        component={Satisfaction}
+        options={{
+          headerTitle: "Satisfação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Scheduling"
+        component={Scheduling}
+        options={{
+          headerTitle: "Agendamento",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="AttendanceConcluded"
+        component={AttendanceConcluded}
+        options={{
+          headerTitle: "Chamandos Concluídos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="TechnicalAssistanceConcluded"
+        component={TechnicalAssistanceConcluded}
+        options={{
+          headerTitle: "Chamandos Concluídos",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

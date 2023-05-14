@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { version } from "../../../../../package.json";
 import { Box, Divider, FlatList, Modal, Text } from "../../../../components";
 import { Switch } from "@rneui/themed";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -8,7 +10,6 @@ import {
   AccountMenuProps,
   RootStackParamList,
 } from "../../../../navigation/private/types";
-import { useState } from "react";
 
 type TList = {
   title: string;
@@ -110,7 +111,7 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
         textAlign="center"
         pb="2lg"
       />
-      <Text title="Versão 2.0.0" fontSize="lg" textAlign="center" />
+      <Text title={version} fontSize="lg" textAlign="center" />
 
       <Modal
         title="Deseja realmente sair do APP?"
