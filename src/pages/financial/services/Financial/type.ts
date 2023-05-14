@@ -13,15 +13,17 @@ export type TResponseExtratc = {
   msgError?: string;
 };
 
-export type TResponseExtratcPostTicket = {
-  result: {
-    E_ERRO: string;
-    E_MENSAGEM_ERRO: string;
-    E_BOLETO_BASE64: string;
-    E_CODBAR: string;
-    urlboleto: string;
-  };
+export type TResponsePostPaymentSlip = {
+  result: TPostPaymentSlip;
   msgError?: string;
+};
+
+export type TPostPaymentSlip = {
+  E_ERRO: string;
+  E_MENSAGEM_ERRO: string;
+  E_BOLETO_BASE64: string;
+  E_CODBAR: string;
+  urlboleto: string;
 };
 
 export type TResponseParcelList = {
@@ -29,12 +31,12 @@ export type TResponseParcelList = {
   msgError?: string;
 };
 
-export type TResponseCreateTicket = {
-  result: TCreateTicket[];
+export type TResponseCreatePaymentSlip = {
+  result: TCreatePaymentSlip[];
   msgError?: string;
 };
 
-export type TExtratcPostTicketParams = {
+export type TPostPaymentSlipParams = {
   empresa: string;
   conta: number;
   cliente: number;
@@ -45,19 +47,7 @@ export type TExtratcPostTicketParams = {
   Id_Contrato__c: string;
 };
 
-export type TExtratcGetTicketParams = {
-  userauth: string;
-  ip?: string;
-  device?: string;
-  empresa?: string;
-  cpfcnpj: string;
-  localneg?: string;
-  atribuicao: string;
-  elidepvendaspar: string;
-  login: string;
-};
-
-export type TResponseTicket = {
+export type TResponsePaymentSlip = {
   BELNR: number;
   BLART: string;
   BLDAT: string | Date;
@@ -416,7 +406,7 @@ export type InputAnticipation = {
   I_ZLSCH: string;
 };
 
-export type TCreateTicket = {
+export type TCreatePaymentSlip = {
   BELNR: string;
   BLDAT: string | Date;
   BUKRS: string;

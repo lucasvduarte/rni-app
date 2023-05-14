@@ -37,7 +37,7 @@ import {
   TechnicalAssistanceDetails,
   AttendanceDetails,
   Extract,
-  ExtractDatails,
+  ExtractDetails,
   Constructions,
   Category,
   Responsible,
@@ -49,6 +49,7 @@ import {
   Files,
   AttendanceConcluded,
   TechnicalAssistanceConcluded,
+  CopyDocumentPaymentSlip,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -430,8 +431,8 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="ExtractDatails"
-        component={ExtractDatails}
+        name="ExtractDetails"
+        component={ExtractDetails}
         options={{
           headerTitle: "Detalhes do Extrato",
           headerRight: () => <HeaderRight />,
@@ -451,7 +452,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="TechnicalAssistanceCategory"
         component={Category}
@@ -463,7 +463,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="TechnicalAssistanceFiles"
         component={Files}
@@ -475,7 +474,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="TechnicalAssistanceItem"
         component={Item}
@@ -558,6 +556,17 @@ export const PrivateNavigation = () => {
         component={TechnicalAssistanceConcluded}
         options={{
           headerTitle: "Chamandos Concluídos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="CopyDocumentPaymentSlip"
+        component={CopyDocumentPaymentSlip}
+        options={{
+          headerTitle: "2° via de Boleto",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

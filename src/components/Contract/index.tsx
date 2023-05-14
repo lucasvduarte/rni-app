@@ -26,7 +26,7 @@ export const Contract = (props: TCardAttendance) => {
     ) || [];
 
   return (
-    <Box flex={1}>
+    <Box flex={1} my="xl">
       <Text
         color="moderateGreen"
         fontWeight="bold"
@@ -48,8 +48,8 @@ export const Contract = (props: TCardAttendance) => {
             <Card
               borderRadius="xl"
               shadow="sm"
-              shadowColor="blackWhite"
-              borderColor="moderateGreen"
+              shadowColor="moderateGreen"
+              borderColor="veryLightGray"
               borderWidth={1}
               onPress={() => onPress(item)}
               mb="md"

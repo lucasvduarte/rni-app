@@ -74,7 +74,7 @@ export const CardAttendance = (props: TCardAttendance) => {
         )}
       </Box>
       <Card
-        borderRadius="xl"
+        borderRadius="lg"
         bg={
           data.visualizado_pelo_cliente__c ? "white" : "veryLightGraySuvaGrey"
         }

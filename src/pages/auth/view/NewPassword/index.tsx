@@ -17,7 +17,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
     confirmaSenha: "",
   });
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: () => getResetPassword(cpfcnpj, value.senha, code),
     onSuccess: () => {
       setTimeout(() => {
@@ -96,6 +96,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
           isBold
           bg="moderateGreen"
           loading={isLoading}
+          disabled={isSuccess}
         />
       </Box>
     </KeyboardAwareScrollView>

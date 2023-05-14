@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ImageProps as ImagePropsRN } from "react-native";
 import {
   BackgroundPropsType,
   DimensionPropsType,
@@ -8,28 +8,28 @@ import {
   ZIndexPropsType,
   BorderPropsType,
   SpacingPropsType,
-  RadiusPropsType,
   VariantPropsType,
   ShadowPropsType,
   AnimatableProperties,
-  PositionPropsType,
 } from "../Ui/type";
-import { GestureResponderEvent } from "react-native";
 
-export interface BoxProps
-  extends SpacingPropsType,
-    RadiusPropsType,
+export interface ImageProps
+  extends ImagePropsRN,
+    SpacingPropsType,
     BorderPropsType,
     DimensionPropsType,
     OverflowPropsType,
     OpacityPropsType,
     ZIndexPropsType,
     ShadowPropsType,
-    FlexPropsType,
-    PositionPropsType,
     AnimatableProperties<{}>,
     Pick<BackgroundPropsType, "bg">,
+    Pick<FlexPropsType, "flex">,
     VariantPropsType {
-  children?: ReactNode;
-  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+  type?: "background" | "image" | "thumbnail";
+  uri?: string;
+  isVideo?: boolean;
+  height?: number;
+  width?: number;
+  children?: React.ReactNode;
 }

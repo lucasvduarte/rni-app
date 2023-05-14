@@ -41,7 +41,11 @@ export const useBiometric = () => {
   }, []);
 
   const fallBackToDefaultAuth = useCallback(() => {
-    console.log("fall back to password authentication");
+    console.warn("fall back to password authentication");
+    Toast.show({
+      type: "error",
+      text2: "fall back to password authentication",
+    });
   }, []);
 
   const alertComponent = useCallback(

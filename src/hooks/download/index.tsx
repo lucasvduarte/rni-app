@@ -1,6 +1,7 @@
 import * as FileSystem from "expo-file-system";
 import { shareAsync } from "expo-sharing";
 import { Platform } from "react-native";
+import Toast from "react-native-toast-message";
 
 export const useDownload = () => {
   const downloadFromUrl = async () => {
@@ -46,7 +47,12 @@ export const useDownload = () => {
               encoding: FileSystem.EncodingType.Base64,
             });
           })
-          .catch((e) => console.log(e));
+          .catch((e) => {
+            Toast.show({
+              type: "error",
+              text2: e,
+            });
+          });
       } else {
         shareAsync(uri);
       }

@@ -1,19 +1,19 @@
 import { api } from "../../../../config/axios";
 import { requestFields } from "../../../../config/request";
+
 import {
   InputAnticipation,
   TAnticipationParams,
-  TExtratcGetTicketParams,
-  TExtratcPostTicketParams,
+  TPostPaymentSlipParams,
   TInput,
   TInputExtratc,
-  TResponseCreateTicket,
+  TResponseCreatePaymentSlip,
   TResponseExtratc,
-  TResponseExtratcPostTicket,
+  TResponsePostPaymentSlip,
   TResponseParcelList,
   TResponsePaymentInfo,
   TResponsePaymentSlipAuthorization,
-  TResponseTicket,
+  TResponsePaymentSlip,
   TSendParcels,
 } from "./type";
 
@@ -43,12 +43,20 @@ export const postExtratc = (value: TInputExtratc) => {
   );
 };
 
-export const getTicket = (params: TExtratcGetTicketParams) => {
-  return api.get<TResponseTicket[]>(`${URL}/listaboleto`, { params: params });
+export const getPaymentSlip = (cpfcnpj: string, atribuicao: string) => {
+  return api.get<TResponsePaymentSlip[]>(`${URL}/listaboleto`, {
+    params: {
+      ...requestFields(),
+      atribuicao,
+      elidepvendaspar: "X",
+      cpfcnpj,
+      login: cpfcnpj,
+    },
+  });
 };
 
-export const postTicket = (values: TExtratcPostTicketParams) => {
-  return api.post<TResponseExtratcPostTicket>(
+export const postPaymentSlip = (values: TPostPaymentSlipParams) => {
+  return api.post<TResponsePostPaymentSlip>(
     `${URL}/geraboleto`,
     requestFields({ ...values })
   );
@@ -64,9 +72,9 @@ export const postParcelSend = (sendParcels: TSendParcels) => {
   return api.post<TResponseParcelList>(`${URL}/enviarparcelas`, sendParcels);
 };
 
-export const postCreateTicket = (creactTicket: InputAnticipation) => {
-  return api.post<TResponseCreateTicket>(`${URL}/criaboleto`, {
-    INPUT: [creactTicket],
+export const postCreatePaymentSlip = (creactPaymentSlip: InputAnticipation) => {
+  return api.post<TResponseCreatePaymentSlip>(`${URL}/criaboleto`, {
+    INPUT: [creactPaymentSlip],
   });
 };
 

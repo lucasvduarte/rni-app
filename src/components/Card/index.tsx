@@ -42,7 +42,8 @@ export const Card = (props: CardProps) => {
       <Pressable
         onPress={onPress}
         style={{
-          padding: shadow ? defaultTheme[shadow].padding : 0,
+          paddingHorizontal: shadow ? defaultTheme[shadow].padding / 2 : 0,
+          paddingBottom: shadow ? defaultTheme[shadow].padding : 0,
         }}
       >
         <CardStyled
@@ -63,6 +64,7 @@ export const Card = (props: CardProps) => {
           {...props}
           bgStyled={colors[bg]}
           shadowColor={colors[shadowColor] as never}
+          borderColor={colors[borderColor] as never}
         >
           {children}
         </CardStyled>
@@ -75,6 +77,7 @@ export const Card = (props: CardProps) => {
       {...props}
       bgStyled={colors[bg]}
       shadowColor={colors[shadowColor] as never}
+      borderColor={colors[borderColor] as never}
     >
       {children}
     </CardStyled>

@@ -44,6 +44,7 @@ export const Search = ({ navigation }: SearchProps) => {
               shadow="md"
               shadowColor="pantone"
               borderColor="pantone"
+              mb="lg"
               onPress={() => {
                 navigation.navigate("SearchDetails", {
                   data: item,

@@ -159,10 +159,12 @@ export const flexProps = [
   "alignContent",
   "alignSelf",
   "alignItems",
+  "flexGrow",
 ] as const;
 export interface FlexPropsType {
   row?: boolean;
   flex?: number;
+  flexGrow?: number;
   flexDir?: "row" | "column" | "row-reverse" | "column-reverse";
   flexWrap?: "wrap" | "nowrap" | "wrap-reverse";
   justifyContent?:

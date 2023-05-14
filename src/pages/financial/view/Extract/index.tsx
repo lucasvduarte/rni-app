@@ -26,7 +26,7 @@ export const Extract = ({ navigation }: ExtractProps) => {
         I_UNITIP: enterpriseSelect?.UNITIP || "",
         Id_Contrato__c: formatContract(enterpriseSelect),
       }).then((response) => {
-        navigation.navigate("ExtractDatails", { data: response.data.result });
+        navigation.navigate("ExtractDetails", { data: response.data.result });
       });
     },
     {
@@ -51,7 +51,7 @@ export const Extract = ({ navigation }: ExtractProps) => {
         fontSize="2xl"
       />
       <Text
-        my="sm"
+        pt="sm"
         title="Em caso de dúvidas entre em contato com a Central de Relacionamento 3003
         1155."
         fontSize="2xl"
@@ -59,7 +59,6 @@ export const Extract = ({ navigation }: ExtractProps) => {
       <Contract onPress={(item) => mutate(item)} />
       <Text
         color="moderateGreen"
-        my="sm"
         fontSize="4xl"
         fontWeight="bold"
         title="Finalidade"
@@ -69,11 +68,12 @@ export const Extract = ({ navigation }: ExtractProps) => {
         title="O extrato acima serve apenas para conferência e transações recentes
         podem não estar inferidas. Você poderá acessar todas as informações
         disponíveis imprimindo o documento, em Salvar/Imprimir."
+        my="sm"
       />
 
       <Text
         color="moderateGreen"
-        my="sm"
+        mb="sm"
         fontSize="4xl"
         fontWeight="bold"
         title="Prazo de Compensação"

@@ -20,8 +20,8 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
   const { category, section } = useAppSelector((state: RootState) => {
     return state.attendance;
   });
-  const [dataSection, setSataSection] = useState<TSection[]>([]);
-  const { isLoading } = useQuery({
+  const [dataSection, setDataSection] = useState<TSection[]>([]);
+  const { isLoading, isFetched } = useQuery({
     queryKey: "getSectionFilter",
     queryFn: () => getSectionFilter(category?.id || 0),
     onError: (error) => {
@@ -31,12 +31,12 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
       });
     },
     onSuccess: (data) => {
-      setSataSection(data.data.result);
+      setDataSection(data.data.result);
     },
   });
 
   useEffect(() => {
-    setSataSection((previus) => [...previus]);
+    setDataSection((previus) => [...previus]);
   }, [section]);
 
   const onPress = (item: TSection) => {
@@ -45,7 +45,7 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
   }
 
   return (
@@ -64,6 +64,7 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
               shadow="md"
               shadowColor="moderateGreen"
               borderColor="veryLightGray"
+              mb="lg"
               onPress={() => onPress(item)}
             >
               <Text

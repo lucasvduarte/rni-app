@@ -1,5 +1,6 @@
 import { api } from "../../../../config/axios";
 import {
+  TPostSchedulingParams,
   TResponseCategory,
   TResponseItem,
   TResponseSection,
@@ -16,7 +17,7 @@ export const getScheduling = (id: string) => {
   return api.get<TSchedulingResponse>(`${URL}/scheduling/${id}`);
 };
 
-export const postScheduling = (id: string, value: any) => {
+export const postScheduling = (id: string, value: TPostSchedulingParams) => {
   return api.post(`${URL}/scheduling/${id}`, value);
 };
 

@@ -72,12 +72,13 @@ export const setFiles = (files: any) => async (dispatch: AppDispatch) => {
   }
 };
 
-export const setRemoveFiles =
+export const setRemoveRegister =
   (index: number) => async (dispatch: AppDispatch, getState: GetRootState) => {
     try {
-      const { files } = getState().attendance;
-      let fileAux = files.splice(index, 1);
-      dispatch(putFiles(fileAux));
+      const { listRegister } = getState().attendance;
+      let listFileAux = [...listRegister];
+      listFileAux.splice(index, 1);
+      await dispatch(putListRegister(listFileAux));
 
       return true;
     } catch (error) {

@@ -70,7 +70,7 @@ export const listCard: TListCard[] = [
     data: [
       {
         name: "2° via de Boleto",
-        router: "DocumentProperty",
+        router: "CopyDocumentPaymentSlip",
         icon: "text-box",
       },
       {

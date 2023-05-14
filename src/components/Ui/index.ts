@@ -14,9 +14,12 @@ const getThemeProperty = (
 ) => {
   if (theme) {
     if (typeof theme[value] !== "undefined") {
-      return isMakeStyles
-        ? Number(String(theme[value]).replace(/\D/g, "")) || 0
-        : theme[value];
+      const isNegative = String(theme[value]).includes("-");
+      let numberValue = Number(String(theme[value]).replace(/\D/g, "")) || 0;
+      if (isNegative) {
+        numberValue = -numberValue;
+      }
+      return isMakeStyles ? numberValue : theme[value];
     }
   }
 
@@ -172,6 +175,7 @@ export const createFlex = (props: any, isMakeStyles?: boolean) => {
   propKeys = {
     row: "row",
     flex: "flex",
+    flexGrow: "flexGrow",
     display: "display",
     zIndex: "z-index",
     flexDir: "flex-direction",

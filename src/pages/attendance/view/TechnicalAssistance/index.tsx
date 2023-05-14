@@ -49,17 +49,20 @@ export const TechnicalAssistance = ({
 
   return (
     <Box px="xl" flex={1}>
-      <Text
-        title="Solicitar atendimento"
-        onPress={() => navigation.navigate("TechnicalAssistanceCategory")}
-        textAlign="right"
-        fontSize="3xl"
-        fontWeight="bold"
-        color="easternBlue"
-      />
+      <Box alignItems="flex-end">
+        <Text
+          title="Solicitar assistência"
+          onPress={() => navigation.navigate("TechnicalAssistanceCategory")}
+          fontSize="3xl"
+          fontWeight="bold"
+          color="easternBlue"
+          w={160}
+        />
+      </Box>
       <Text
         title="Finalizados"
-        py="xl"
+        pt="xl"
+        w={80}
         onPress={() => {
           navigation.navigate("TechnicalAssistanceConcluded", {
             data: formatList(data?.data.records).filter(

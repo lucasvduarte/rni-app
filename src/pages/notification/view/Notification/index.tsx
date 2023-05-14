@@ -66,6 +66,7 @@ export const Notification = ({ navigation }: NotificationProps) => {
               shadow="md"
               shadowColor="pantone"
               borderColor="pantone"
+              mb="lg"
               onPress={() => {
                 navigation.navigate("NotificationDetails", {
                   notification: item,

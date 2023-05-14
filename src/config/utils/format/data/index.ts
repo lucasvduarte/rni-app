@@ -3,6 +3,10 @@ export const formatDatePtBr = (date: string | Date | undefined) => {
     return "";
   }
 
+  if (typeof date !== "string") {
+    return date.toLocaleString().split(" ")[0];
+  }
+
   return date
     .toString()
     .split(" ")[0]

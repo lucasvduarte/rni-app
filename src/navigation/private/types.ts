@@ -6,6 +6,8 @@ import { TDocument } from "../../pages/property/services/Document/type";
 import { TExtratc } from "../../pages/financial/services/Financial/type";
 import {
   TCategory,
+  TScheduling,
+  TSchedulingResponse,
   TSection,
 } from "../../pages/attendance/service/TechnicalAssistance/type";
 
@@ -46,16 +48,21 @@ export type RootStackParamList = {
   Contacts: undefined;
   PaymentInfo: undefined;
   Extract: undefined;
-  ExtractDatails: { data: TExtratc };
+  ExtractDetails: { data: TExtratc };
   Constructions: undefined;
   Scheduling: { data: any };
-  Satisfaction: { data: any } | undefined;
-  Responsible: { data: any } | undefined;
+  Satisfaction: { data: TAttendance };
+  Responsible: {
+    data: TAttendance;
+    scheduling: TSchedulingResponse | undefined;
+    hour: TScheduling | undefined;
+  };
   TechnicalAssistanceSection: undefined;
   TechnicalAssistanceItem: undefined;
   TechnicalAssistanceCategory: undefined;
   TechnicalAssistanceFiles: undefined;
   TechnicalAssistanceSummary: undefined;
+  CopyDocumentPaymentSlip: undefined;
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -122,7 +129,7 @@ export type ExtractProps = NativeStackScreenProps<
 
 export type ExtractDetailsProps = NativeStackScreenProps<
   RootStackParamList,
-  "ExtractDatails"
+  "ExtractDetails"
 >;
 
 export type SchedulingProps = NativeStackScreenProps<
@@ -171,4 +178,9 @@ export type TechnicalAssistanceConcludedProps = NativeStackScreenProps<
 export type AttendanceConcludedProps = NativeStackScreenProps<
   RootStackParamList,
   "AttendanceConcluded"
+>;
+
+export type CopyDocumentPaymentSlipProps = NativeStackScreenProps<
+  RootStackParamList,
+  "CopyDocumentPaymentSlip"
 >;

@@ -1,13 +1,24 @@
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { Platform, Alert } from "react-native";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Toast from "react-native-toast-message";
 
 type TUseImagePicker = {
   maxSize?: number;
 };
 
-export const useImagePicker = ({ maxSize }: TUseImagePicker) => {
+const updateFailed = {
+  fileSystem: undefined,
+  result: undefined,
+  fileSize: 0,
+  filename: "",
+  typeFile: "",
+};
+
+export const useImagePicker = ({ maxSize = 0 }: TUseImagePicker) => {
+  const [size, setSize] = useState(0);
+
   const permissions = useCallback(() => {
     (async () => {
       if (Platform.OS !== "web") {
@@ -27,14 +38,15 @@ export const useImagePicker = ({ maxSize }: TUseImagePicker) => {
   }, []);
 
   const uploadFile = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
+      exif: true,
       quality: 1,
-      base64: true,
+      base64: false,
     });
 
     if (result.canceled) {
-      return { fileSystem: undefined, result: undefined };
+      return updateFailed;
     }
 
     const fileSystem = await FileSystem.readAsStringAsync(
@@ -44,21 +56,55 @@ export const useImagePicker = ({ maxSize }: TUseImagePicker) => {
       }
     );
 
-    return { fileSystem, result: result.assets[0] };
+    const fileInfo: any = await FileSystem.getInfoAsync(result.assets[0].uri);
+
+    if (!!maxSize && size + (fileInfo?.size || 0) > maxSize) {
+      Toast.show({
+        type: "error",
+        text2: "Video/imagem com tamanho superior ao permitido.",
+      });
+      return updateFailed;
+    }
+
+    setSize((previus) => previus + fileInfo?.size || 0);
+
+    const filename: string = result.assets[0].uri.split("/").pop() as string;
+    const typeFile = filename.split(".")[1];
+
+    return {
+      fileSystem,
+      result: result.assets[0],
+      fileSize: fileInfo?.size,
+      filename,
+      typeFile,
+    };
   };
 
-  const sizeFile = (value: number) => {
+  const removeSizeFile = async (uri?: string) => {
+    if (!uri) {
+      return;
+    }
+    const fileInfo: any = await FileSystem.getInfoAsync(uri);
+    setSize((previus) => previus - fileInfo?.size);
+  };
+
+  const sizeCurrent = () => {
     if (!maxSize) {
       return;
     }
-    if (value > 0 && value >= maxSize) {
+    if (size > 0 && size >= maxSize) {
       return 0;
     }
-    if (value > 0 && value < maxSize) {
-      return ((maxSize - value) / 1000000).toFixed(2);
+    if (size > 0 && size < maxSize) {
+      return ((maxSize - size) / 1000000).toFixed(2);
     }
     return (maxSize / 1000000).toFixed(2);
   };
 
-  return { uploadFile, sizeFile };
+  return {
+    uploadFile,
+    sizeCurrentFile: sizeCurrent(),
+    maxSize: maxSize || 0,
+    removeSizeFile,
+  };
 };

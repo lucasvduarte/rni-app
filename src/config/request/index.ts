@@ -1,7 +1,7 @@
 import { TItem } from "../../redux/modules/auth/type";
 import { getIpStorage } from "../../storage";
 
-export const requestFields = <T extends object>(fields: T) => {
+export const requestFields = <T extends object>(fields?: T) => {
   return {
     device: "Aplicativo",
     ip: getIpStorage(),
@@ -10,7 +10,10 @@ export const requestFields = <T extends object>(fields: T) => {
   };
 };
 
-export const formatContract = (enterpriseSelect?: TItem) => {
+export const formatContract = (
+  enterpriseSelect?: TItem,
+  ctrclatip?: string
+) => {
   if (!enterpriseSelect) {
     return "";
   }
@@ -22,7 +25,25 @@ export const formatContract = (enterpriseSelect?: TItem) => {
     enterpriseSelect?.UNICOD.toString().substring(0, 4) +
     enterpriseSelect?.UNITIP +
     enterpriseSelect?.AUX3?.toString().substring(0, 4) +
-    enterpriseSelect?.CTRCLATIP +
+    (ctrclatip || enterpriseSelect?.CTRCLATIP) +
+    nscod;
+
+  return contract;
+};
+
+export const formatContractSmall = (
+  ctrclatip: string,
+  enterpriseSelect?: TItem
+) => {
+  if (!enterpriseSelect) {
+    return "";
+  }
+  const nscod = ("0000" + enterpriseSelect.NSCCOD).slice(-4);
+  const contract: string =
+    enterpriseSelect.EMPCOD.substring(0, 4) +
+    String(enterpriseSelect.TORCOD).substring(0, 3) +
+    ctrclatip +
+    "." +
     nscod;
 
   return contract;

@@ -68,6 +68,7 @@ export const AttendanceDetails = ({ route }: AttendanceDetailsProps) => {
               shadow="md"
               shadowColor="pantone"
               borderColor="pantone"
+              mb="lg"
             >
               <Text title="Titulo" color="moderateGreen" fontWeight="700" />
             </Card>

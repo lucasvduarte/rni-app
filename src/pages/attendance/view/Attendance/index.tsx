@@ -47,9 +47,19 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
 
   return (
     <Box px="xl" flex={1}>
+      <Box alignItems="flex-end">
+        <Text
+          title="Solicitar atendimento"
+          onPress={() => navigation.navigate("TechnicalAssistanceCategory")}
+          fontSize="3xl"
+          fontWeight="bold"
+          color="easternBlue"
+          w={160}
+        />
+      </Box>
       <Text
         title="Finalizados"
-        pb="xl"
+        pt="xl"
         onPress={() => {
           navigation.navigate("AttendanceConcluded", {
             data: formatList(data?.data.records).filter(

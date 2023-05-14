@@ -51,4 +51,9 @@ export {
   TechnicalAssistanceConcluded,
 } from "./attendance/view";
 
-export { PaymentInfo, Extract, ExtractDatails } from "./financial/view";
+export {
+  PaymentInfo,
+  Extract,
+  ExtractDetails,
+  CopyDocumentPaymentSlip,
+} from "./financial/view";

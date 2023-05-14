@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Text,
@@ -8,16 +8,91 @@ import {
 } from "../../../../../components";
 import { ResponsibleProps } from "../../../../../navigation/private/types";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-const listWarnings = [
-  "IMPORTANTE: Necessário que seja uma pessoa maior de 18 anos para nos receber.",
-  "A tolerância de atraso é de 15 minutos, caso não tenha ninguém para receber nosso técnico, a solicitação será concluída.",
-  "Serão analisados somente os itens que constam liberados nessa solicitação, nossa equipe irá informar todas as orientações necessárias no momento da vistoria.",
-  "Caso necessário realizar alterações no seu agendamento, nos chame no WhatsApp 11 3003-1155.",
-];
+import Toast from "react-native-toast-message";
+import { useMutation } from "react-query";
+import { putAttendance } from "../../../service/Attendance";
+import { formatDatePtBr } from "../../../../../config/utils";
+import { postScheduling } from "../../../service/TechnicalAssistance";
+import { TScheduling } from "../../../service/TechnicalAssistance/type";
+import { listWarnings } from "./helpes";
 
 export const Responsible = ({ route, navigation }: ResponsibleProps) => {
-  //const { data } = route.params;
+  const [responsibleValue, setResponsibleValue] = useState("");
+  const { data, hour, scheduling } = route.params;
+
+  const {
+    mutate: mutateScheduling,
+    isLoading: isLoadingScheduling,
+    isSuccess: isSuccessScheduling,
+  } = useMutation({
+    mutationFn: async () =>
+      await postScheduling(data.id, {
+        accountid: scheduling?.case.accountid || "",
+        service_territory__c:
+          scheduling?.case.contrato__r.Empreendimento__r.Service_Territory__c ||
+          "",
+        quem_esta_vistoria__c: responsibleValue,
+        data_hora_do_agendamento_da_visita__c:
+          scheduling?.case?.data_hora_do_agendamento_da_visita__c || "",
+        scheduling: hour as TScheduling,
+      }).then(() => {
+        setTimeout(() => {
+          navigation.navigate("TechnicalAssistance");
+        }, 2000);
+      }),
+
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+    onSuccess: () => {
+      Toast.show({
+        type: "success",
+        text2: `Seu agendamento foi realizado com sucesso para o dia ${formatDatePtBr(
+          data.data_hora_do_agendamento_da_visita__c
+        )}`,
+      });
+    },
+  });
+
+  const { mutate, isLoading, isSuccess } = useMutation({
+    mutationFn: async () =>
+      await putAttendance({
+        id: data.id,
+        visualizado_pelo_cliente__c: true,
+        agendamento_confirmado_pelo_cliente__c: true,
+        Status_atendimento__c: "Vistoria técnica",
+        quem_esta_vistoria__c: responsibleValue,
+      }).then(() => {
+        setTimeout(() => {
+          navigation.navigate("TechnicalAssistance");
+        }, 2000);
+      }),
+
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+    onSuccess: () => {
+      Toast.show({
+        type: "success",
+        text2: `Seu agendamento foi realizado com sucesso para o dia ${formatDatePtBr(
+          data.data_hora_do_agendamento_da_visita__c
+        )}`,
+      });
+    },
+  });
+
+  const onPress = () => {
+    if (scheduling && hour) {
+      return mutateScheduling();
+    }
+    return mutate();
+  };
 
   return (
     <Box px="xl" pb="2lg" pt="xl" flex={1}>
@@ -25,9 +100,9 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
         <TextInput
           placeholder="Nos conte quem estará no local"
           size="large"
-          //value={observation}
-          onChangeText={(item) => console.log(item)}
-          maxLength={160}
+          value={responsibleValue}
+          onChangeText={(item) => setResponsibleValue(item)}
+          maxLength={80}
         />
 
         {listWarnings.map((item) => {
@@ -43,8 +118,16 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
         })}
       </KeyboardAwareScrollView>
       <Button
-        title="Continuar"
-        onPress={() => navigation.navigate("TechnicalAssistance")}
+        title="Confirmar"
+        onPress={onPress}
+        loading={isLoading || isLoadingScheduling}
+        disabled={
+          isLoading ||
+          isLoadingScheduling ||
+          !responsibleValue ||
+          isSuccess ||
+          isSuccessScheduling
+        }
       />
     </Box>
   );

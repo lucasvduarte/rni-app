@@ -1,11 +1,11 @@
 import React from "react";
-import { Image } from "react-native";
 import {
   Box,
   Text,
   Card,
   FlatList,
   Skeleton,
+  Image,
 } from "../../../../../../components";
 import { TechnicalAssistanceItemProps } from "../../../../../../navigation/private/types";
 import Toast from "react-native-toast-message";
@@ -39,7 +39,7 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
   }
 
   return (
@@ -59,6 +59,7 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
               borderColor="veryLightGray"
               onPress={() => onPress(item)}
               p="none"
+              mb="lg"
             >
               <Box flexDir="row" alignItems="center" pr="xl">
                 <Image
@@ -67,8 +68,9 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
                     width: 88,
                     height: 80,
                   }}
-                  style={{ borderRadius: 10, marginRight: 16 }}
-                  resizeMode="contain"
+                  borderRadius={8}
+                  mr="xl"
+                  resizeMode="cover"
                 />
 
                 <Text

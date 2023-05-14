@@ -15,6 +15,14 @@ export type TResponseSection = {
   msgError?: string;
 };
 
+export type TPostSchedulingParams = {
+  accountid: string;
+  service_territory__c: string;
+  quem_esta_vistoria__c: string;
+  data_hora_do_agendamento_da_visita__c: string;
+  scheduling: TScheduling;
+};
+
 export type TCategory = {
   ativo: boolean;
   descricao: string;
@@ -108,4 +116,11 @@ export type TTechnicalAssistance = {
   Type: string;
   Visualizado_Pelo_Cliente__c: string | boolean;
   Files?: TFile[];
+};
+
+export type TListFile = {
+  filename: string;
+  uri?: string;
+  arquivo: string;
+  type: string;
 };

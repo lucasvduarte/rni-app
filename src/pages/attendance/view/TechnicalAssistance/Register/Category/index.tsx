@@ -61,7 +61,7 @@ export const Category = ({ navigation }: TechnicalAssistanceCategoryProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
   }
 
   return (
@@ -80,6 +80,7 @@ export const Category = ({ navigation }: TechnicalAssistanceCategoryProps) => {
               shadow="md"
               shadowColor="moderateGreen"
               borderColor="veryLightGray"
+              mb="lg"
               onPress={() => onPress(item)}
             >
               <Text

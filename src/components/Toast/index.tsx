@@ -20,6 +20,7 @@ export const ToastStyled = () => {
           minHeight: 60,
           paddingVertical: 8,
           width: "90%",
+          borderRadius: 10,
         }}
         text1Style={{
           fontSize: 16,
@@ -51,6 +52,7 @@ export const ToastStyled = () => {
             minHeight: 60,
             paddingVertical: 8,
             width: "90%",
+            borderRadius: 10,
           }}
           text1Style={{
             fontSize: 16,
@@ -71,10 +73,50 @@ export const ToastStyled = () => {
       );
     },
 
-    tomatoToast: ({ text1, props }: ToastShowParams) => (
-      <View style={{ height: 60, width: "100%", backgroundColor: "tomato" }}>
-        <Text>{text1}</Text>
-        <Text>{props.uuid}</Text>
+    info: (props: ToastShowParams) => {
+      return (
+        <ErrorToast
+          {...props}
+          style={{
+            borderLeftColor: colors.easternBlue,
+            backgroundColor: colors.white,
+            height: "auto",
+            minHeight: 60,
+            paddingVertical: 8,
+            width: "90%",
+            borderRadius: 10,
+          }}
+          text1Style={{
+            fontSize: 16,
+            fontWeight: "400",
+          }}
+          text2Style={{
+            fontSize: 14,
+            fontWeight: "300",
+          }}
+          text2NumberOfLines={4}
+          text1={props.text1 || "Aviso"}
+          text2={props.text2 || "Sua solicitação foi efetuada com sucesso"}
+        />
+      );
+    },
+
+    tomatoToast: ({ text1, text2 }: ToastShowParams) => (
+      <View
+        style={{
+          height: "auto",
+          minHeight: 60,
+          paddingVertical: 8,
+          paddingHorizontal: 25,
+          width: "90%",
+          backgroundColor: "tomato",
+          borderRadius: 10,
+        }}
+      >
+        <Text style={{ fontSize: 16, fontWeight: "400" }}>{text1}</Text>
+        <Text style={{ fontSize: 14, fontWeight: "300", color: "#979797" }}>
+          {text2}
+        </Text>
       </View>
     ),
   };
