@@ -18,7 +18,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
   });
 
   const { mutate, isLoading, isSuccess } = useMutation({
-    mutationFn: () => getResetPassword(cpfcnpj, value.senha, code),
+    mutationFn: async () => await getResetPassword(cpfcnpj, value.senha, code),
     onSuccess: () => {
       setTimeout(() => {
         navigation.navigate("Login");

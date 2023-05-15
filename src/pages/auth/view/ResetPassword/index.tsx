@@ -12,7 +12,7 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
   const [cpfcnpj, setCpfcnpj] = useState("");
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => getResetPassword(cpfcnpj),
+    mutationFn: async () => await getResetPassword(cpfcnpj),
     onSuccess: () => {
       navigation.navigate("OtpPage", {
         headerTitle: "Esqueci minha senha",

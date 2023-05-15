@@ -14,8 +14,8 @@ export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
   });
 
   const { mutate, data, isLoading } = useMutation({
-    mutationFn: () =>
-      postDocuments(
+    mutationFn: async () =>
+      await postDocuments(
         user?.cliente.sindico
           ? "Manual do Condomínio"
           : "Manual do Proprietário",
@@ -40,7 +40,7 @@ export const DocumentAttendance = ({ navigation }: DocumentAttendanceProps) => {
   return (
     <Box flex={1}>
       <FlatList
-        data={data?.data.data[0].data[0].pastas}
+        data={data?.data.data[0]?.data[0]?.pastas}
         keyExtractor={(item) => item.sr_id.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{

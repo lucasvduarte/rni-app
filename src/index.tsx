@@ -13,6 +13,9 @@ import { getToken } from "./pages/auth/services/Token";
 import { useQuery } from "react-query";
 import * as Network from "expo-network";
 import { setIpStorage } from "./storage";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -27,7 +30,8 @@ export default function App() {
     //refetchInterval: 50 * 60 * 1000,
     staleTime: 50 * 60 * 1000,
     refetchIntervalInBackground: false,
-    onSuccess: ({ token }) => {
+    onSuccess: async ({ token }) => {
+      await SplashScreen.hideAsync();
       dispatch(setToken(token));
     },
   });

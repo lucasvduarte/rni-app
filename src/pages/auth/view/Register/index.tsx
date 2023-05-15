@@ -23,7 +23,7 @@ export const Register = ({ navigation }: RegisterProps) => {
   const [user, setUser] = useState<TClientRegister>({ ...USER });
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => postRegister(user),
+    mutationFn: async () => await postRegister(user),
     onSuccess: () => {
       navigation.navigate("OtpPage", {
         headerTitle: "Validar primeiro acesso",

@@ -21,8 +21,8 @@ export const RedefinePassword = () => {
   });
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () =>
-      putRedefinePassword(value.senha, user?.cliente.guidcontrol || ""),
+    mutationFn: async () =>
+      await putRedefinePassword(value.senha, user?.cliente.guidcontrol || ""),
     onError: (error) => {
       Toast.show({
         type: "error",

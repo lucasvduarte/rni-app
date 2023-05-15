@@ -20,7 +20,7 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
   }, []);
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => postCodeValidation(cpfcnpj, code),
+    mutationFn: async () => await postCodeValidation(cpfcnpj, code),
     onSuccess: () => {
       navigation.navigate(navigate, { cpfcnpj, code });
     },
@@ -33,7 +33,7 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
   });
 
   const { mutate: postResetCode, isLoading: isLoadingResetCode } = useMutation({
-    mutationFn: () => postCodeResend(cpfcnpj),
+    mutationFn: async () => await postCodeResend(cpfcnpj),
     onSuccess: () => {
       setResetTime(!resetTime);
     },

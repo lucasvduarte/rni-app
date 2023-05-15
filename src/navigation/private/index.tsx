@@ -50,6 +50,7 @@ import {
   AttendanceConcluded,
   TechnicalAssistanceConcluded,
   CopyDocumentPaymentSlip,
+  SearchDetails,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -567,6 +568,17 @@ export const PrivateNavigation = () => {
         component={CopyDocumentPaymentSlip}
         options={{
           headerTitle: "2° via de Boleto",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="SearchDetails"
+        component={SearchDetails}
+        options={{
+          headerTitle: "Responder Pesquisas",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

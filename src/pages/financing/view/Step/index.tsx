@@ -42,6 +42,7 @@ export const Step = () => {
               mx="xl"
               borderRadius="xl"
               shadow="sm"
+              borderColor="veryLightGray"
               mb="sm"
             >
               <Box w={width - 64}>

@@ -7,7 +7,7 @@ export interface ISelect extends Omit<TextInputProps, "style"> {
   listValues: TListValues[];
   title?: string;
 }
-type TListValues = {
+export type TListValues = {
   title: string;
   value: string;
 };

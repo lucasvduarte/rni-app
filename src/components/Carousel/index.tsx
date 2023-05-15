@@ -68,28 +68,6 @@ export const Carousel = <T extends object>({
       <Pagination
         data={data}
         scrollX={scrollX}
-        /*     onPressBack={() => {
-           ref.current.scrollToIndex({
-              animated: true,
-              index: parseInt(currentIndex) - 1,
-            });
-            setTimeout(() => {
-              setCurrentIndex(currentIndex - 1);
-            }, 1000);
-     
-            onPressPagination(true)
-          }}
-          onPressNext={() => {
-           ref.current.scrollToIndex({
-              animated: true,
-              index: parseInt(currentIndex) + 1,
-            });
-            setTimeout(() => {
-              setCurrentIndex(currentIndex + 1);
-            }, 1000);
-           onPressPagination(false);
-        }}
-         */
         onPressBackNext={(value) => onPressPagination(value)}
         currentIndex={currentIndex}
       />

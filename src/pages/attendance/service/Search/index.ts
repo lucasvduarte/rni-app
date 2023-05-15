@@ -11,8 +11,8 @@ export const getSearch = (cpfcnpj: string, empreendimentoidsap: string) => {
 };
 
 export const postSearch = (
-  pesquisaguid: string,
   cpfcnpj: string,
+  pesquisaguid: string,
   respostas: TAnswers[]
 ) => {
   return api.post<TResponseSearch>(

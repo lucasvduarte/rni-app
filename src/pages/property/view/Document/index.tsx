@@ -1,12 +1,5 @@
 import { useMutation } from "react-query";
-import {
-  Box,
-  Button,
-  Card,
-  FlatList,
-  Skeleton,
-  Text,
-} from "../../../../components";
+import { Box, Card, FlatList, Skeleton, Text } from "../../../../components";
 import Toast from "react-native-toast-message";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -22,8 +15,8 @@ export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
   });
 
   const { mutate, data, isLoading } = useMutation({
-    mutationFn: () =>
-      postDocuments(
+    mutationFn: async () =>
+      await postDocuments(
         "NOVA VENDA DESEMBOLSO",
         user?.cliente.cpfcnpj || "",
         `${enterpriseSelect?.EMPCOD}-${(
