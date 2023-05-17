@@ -41,7 +41,8 @@ import {
   Constructions,
   Category,
   Responsible,
-  Satisfaction,
+  SatisfactionTechnicalAssistance,
+  SatisfactionAttendance,
   Scheduling,
   Section,
   Summary,
@@ -51,6 +52,7 @@ import {
   TechnicalAssistanceConcluded,
   CopyDocumentPaymentSlip,
   SearchDetails,
+  RegisterAttendance,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
 
@@ -520,8 +522,19 @@ export const PrivateNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Satisfaction"
-        component={Satisfaction}
+        name="SatisfactionTechnicalAssistance"
+        component={SatisfactionTechnicalAssistance}
+        options={{
+          headerTitle: "Satisfação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="SatisfactionAttendance"
+        component={SatisfactionAttendance}
         options={{
           headerTitle: "Satisfação",
           headerRight: () => <HeaderRight />,
@@ -552,6 +565,18 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
+      <Stack.Screen
+        name="RegisterAttendance"
+        component={RegisterAttendance}
+        options={{
+          headerTitle: "Chamandos Concluídos",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+
       <Stack.Screen
         name="TechnicalAssistanceConcluded"
         component={TechnicalAssistanceConcluded}

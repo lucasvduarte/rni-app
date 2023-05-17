@@ -64,24 +64,25 @@ export const SearchDetails = ({ route }: SearchDetailsProps) => {
         title="Ajude-nos a oferecer os melhores serviços a você, preenchendo nosso
         formulário de pesquisa. Será rápido e fácil."
         color="darkGrayGray78"
-        fontSize={18}
+        fontSize="3xl"
       />
       <KeyboardAwareScrollView fadingEdgeLength={500} style={{ flex: 1 }}>
-        <FlatList
-          data={data.listQuestions}
-          keyExtractor={(item) => item.id.toString()}
-          contentContainerStyle={{ paddingVertical: 24 }}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item, index }) => {
-            return (
-              <SearchItem
-                item={item}
-                handleChange={handleChange}
-                index={index}
-              />
-            );
-          }}
-        />
+        <Box flex={1}>
+          <FlatList
+            data={data.listQuestions}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={{ paddingVertical: 24 }}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item, index }) => {
+              return (
+                <SearchItem
+                  item={item}
+                  handleChange={(value) => handleChange(value, index)}
+                />
+              );
+            }}
+          />
+        </Box>
       </KeyboardAwareScrollView>
       <Button
         title="Enviar"

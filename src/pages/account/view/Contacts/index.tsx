@@ -20,11 +20,7 @@ export const Contacts = () => {
   });
   const dispatch = useAppDispatch();
 
-  const {
-    data,
-    isLoading: isLoadingCep,
-    refetch,
-  } = useQuery({
+  const { isLoading: isLoadingCep, refetch } = useQuery({
     queryKey: "getCep",
     queryFn: () => getCep(userClient.endereco_cep || ""),
     enabled: false,

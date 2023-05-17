@@ -25,7 +25,7 @@ export const Calendar: React.FC<ICalendar> = (props) => {
   const [valueSelect, setValueSelect] = useState<string | undefined>("");
 
   const onPressSelect = () => {
-    onChangeText(value);
+    onChangeText(value || "");
     setValueSelect(value);
     setVisible(false);
   };

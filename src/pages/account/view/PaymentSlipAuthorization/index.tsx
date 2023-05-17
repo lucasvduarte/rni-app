@@ -13,34 +13,32 @@ export const PaymentSlipAuthorization = () => {
   });
   const dispatch = useAppDispatch();
 
-  const { mutate, isLoading } = useMutation(
-    async (value: boolean) => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (value: boolean) => {
       await putPaymentSlipAuthorization(
         user?.cliente.cpfcnpj || "",
         value ? "X" : ""
       );
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-      onSuccess: () => {
-        if (user?.cliente) {
-          dispatch(
-            setClientSap([
-              {
-                ...user.cliente_sap[0],
-                Z_ENVBOL: user?.cliente_sap[0]?.Z_ENVBOL ? "" : "X ",
-              },
-            ])
-          );
-        }
-      },
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+    onSuccess: () => {
+      if (user?.cliente) {
+        dispatch(
+          setClientSap([
+            {
+              ...user.cliente_sap[0],
+              Z_ENVBOL: user?.cliente_sap[0]?.Z_ENVBOL ? "" : "X ",
+            },
+          ])
+        );
+      }
+    },
+  });
 
   return (
     <Box flex={1} mb="2xl" mx="xl" pt="xl">

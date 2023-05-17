@@ -29,7 +29,7 @@ export const Step = () => {
         title="O momento do financiamento é muito importante na compra do seu imóvel!
         Veja abaixo os principais passos para este momento:"
         color="darkGrayGray78"
-        fontSize={18}
+        fontSize="3xl"
         m="xl"
       />
 
@@ -46,11 +46,15 @@ export const Step = () => {
               mb="sm"
             >
               <Box w={width - 64}>
-                <Text title={item.texto} color="darkGrayGray78" fontSize={18} />
+                <Text
+                  title={item.texto}
+                  color="darkGrayGray78"
+                  fontSize="3xl"
+                />
                 <Text
                   title={item.titulo}
                   color="darkGrayGray78"
-                  fontSize={18}
+                  fontSize="3xl"
                   mt="lg"
                 />
               </Box>

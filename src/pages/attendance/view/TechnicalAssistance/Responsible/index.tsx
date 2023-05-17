@@ -18,7 +18,7 @@ import { listWarnings } from "./helpes";
 
 export const Responsible = ({ route, navigation }: ResponsibleProps) => {
   const [responsibleValue, setResponsibleValue] = useState("");
-  const { data, hour, scheduling } = route.params;
+  const { data, schedulingDate, dataScheduling } = route.params;
 
   const {
     mutate: mutateScheduling,
@@ -27,14 +27,14 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
   } = useMutation({
     mutationFn: async () =>
       await postScheduling(data.id, {
-        accountid: scheduling?.case.accountid || "",
+        accountid: dataScheduling?.case.accountid || "",
         service_territory__c:
-          scheduling?.case.contrato__r.Empreendimento__r.Service_Territory__c ||
-          "",
+          dataScheduling?.case.contrato__r.Empreendimento__r
+            .Service_Territory__c || "",
         quem_esta_vistoria__c: responsibleValue,
         data_hora_do_agendamento_da_visita__c:
-          scheduling?.case?.data_hora_do_agendamento_da_visita__c || "",
-        scheduling: hour as TScheduling,
+          dataScheduling?.case?.data_hora_do_agendamento_da_visita__c || "",
+        scheduling: schedulingDate as TScheduling,
       }).then(() => {
         setTimeout(() => {
           navigation.navigate("TechnicalAssistance");
@@ -88,7 +88,7 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
   });
 
   const onPress = () => {
-    if (scheduling && hour) {
+    if (dataScheduling && schedulingDate) {
       return mutateScheduling();
     }
     return mutate();

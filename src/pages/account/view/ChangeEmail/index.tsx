@@ -51,6 +51,7 @@ export const ChangeEmail = () => {
             value={email}
             onChangeText={(value) => setEmail(value)}
             maxLength={80}
+            autoCapitalize="none"
           />
         </Box>
       </KeyboardAwareScrollView>

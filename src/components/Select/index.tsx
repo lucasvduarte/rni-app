@@ -15,7 +15,7 @@ export const Select: React.FC<ISelect> = (props) => {
   const [valueSelect, setValueSelect] = useState<string | undefined>(undefined);
 
   const onPressSelect = (value: string) => {
-    onChangeText(value);
+    onChangeText(value || "");
     setValueSelect(value);
     setVisible(false);
   };

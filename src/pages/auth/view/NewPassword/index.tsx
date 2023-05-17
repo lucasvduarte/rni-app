@@ -63,6 +63,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
             />
           }
           maxLength={80}
+          autoCapitalize="none"
         />
         <TextInput
           placeholder="Confirma senha"
@@ -87,6 +88,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               : ""
           }
           maxLength={80}
+          autoCapitalize="none"
         />
 
         <Button

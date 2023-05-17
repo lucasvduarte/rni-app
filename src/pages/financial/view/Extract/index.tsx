@@ -13,8 +13,8 @@ export const Extract = ({ navigation }: ExtractProps) => {
     return state.auth;
   });
 
-  const { mutate, isLoading } = useMutation(
-    async (value: TItem) => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (value: TItem) => {
       await postExtratc({
         I_CTRCLATIP: value.CTRCLATIP,
         I_CTRCOD: String(value?.CTRCOD) || "",
@@ -29,15 +29,14 @@ export const Extract = ({ navigation }: ExtractProps) => {
         navigation.navigate("ExtractDetails", { data: response.data.result });
       });
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-    }
-  );
+
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+  });
 
   if (isLoading) {
     return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;

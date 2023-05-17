@@ -1,14 +1,12 @@
-import {
-  formatContract,
-  requestFields,
-} from "../../../../../../config/request";
-import { TListRegister } from "../../../../../../redux/modules/attendance/type";
-import { TItem } from "../../../../../../redux/modules/auth/type";
-import { TListFile } from "../../../../service/TechnicalAssistance/type";
+import { formatContract, requestFields } from "../../../../../config/request";
+import { TListRegister } from "../../../../../redux/modules/attendance/type";
+import { TItem } from "../../../../../redux/modules/auth/type";
+import { TListFile } from "../../../service/TechnicalAssistance/type";
 
 export const formatPostComplete = (
   cpfcnpj: string | undefined,
   enterpriseSelect: TItem | undefined,
+  subject: string,
   description: string,
   files: TListFile[],
   data: TListRegister[]
@@ -20,9 +18,9 @@ export const formatPostComplete = (
     Contrato__r: {
       Id_Contrato__c: formatContract(enterpriseSelect),
     },
-    Assunto_Portal__c: "Assistência Técnica",
+    Assunto_Portal__c: subject,
     Origin: requestFields().device,
-    Type: "Assistência Técnica",
+    Type: "Solicitação",
     Description: description,
     Visualizado_Pelo_Cliente__c: "false",
     Resolvido_Portal__c: "false",

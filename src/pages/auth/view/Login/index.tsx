@@ -110,6 +110,7 @@ export const Login = ({ navigation }: LoginProps) => {
             />
           }
           maxLength={80}
+          autoCapitalize="none"
         />
         <Text
           title="Esqueci minha senha"

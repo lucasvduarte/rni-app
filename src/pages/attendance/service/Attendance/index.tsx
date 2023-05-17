@@ -1,4 +1,5 @@
 import { api } from "../../../../config/axios";
+import { TTechnicalAssistance } from "../TechnicalAssistance/type";
 
 import {
   TPostFeed,
@@ -17,7 +18,7 @@ export const getAttendance = (cpfcnpj: string) => {
   });
 };
 
-export const postAttendance = (value: any) => {
+export const postAttendance = (value: TTechnicalAssistance) => {
   return api.post<{
     detail: string;
     locale: string;

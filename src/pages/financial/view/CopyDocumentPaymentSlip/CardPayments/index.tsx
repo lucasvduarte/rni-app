@@ -24,8 +24,8 @@ export const CardPayment = ({ item, ctrclatip }: TCardPayment) => {
   });
   const [data, setData] = useState<TPostPaymentSlip | undefined>(undefined);
 
-  const { mutate, isLoading } = useMutation(
-    async () => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async () => {
       await postPaymentSlip({
         empresa: item.BUKRS,
         conta: item.HBKID,
@@ -39,15 +39,13 @@ export const CardPayment = ({ item, ctrclatip }: TCardPayment) => {
         setData(response.data.result);
       });
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+  });
 
   return (
     <Card mx="xs" mb="lg" borderRadius="lg" shadow="sm">

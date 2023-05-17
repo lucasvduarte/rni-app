@@ -8,6 +8,7 @@ import { postRegister } from "../../../account/services/User";
 import { useMutation } from "react-query";
 import Toast from "react-native-toast-message";
 import { RegisterProps } from "../../../../navigation/public/types";
+import { isCnpj } from "../../../../config/utils/format/cpf";
 
 const USER = {
   apelido: "",
@@ -59,16 +60,18 @@ export const Register = ({ navigation }: RegisterProps) => {
             keyboardType="numeric"
             value={user.cpfcnpj}
             onChangeText={(value) => setUser({ ...user, cpfcnpj: value })}
-            maxLength={16}
+            maxLength={18}
           />
-          <Calendar
-            onChangeText={(day) => {
-              setUser({ ...user, datanascimento: day || "" });
-            }}
-            initialDate={user.datanascimento}
-            placeholder="Data de nascimento"
-            size="large"
-          />
+          {!isCnpj(user.cpfcnpj) && (
+            <Calendar
+              onChangeText={(day) => {
+                setUser({ ...user, datanascimento: day });
+              }}
+              initialDate={user.datanascimento}
+              placeholder="Data de nascimento"
+              size="large"
+            />
+          )}
           <TextInput
             placeholder="Senha"
             size="large"
@@ -87,6 +90,7 @@ export const Register = ({ navigation }: RegisterProps) => {
               />
             }
             maxLength={80}
+            autoCapitalize="none"
           />
           <TextInput
             placeholder="Confirme sua senha"
@@ -111,6 +115,7 @@ export const Register = ({ navigation }: RegisterProps) => {
                 : ""
             }
             maxLength={80}
+            autoCapitalize="none"
           />
           <TextInput
             placeholder="Como deseja ser chamado?"

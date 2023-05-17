@@ -35,18 +35,16 @@ export const Notification = ({ navigation }: NotificationProps) => {
     },
   });
 
-  const { mutate, isLoading: isLoadingDeleteNotification } = useMutation(
-    async ({ idNotification, id }: any) =>
+  const { mutate, isLoading: isLoadingDeleteNotification } = useMutation({
+    mutationFn: async ({ idNotification, id }: any) =>
       await deleteNotification(idNotification, user?.cliente.cpfcnpj || "", id),
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+  });
 
   if (isLoading) {
     return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;

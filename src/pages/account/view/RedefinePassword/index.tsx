@@ -62,6 +62,7 @@ export const RedefinePassword = () => {
               />
             }
             maxLength={80}
+            autoCapitalize="none"
           />
 
           <TextInput
@@ -87,6 +88,7 @@ export const RedefinePassword = () => {
                 : ""
             }
             maxLength={80}
+            autoCapitalize="none"
           />
         </Box>
       </KeyboardAwareScrollView>

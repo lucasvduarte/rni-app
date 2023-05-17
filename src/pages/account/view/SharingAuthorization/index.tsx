@@ -25,19 +25,17 @@ export const SharingAuthorization = () => {
     },
   });
 
-  const { mutate, isLoading: isLoadingSharingAuthorization } = useMutation(
-    async (value: "Não autorizo" | "Autorizo") => {
+  const { mutate, isLoading: isLoadingSharingAuthorization } = useMutation({
+    mutationFn: async (value: "Não autorizo" | "Autorizo") => {
       await putSharingAuthorization(value, data?.data.records[0].id || "");
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+  });
 
   if (isLoading) {
     return <Skeleton m="xl" height={400} borderRadius="xl" />;

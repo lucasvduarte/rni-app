@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Skeleton,
-  Sliders,
-  TextInput,
-} from "../../../../../components";
-import { SatisfactionProps } from "../../../../../navigation/private/types";
+import { Box, Button, Sliders, TextInput } from "../../../../../components";
+import { SatisfactionTechnicalAssistanceProps } from "../../../../../navigation/private/types";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-toast-message";
 import { useMutation } from "react-query";
@@ -15,7 +9,10 @@ import { formatContract, requestFields } from "../../../../../config/request";
 import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
 
-export const Satisfaction = ({ route, navigation }: SatisfactionProps) => {
+export const SatisfactionTechnicalAssistance = ({
+  route,
+  navigation,
+}: SatisfactionTechnicalAssistanceProps) => {
   const [values, setValues] = useState({
     NotaQualidadeServico: 0,
     NotaAtendimentoManutencao: 0,
@@ -64,21 +61,21 @@ export const Satisfaction = ({ route, navigation }: SatisfactionProps) => {
       <KeyboardAwareScrollView fadingEdgeLength={500}>
         <Sliders
           title="Que nota você atribui para a qualidade do serviço executado?"
-          value={1}
+          value={values.NotaQualidadeServico}
           onValueChange={(value) =>
             setValues({ ...values, NotaQualidadeServico: value })
           }
         />
         <Sliders
           title="Que nota você atribui para o atendimento da manutenção?"
-          value={1}
+          value={values.NotaAtendimentoManutencao}
           onValueChange={(value) =>
             setValues({ ...values, NotaAtendimentoManutencao: value })
           }
         />
         <Sliders
           title="Qual seu índice de satisfação desse atendimento?"
-          value={1}
+          value={values.IndiceSatisfacaoAtendimento}
           onValueChange={(value) =>
             setValues({ ...values, IndiceSatisfacaoAtendimento: value })
           }
@@ -89,7 +86,7 @@ export const Satisfaction = ({ route, navigation }: SatisfactionProps) => {
           size="large"
           multiline
           numberOfLines={4}
-          //value={observation}
+          value={values.descricao}
           onChangeText={(item) => setValues({ ...values, descricao: item })}
           maxLength={160}
         />

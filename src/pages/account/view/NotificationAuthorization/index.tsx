@@ -14,31 +14,29 @@ export const NotificationAuthorization = () => {
   });
   const dispatch = useAppDispatch();
 
-  const { mutate, isLoading } = useMutation(
-    async (value: boolean) => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (value: boolean) => {
       let clientAux = { ...user?.cliente };
       clientAux.notificacao_digital = value;
       await putPersonalData(clientAux as TClient);
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-      onSuccess: () => {
-        if (user?.cliente) {
-          dispatch(
-            setClient({
-              ...user.cliente,
-              notificacao_digital: !user?.cliente.notificacao_digital,
-            })
-          );
-        }
-      },
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+    onSuccess: () => {
+      if (user?.cliente) {
+        dispatch(
+          setClient({
+            ...user.cliente,
+            notificacao_digital: !user?.cliente.notificacao_digital,
+          })
+        );
+      }
+    },
+  });
 
   return (
     <Box flex={1} mb="2xl" mx="xl" pt="xl">

@@ -5,14 +5,14 @@ import { Segment, YesNo } from "../helps";
 
 type TSearchItem = {
   item: TQuestions;
-  handleChange: (value: string, index: number) => void;
-  index: number;
+  handleChange: (value: string) => void;
 };
-export const SearchItem = ({ item, index, handleChange }: TSearchItem) => {
+
+export const SearchItem = ({ item, handleChange }: TSearchItem) => {
   const [value, setValue] = useState("");
 
   const handleChangeItem = (value: string) => {
-    handleChange(value, index);
+    handleChange(value);
     setValue(value);
   };
 

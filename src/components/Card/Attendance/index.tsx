@@ -4,6 +4,7 @@ import { Box } from "../../Box";
 import { Text } from "../../Text";
 import { TAttendance } from "../../../pages/attendance/service/Attendance/type";
 import { formatDatePtBr, formatDatePtBrHr } from "../../../config/utils";
+import { isSchedulingText, isConfirmSchedule, isToSchedule } from "./helps";
 
 type TCardAttendance = {
   onPress: ((event: GestureResponderEvent) => void) | undefined;
@@ -14,26 +15,6 @@ type TCardAttendance = {
 
 export const CardAttendance = (props: TCardAttendance) => {
   const { onPress, onPressScheduleVisit, onPressConfirm, data } = props;
-
-  const isConfirm =
-    !data.agendamento_confirmado_pelo_cliente__c &&
-    data.data_hora_do_agendamento_da_visita__c &&
-    (data.manutencao_executada__c || "").toLowerCase() !== "sim";
-
-  const toSchedule =
-    !data.data_hora_do_agendamento_da_visita__c &&
-    data.status.toLowerCase() !== "concluído" &&
-    !data.agendamento_confirmado_pelo_cliente__c &&
-    (!!data.aprovacao_analise_central__c ||
-      !!data.aprovacao_analise_pos_obra__c) &&
-    data.aprovacao_analise_central__c !== "Negado" &&
-    data.aprovacao_analise_pos_obra__c !== "Negado";
-
-  const isSchedulingText =
-    data.status.toLowerCase() === "em análise" &&
-    ((data.agendamento_confirmado_pelo_cliente__c &&
-      data.data_hora_do_agendamento_da_visita__c) ||
-      isConfirm);
 
   return (
     <Card
@@ -55,19 +36,18 @@ export const CardAttendance = (props: TCardAttendance) => {
           />
         </Box>
 
-        {isSchedulingText && onPressScheduleVisit && (
+        {isSchedulingText(data) && onPressScheduleVisit && (
           <Box flexDir="row" alignItems="flex-end" pt="xs">
-            <Text title="Agendado para: " color="white" fontSize="3xl" />
             <Text
               title={`${
-                isConfirm ? "Agendamento disponível" : "Agendado"
+                isConfirmSchedule(data) ? "Agendamento disponível" : "Agendado"
               } para ${formatDatePtBrHr(
                 data?.data_hora_do_agendamento_da_visita__c,
                 "ás"
               )}`}
               color="prussianBlue"
               fontWeight="bold"
-              fontSize="lg"
+              fontSize="2xl"
               flex={1}
             />
           </Box>
@@ -110,26 +90,30 @@ export const CardAttendance = (props: TCardAttendance) => {
         {data.description && (
           <Text title={data.description} fontSize="xl" color="darkGrayGray78" />
         )}
+        <Box flexDir="row" justifyContent="space-between">
+          {onPressScheduleVisit &&
+            isToSchedule(data) &&
+            !isConfirmSchedule(data) && (
+              <Text
+                title="Agendar visita técnica"
+                color="pantone"
+                onPress={onPressScheduleVisit}
+                mt="sm"
+                fontSize="3xl"
+              />
+            )}
 
-        {onPressScheduleVisit && toSchedule && !isConfirm && (
-          <Text
-            title="Agendar visita técnica"
-            color="pantone"
-            onPress={onPressScheduleVisit}
-            mt="sm"
-            fontSize="2xl"
-          />
-        )}
-
-        {onPressConfirm && isConfirm && (
-          <Text
-            title="Confirma"
-            color="pantone"
-            onPress={onPressConfirm}
-            mt="sm"
-            fontSize="2xl"
-          />
-        )}
+          {onPressConfirm && isConfirmSchedule(data) && (
+            <Text
+              title="Confirma"
+              color="pantone"
+              onPress={onPressConfirm}
+              mt="sm"
+              fontSize="3xl"
+              w={70}
+            />
+          )}
+        </Box>
       </Card>
     </Card>
   );

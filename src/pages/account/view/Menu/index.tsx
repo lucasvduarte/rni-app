@@ -111,7 +111,11 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
         textAlign="center"
         pb="2lg"
       />
-      <Text title={version} fontSize="lg" textAlign="center" />
+      <Text
+        title={`versão do app instalado ${version}`}
+        fontSize="lg"
+        textAlign="center"
+      />
 
       <Modal
         title="Deseja realmente sair do APP?"

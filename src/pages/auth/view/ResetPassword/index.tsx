@@ -46,7 +46,7 @@ export const ResetPassword = ({ navigation }: ResetPasswordProps) => {
             keyboardType="numeric"
             value={cpfcnpj}
             onChangeText={(value) => setCpfcnpj(value)}
-            maxLength={16}
+            maxLength={18}
           />
         </Box>
       </KeyboardAwareScrollView>

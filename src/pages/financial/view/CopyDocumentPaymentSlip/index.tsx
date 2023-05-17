@@ -26,8 +26,8 @@ export const CopyDocumentPaymentSlip = ({
   const [data, setData] = useState<TResponsePaymentSlip[]>([]);
   const [ctrclatip, setCtrclatip] = useState("");
 
-  const { mutate, isLoading } = useMutation(
-    async (value: TItem) => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: async (value: TItem) => {
       await getPaymentSlip(
         user?.cliente.cpfcnpj || "",
         formatContractSmall(value.CTRCLATIP.toString(), enterpriseSelect)
@@ -43,16 +43,14 @@ export const CopyDocumentPaymentSlip = ({
         }
       });
     },
-    {
-      onError: (error) => {
-        Toast.show({
-          type: "error",
-          props: { error },
-        });
-      },
-      onSuccess: (response) => {},
-    }
-  );
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+    onSuccess: (response) => {},
+  });
 
   if (isLoading) {
     return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;

@@ -31,6 +31,7 @@ export type RootStackParamList = {
   Attendance: undefined;
   AttendanceConcluded: { data: TAttendance[] };
   AttendanceDetails: { data: TAttendance; isConcluded: boolean };
+  RegisterAttendance: undefined;
   CommonQuestions: undefined;
   DocumentAttendance: undefined;
   Search: undefined;
@@ -50,12 +51,13 @@ export type RootStackParamList = {
   Extract: undefined;
   ExtractDetails: { data: TExtratc };
   Constructions: undefined;
-  Scheduling: { data: any };
-  Satisfaction: { data: TAttendance };
+  Scheduling: { data: TAttendance };
+  SatisfactionTechnicalAssistance: { data: TAttendance };
+  SatisfactionAttendance: { data: TAttendance };
   Responsible: {
     data: TAttendance;
-    scheduling: TSchedulingResponse | undefined;
-    hour: TScheduling | undefined;
+    dataScheduling?: TSchedulingResponse | undefined;
+    schedulingDate?: TScheduling | undefined;
   };
   TechnicalAssistanceSection: undefined;
   TechnicalAssistanceItem: undefined;
@@ -137,9 +139,9 @@ export type SchedulingProps = NativeStackScreenProps<
   "Scheduling"
 >;
 
-export type SatisfactionProps = NativeStackScreenProps<
+export type SatisfactionTechnicalAssistanceProps = NativeStackScreenProps<
   RootStackParamList,
-  "Satisfaction"
+  "SatisfactionTechnicalAssistance"
 >;
 
 export type ResponsibleProps = NativeStackScreenProps<
@@ -183,4 +185,14 @@ export type AttendanceConcludedProps = NativeStackScreenProps<
 export type CopyDocumentPaymentSlipProps = NativeStackScreenProps<
   RootStackParamList,
   "CopyDocumentPaymentSlip"
+>;
+
+export type SatisfactionAttendanceProps = NativeStackScreenProps<
+  RootStackParamList,
+  "SatisfactionAttendance"
+>;
+
+export type RegisterAttendanceProps = NativeStackScreenProps<
+  RootStackParamList,
+  "RegisterAttendance"
 >;

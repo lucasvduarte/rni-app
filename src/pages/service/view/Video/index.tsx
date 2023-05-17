@@ -36,13 +36,13 @@ export const Video = () => {
                 videoId={item.url_videos || item.id_youtube}
               />
               <Text
-                fontSize={18}
+                fontSize="3xl"
                 color="moderateGreen"
                 mt="-md"
                 fontWeight="bold"
                 title={item.titulo}
               />
-              <Text fontSize={14} pt="xs" title={formatDatePtBr(item.criado)} />
+              <Text fontSize="xl" pt="xs" title={formatDatePtBr(item.criado)} />
             </Box>
           );
         }}

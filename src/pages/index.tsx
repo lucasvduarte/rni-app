@@ -43,12 +43,14 @@ export {
   Files,
   Item,
   Responsible,
-  Satisfaction,
+  SatisfactionTechnicalAssistance,
+  SatisfactionAttendance,
   Scheduling,
   Section,
   Summary,
   AttendanceConcluded,
   TechnicalAssistanceConcluded,
+  RegisterAttendance,
 } from "./attendance/view";
 
 export {

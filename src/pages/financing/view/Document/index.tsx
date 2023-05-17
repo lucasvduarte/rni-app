@@ -27,7 +27,7 @@ export const DocumentFinancing = () => {
         title="Para facilitar e agilizar o processo de financiamento do seu imóvel,
         prepare os documentos descritos no checklist abaixo, selecionando
         aqueles você já possui:"
-        fontSize={18}
+        fontSize="3xl"
         mb="xl"
         color="darkGrayGray78"
       />

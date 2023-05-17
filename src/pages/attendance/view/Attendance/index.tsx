@@ -50,7 +50,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
       <Box alignItems="flex-end">
         <Text
           title="Solicitar atendimento"
-          onPress={() => navigation.navigate("TechnicalAssistanceCategory")}
+          onPress={() => navigation.navigate("RegisterAttendance")}
           fontSize="3xl"
           fontWeight="bold"
           color="easternBlue"
@@ -59,7 +59,6 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
       </Box>
       <Text
         title="Finalizados"
-        pt="xl"
         onPress={() => {
           navigation.navigate("AttendanceConcluded", {
             data: formatList(data?.data.records).filter(
@@ -67,6 +66,10 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
             ),
           });
         }}
+        pt="xl"
+        pb="sm"
+        fontWeight="bold"
+        w={80}
         fontSize="2xl"
       />
       <FlatList

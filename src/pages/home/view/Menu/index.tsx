@@ -46,70 +46,12 @@ export const Menu = ({ navigation }: MenuProps) => {
 
   return (
     <Box flex={1}>
-      <BottomSheet
-        visible={visible}
-        onBackdropPress={() => {
-          if (!isSingIn) {
-            setVisible(false);
-          }
-        }}
-      >
-        <Card mx="xl" mb="2xl" borderRadius="lg" shadow="md">
-          <Text
-            title="Alterar empreendimento"
-            pb="md"
-            color="easternBlue"
-            fontSize="xl"
-            fontWeight="bold"
-          />
-
-          {user?.item
-            .filter((item) => item.CTRCLATIP === 1)
-            .map((item, index) => {
-              return (
-                <ListItem
-                  topDivider={!!index}
-                  onPress={() => onPressSelect(item)}
-                  px="md"
-                  py="lg"
-                  key={item.EMPCOD}
-                >
-                  <CheckBox
-                    checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
-                    color="easternBlue"
-                    iconType="material-community"
-                    checkedIcon="circle"
-                    uncheckedIcon="circle-outline"
-                    disabled
-                  />
-                  <ListItemContent>
-                    <ListItemTitle>
-                      <Text
-                        title={item.EMPDESCOM}
-                        color="matterhorn"
-                        fontSize="md"
-                      />
-                    </ListItemTitle>
-                    <ListItemSubtitle>
-                      <Text
-                        title={`Unidade: ${item.UNICOD}    Torre: ${item.TORCOD}`}
-                        color="suvaGrey"
-                        fontSize="md"
-                      />
-                    </ListItemSubtitle>
-                  </ListItemContent>
-                </ListItem>
-              );
-            })}
-        </Card>
-      </BottomSheet>
-
       <SectionList
         sections={listCard}
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
           <Box alignItems="flex-end" p="xl">
-            {enterpriseSelect && (
+            {enterpriseSelect ? (
               <Box flexDir="row">
                 <Box onPress={() => setVisible(true)}>
                   <Text
@@ -140,11 +82,12 @@ export const Menu = ({ navigation }: MenuProps) => {
                   />
                 </Box>
               </Box>
+            ) : (
+              <Box h={32} />
             )}
           </Box>
         }
         renderItem={() => <></>}
-        contentContainerStyle={{ paddingBottom: 24 }}
         showsVerticalScrollIndicator={false}
         renderSectionHeader={({ section }) => (
           <Box h={146 * section.numColuns + (section.numColuns < 2 ? 16 : 0)}>
@@ -209,6 +152,63 @@ export const Menu = ({ navigation }: MenuProps) => {
           </Box>
         )}
       />
+      <BottomSheet
+        visible={visible}
+        onBackdropPress={() => {
+          if (!isSingIn) {
+            setVisible(false);
+          }
+        }}
+      >
+        <Card mx="xl" mb="2xl" borderRadius="lg" shadow="md">
+          <Text
+            title="Alterar empreendimento"
+            pb="md"
+            color="easternBlue"
+            fontSize="xl"
+            fontWeight="bold"
+          />
+
+          {user?.item
+            .filter((item) => item.CTRCLATIP === 1)
+            .map((item, index) => {
+              return (
+                <ListItem
+                  topDivider={!!index}
+                  onPress={() => onPressSelect(item)}
+                  px="md"
+                  py="lg"
+                  key={item.EMPCOD}
+                >
+                  <CheckBox
+                    checked={item.EMPCOD === enterpriseSelect?.EMPCOD}
+                    color="easternBlue"
+                    iconType="material-community"
+                    checkedIcon="circle"
+                    uncheckedIcon="circle-outline"
+                    disabled
+                  />
+                  <ListItemContent>
+                    <ListItemTitle>
+                      <Text
+                        title={item.EMPDESCOM}
+                        color="matterhorn"
+                        fontSize="md"
+                      />
+                    </ListItemTitle>
+                    <ListItemSubtitle>
+                      <Text
+                        title={`Unidade: ${item.UNICOD}    Torre: ${item.TORCOD}`}
+                        color="suvaGrey"
+                        fontSize="md"
+                      />
+                    </ListItemSubtitle>
+                  </ListItemContent>
+                </ListItem>
+              );
+            })}
+        </Card>
+      </BottomSheet>
     </Box>
   );
 };

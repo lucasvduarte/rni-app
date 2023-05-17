@@ -28,7 +28,7 @@ export const TipsFinancing = () => {
       <Text
         title="Seguem algumas informações que vão ajudá-lo no seu financiamento"
         color="darkGrayGray78"
-        fontSize={18}
+        fontSize="3xl"
         m="xl"
       />
       <Carousel
@@ -44,11 +44,15 @@ export const TipsFinancing = () => {
               mb="sm"
             >
               <Box w={width - 64}>
-                <Text title={item.texto} color="darkGrayGray78" fontSize={18} />
+                <Text
+                  title={item.texto}
+                  color="darkGrayGray78"
+                  fontSize="3xl"
+                />
                 <Text
                   title={item.titulo}
                   color="darkGrayGray78"
-                  fontSize={18}
+                  fontSize="3xl"
                   mt="lg"
                 />
               </Box>

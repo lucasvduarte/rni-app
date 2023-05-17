@@ -6,6 +6,6 @@ export interface ICalendar
     Omit<TextInputProps, "style"> {
   type?: "modal" | "fixed";
   activeDates?: string[];
-  onChangeText: (value?: string) => void;
+  onChangeText: (value: string) => void;
   isVisible?: boolean;
 }

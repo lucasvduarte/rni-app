@@ -61,8 +61,6 @@ export const TechnicalAssistance = ({
       </Box>
       <Text
         title="Finalizados"
-        pt="xl"
-        w={80}
         onPress={() => {
           navigation.navigate("TechnicalAssistanceConcluded", {
             data: formatList(data?.data.records).filter(
@@ -70,6 +68,10 @@ export const TechnicalAssistance = ({
             ),
           });
         }}
+        pt="xl"
+        pb="sm"
+        fontWeight="bold"
+        w={80}
         fontSize="2xl"
       />
       <FlatList
@@ -89,8 +91,16 @@ export const TechnicalAssistance = ({
                   isConcluded: false,
                 });
               }}
-              onPressScheduleVisit={() => {}}
-              onPressConfirm={() => {}}
+              onPressScheduleVisit={() =>
+                navigation.navigate("Scheduling", {
+                  data: item,
+                })
+              }
+              onPressConfirm={() => {
+                navigation.navigate("Responsible", {
+                  data: item,
+                });
+              }}
             />
           );
         }}

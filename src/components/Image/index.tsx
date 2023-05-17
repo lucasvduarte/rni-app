@@ -1,17 +1,12 @@
 import { ImageProps } from "./type";
 import * as VideoThumbnails from "expo-video-thumbnails";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ImageBackgroundStyled, ImageStyled } from "./style";
+import { Box } from "../Box";
+import { Skeleton } from "../Skeleton";
 
 export const Image = (props: ImageProps) => {
-  const {
-    type = "image",
-    isVideo = false,
-    uri,
-    height = 100,
-    width = 100,
-    children,
-  } = props;
+  const { type = "image", isVideo = false, uri, children } = props;
   const [imageValue, setImageValue] = useState("");
 
   useEffect(() => {
@@ -39,6 +34,16 @@ export const Image = (props: ImageProps) => {
   }
 
   if (type === "thumbnail") {
+    if (isVideo && !imageValue) {
+      return (
+        <Skeleton
+          width={Number(props?.w?.toString().replace(/\D/g, "")) || 80}
+          height={Number(props?.h?.toString().replace(/\D/g, "")) || 80}
+          borderRadius={props.borderRadius}
+          mr={props.mr}
+        />
+      );
+    }
     return (
       <ImageBackgroundStyled
         {...props}
