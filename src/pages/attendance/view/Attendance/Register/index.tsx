@@ -199,9 +199,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
 
       <Button
         title="Solicitar"
-        onPress={() => {
-          mutate();
-        }}
+        onPress={() => mutate()}
         mt="md"
         loading={isLoadingMutate}
         disabled={isLoadingMutate || description.length < 20 || isSuccess}

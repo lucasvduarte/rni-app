@@ -58,4 +58,10 @@ export {
   Extract,
   ExtractDetails,
   CopyDocumentPaymentSlip,
+  SelectContract,
+  AnticipationInformation,
+  AnticipationSimulation,
+  DischargeInformation,
+  DischargeSimulation,
+  Payment,
 } from "./financial/view";

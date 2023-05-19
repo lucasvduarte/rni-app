@@ -57,9 +57,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               name={secureTextEntry ? "eye" : "eye-off"}
               size={24}
               iconColor="suvaGrey"
-              onPress={() => {
-                setSecureTextEntry((state) => !state);
-              }}
+              onPress={() => setSecureTextEntry((state) => !state)}
             />
           }
           maxLength={80}
@@ -77,9 +75,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
               name={secureTextEntry2 ? "eye" : "eye-off"}
               size={24}
               iconColor="suvaGrey"
-              onPress={() => {
-                setSecureTextEntry2((state) => !state);
-              }}
+              onPress={() => setSecureTextEntry2((state) => !state)}
             />
           }
           errorMessage={

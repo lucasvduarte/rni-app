@@ -1,5 +1,8 @@
 import { api } from "../../../../config/axios";
 import { requestFields } from "../../../../config/request";
+import { addDays } from "../../../../config/utils/format/data";
+import { TItem } from "../../../../redux/modules/auth/type";
+import { initValueParcelList } from "../../view/helps";
 
 import {
   InputAnticipation,
@@ -62,9 +65,9 @@ export const postPaymentSlip = (values: TPostPaymentSlipParams) => {
   );
 };
 
-export const getParcelList = (params: TAnticipationParams) => {
+export const getParcelList = (enterpriseSelect: TItem, value?: any) => {
   return api.get<TResponseParcelList>(`${URL}/listarparcelas`, {
-    params: params,
+    params: initValueParcelList(enterpriseSelect, value),
   });
 };
 

@@ -27,9 +27,7 @@ export const ListItemAccordion = (props: ListItemAccordionProps) => {
         </ListItemContent>
       }
       isExpanded={expanded}
-      onPress={() => {
-        setExpanded(!expanded);
-      }}
+      onPress={() => setExpanded(!expanded)}
       containerStyle={{
         backgroundColor: "transparent",
       }}

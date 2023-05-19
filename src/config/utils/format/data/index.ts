@@ -1,4 +1,5 @@
 type TDate = string | Date | undefined;
+
 export const formatDatePtBr = (date: TDate, defaultDate?: boolean) => {
   if (!date) {
     return "";

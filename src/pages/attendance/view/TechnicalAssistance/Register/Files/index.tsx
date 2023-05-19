@@ -162,9 +162,7 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
 
       <Button
         title="Solicitar"
-        onPress={() => {
-          mutate();
-        }}
+        onPress={() => mutate()}
         mt="md"
         loading={isLoading}
         disabled={isLoading || description.length < 20 || isSuccess}

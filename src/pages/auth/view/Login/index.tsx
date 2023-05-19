@@ -104,9 +104,7 @@ export const Login = ({ navigation }: LoginProps) => {
               name={secureTextEntry ? "eye" : "eye-off"}
               size={24}
               iconColor="suvaGrey"
-              onPress={() => {
-                setSecureTextEntry((state) => !state);
-              }}
+              onPress={() => setSecureTextEntry((state) => !state)}
             />
           }
           maxLength={80}

@@ -103,13 +103,20 @@ export const AttendanceDetails = ({
 
   useEffect(() => {
     if (!data.visualizado_pelo_cliente__c) {
-      mutate(undefined);
+      mutate({});
     }
   }, []);
 
   const onPressNotSolved = async () => {
     await mutatePostAttendance();
     await mutate({ resolvido_portal__c: true });
+  };
+
+  const onPress = async (uri: string) => {
+    let uriFormat = uri.split("https");
+    uriFormat = uriFormat[1].split('"');
+    // let result = await WebBrowser.openBrowserAsync(`https${uriFormat[0]}`);
+    // return result;
   };
 
   const isFile = !!dataFeed?.data?.records[0]?.feeds?.records.length;
@@ -230,16 +237,6 @@ export const AttendanceDetails = ({
                   </Box>
                 </Card>
               </Card>
-              {!!dataFeed?.data?.records[0]?.workorders?.records.length && (
-                <Text
-                  title="Itens"
-                  color="prussianBlue"
-                  mb="sm"
-                  mt="md"
-                  fontSize="3xl"
-                  fontWeight="bold"
-                />
-              )}
             </>
           }
           renderItem={({ item }) => {
@@ -251,8 +248,19 @@ export const AttendanceDetails = ({
                 shadowColor="pantone"
                 borderColor="pantone"
                 mb="lg"
+                onPress={() => onPress(item.Body)}
               >
-                <Text title="Titulo" color="moderateGreen" fontWeight="700" />
+                <Text
+                  title={formatDatePtBr(item.CreatedDate)}
+                  color="moderateGreen"
+                  fontSize="3xl"
+                />
+                <Text
+                  title={item.Body.replace(/<.*?>/g, "")}
+                  color="moderateGreen"
+                  fontWeight="bold"
+                  fontSize="3xl"
+                />
               </Card>
             );
           }}

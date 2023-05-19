@@ -6,6 +6,7 @@ type TListCard = {
   data: Array<{
     name: string;
     router: keyof RootStackParamList;
+    params?: any;
     icon: string;
     disabled?: boolean;
   }>;
@@ -85,13 +86,15 @@ export const listCard: TListCard[] = [
       },
       {
         name: "Antecipação",
-        router: "DocumentProperty",
+        router: "SelectContract",
         icon: "cash-check",
+        params: { navigate: "AnticipationInfo" },
       },
       {
         name: "Quitação",
-        router: "DocumentProperty",
+        router: "SelectContract",
         icon: "file-sign",
+        params: { navigate: "DischargeInfo" },
       },
     ],
   },

@@ -122,7 +122,9 @@ export const Menu = ({ navigation }: MenuProps) => {
                       borderRadius="xl"
                       p="lg"
                       onPress={() => {
-                        navigation.navigate(item.router as never);
+                        navigation.navigate(item.router as any, {
+                          ...item?.params,
+                        });
                       }}
                       shadow="sm"
                     >

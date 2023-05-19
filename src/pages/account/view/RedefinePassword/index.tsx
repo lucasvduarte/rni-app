@@ -56,9 +56,7 @@ export const RedefinePassword = () => {
                 name={securePasswordEntry ? "eye" : "eye-off"}
                 size={24}
                 iconColor="suvaGrey"
-                onPress={() => {
-                  setSecurePasswordEntry((state) => !state);
-                }}
+                onPress={() => setSecurePasswordEntry((state) => !state)}
               />
             }
             maxLength={80}
@@ -77,9 +75,7 @@ export const RedefinePassword = () => {
                 name={secureConfirmPasswordEntry ? "eye" : "eye-off"}
                 size={24}
                 iconColor="suvaGrey"
-                onPress={() => {
-                  setSecureConfirmPasswordEntry((state) => !state);
-                }}
+                onPress={() => setSecureConfirmPasswordEntry((state) => !state)}
               />
             }
             errorMessage={

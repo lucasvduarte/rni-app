@@ -84,9 +84,7 @@ export const Register = ({ navigation }: RegisterProps) => {
                 name={secureTextEntry ? "eye" : "eye-off"}
                 size={24}
                 iconColor="suvaGrey"
-                onPress={() => {
-                  setSecureTextEntry((state) => !state);
-                }}
+                onPress={() => setSecureTextEntry((state) => !state)}
               />
             }
             maxLength={80}
@@ -104,9 +102,7 @@ export const Register = ({ navigation }: RegisterProps) => {
                 name={secureTextEntry ? "eye" : "eye-off"}
                 size={24}
                 iconColor="suvaGrey"
-                onPress={() => {
-                  setSecureTextEntry((state) => !state);
-                }}
+                onPress={() => setSecureTextEntry((state) => !state)}
               />
             }
             errorMessage={

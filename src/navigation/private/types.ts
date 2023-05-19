@@ -5,11 +5,10 @@ import { TAttendance } from "../../pages/attendance/service/Attendance/type";
 import { TDocument } from "../../pages/property/services/Document/type";
 import { TExtratc } from "../../pages/financial/services/Financial/type";
 import {
-  TCategory,
   TScheduling,
   TSchedulingResponse,
-  TSection,
 } from "../../pages/attendance/service/TechnicalAssistance/type";
+import { TItem } from "../../redux/modules/auth/type";
 
 export type RootStackParamList = {
   Menu: undefined;
@@ -65,6 +64,14 @@ export type RootStackParamList = {
   TechnicalAssistanceFiles: undefined;
   TechnicalAssistanceSummary: undefined;
   CopyDocumentPaymentSlip: undefined;
+  SelectContract: {
+    navigate: "AnticipationInformation" | "DischargeInformation";
+  };
+  AnticipationInformation: { data: TItem };
+  AnticipationSimulation: { data: TItem };
+  DischargeInformation: { data: TItem };
+  DischargeSimulation: { data: TItem };
+  Payments: { data: TItem; headerTitle: string };
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -195,4 +202,33 @@ export type SatisfactionAttendanceProps = NativeStackScreenProps<
 export type RegisterAttendanceProps = NativeStackScreenProps<
   RootStackParamList,
   "RegisterAttendance"
+>;
+
+export type SelectContractProps = NativeStackScreenProps<
+  RootStackParamList,
+  "SelectContract"
+>;
+
+export type AnticipationInformationProps = NativeStackScreenProps<
+  RootStackParamList,
+  "AnticipationInformation"
+>;
+
+export type AnticipationSimulationProps = NativeStackScreenProps<
+  RootStackParamList,
+  "AnticipationSimulation"
+>;
+
+export type DischargeInformationProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DischargeInformation"
+>;
+
+export type DischargeSimulationProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DischargeSimulation"
+>;
+export type PaymentsProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Payments"
 >;

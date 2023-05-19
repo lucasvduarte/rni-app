@@ -5,17 +5,16 @@ import { FlatList } from "../FlashList";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { TItem } from "../../redux/modules/auth/type";
+import { useEffect } from "react";
 
 type TCardAttendance = {
   onPress: (value: TItem) => void;
 };
 
-export const Contract = (props: TCardAttendance) => {
+export const Contract = ({ onPress }: TCardAttendance) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
     return state.auth;
   });
-
-  const { onPress } = props;
 
   const itemsFilter =
     user?.item.filter(
@@ -24,6 +23,12 @@ export const Contract = (props: TCardAttendance) => {
         item.UNICOD === enterpriseSelect?.UNICOD &&
         item.TORCOD === enterpriseSelect?.TORCOD
     ) || [];
+
+  useEffect(() => {
+    if (itemsFilter.length === 1) {
+      onPress(itemsFilter[0]);
+    }
+  }, []);
 
   return (
     <Box flex={1} my="xl">

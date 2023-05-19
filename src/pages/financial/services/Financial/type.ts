@@ -359,7 +359,7 @@ export type TAnticipationParams = {
   tipounidade: string;
   ctrclatip: number;
   ctrcod: number | string;
-  dtbase: string | Date;
+  dtbase: string;
   pvncod?: number | string;
   includeFinancingInstallments?: boolean;
   incparfin?: boolean;

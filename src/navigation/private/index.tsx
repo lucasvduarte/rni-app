@@ -53,8 +53,14 @@ import {
   CopyDocumentPaymentSlip,
   SearchDetails,
   RegisterAttendance,
+  SelectContract,
+  AnticipationInformation,
+  AnticipationSimulation,
+  DischargeInformation,
+  DischargeSimulation,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
+import { Payments } from "../../pages/financial/view/Payment";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -576,7 +582,6 @@ export const PrivateNavigation = () => {
           headerStyle: { backgroundColor: colors.whiteBlack },
         }}
       />
-
       <Stack.Screen
         name="TechnicalAssistanceConcluded"
         component={TechnicalAssistanceConcluded}
@@ -604,6 +609,72 @@ export const PrivateNavigation = () => {
         component={SearchDetails}
         options={{
           headerTitle: "Responder Pesquisas",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="SelectContract"
+        component={SelectContract}
+        options={{
+          headerTitle: "Contrato",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="AnticipationInformation"
+        component={AnticipationInformation}
+        options={{
+          headerTitle: "Antecipação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="AnticipationSimulation"
+        component={AnticipationSimulation}
+        options={{
+          headerTitle: "Simulação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DischargeInformation"
+        component={DischargeInformation}
+        options={{
+          headerTitle: "Quitação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DischargeSimulation"
+        component={DischargeSimulation}
+        options={{
+          headerTitle: "Simulação",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="Payments"
+        component={Payments}
+        options={{
+          headerTitle: "",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
