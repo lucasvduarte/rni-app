@@ -64,7 +64,7 @@ export const ListItemContent = (props: ListItemContentProps) => {
 };
 
 export const ListDescription = (props: ListItemAccordionProps) => {
-  const { title, subtitle } = props;
+  const { title, description } = props;
   return (
     <ListItem px="none">
       <ListItemContent>
@@ -77,7 +77,7 @@ export const ListDescription = (props: ListItemAccordionProps) => {
           />
         </ListItemTitle>
         <ListItemSubtitle>
-          <Text title={subtitle} color="blackSuvaGrey" fontSize="xl" />
+          <Text title={description} color="blackSuvaGrey" fontSize="xl" />
         </ListItemSubtitle>
       </ListItemContent>
     </ListItem>

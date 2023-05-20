@@ -46,5 +46,5 @@ export interface ListItemAccordionProps
     RNListItemAccordionProps,
     VariantPropsType {
   title: string;
-  subtitle?: string;
+  description?: string;
 }

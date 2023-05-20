@@ -6,9 +6,9 @@ export const TextDescription = (props: TextDescriptionProps) => {
   const {
     title,
     description,
-    fontSize = "lg",
+    fontSize = "3xl",
     fontSizeDescription = "xl",
-    color = "gray66Gray78",
+    color = "blackSuvaGrey",
     colorDescription = "prussianBlueWhite",
     iconColor,
     iconName,
@@ -18,7 +18,7 @@ export const TextDescription = (props: TextDescriptionProps) => {
     iconNameDescription,
     iconSizeDescription,
     iconTypeDescription,
-    fontWeight = "600",
+    fontWeight = "500",
   } = props;
   return (
     <Box {...props}>
@@ -26,7 +26,7 @@ export const TextDescription = (props: TextDescriptionProps) => {
         title={title}
         fontSize={fontSize}
         color={color}
-        fontWeight="500"
+        fontWeight="bold"
         iconType={iconType}
         iconName={iconName}
         iconSize={iconSize}

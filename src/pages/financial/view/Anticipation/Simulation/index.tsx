@@ -31,7 +31,7 @@ export const AnticipationSimulation = ({
             return (
               <ListDescription
                 title={item.title}
-                subtitle={item?.subtitle?.toString()}
+                description={item?.description?.toString()}
               />
             );
           }}

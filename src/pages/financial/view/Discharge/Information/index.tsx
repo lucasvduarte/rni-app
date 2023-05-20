@@ -46,20 +46,20 @@ export const DischargeInformation = ({
   });
 
   const list = [
-    { title: "Empreendimento", subtitle: enterpriseSelect?.EMPDESCOM },
-    { title: "Torre", subtitle: enterpriseSelect?.TORCOD },
-    { title: "Unidade", subtitle: enterpriseSelect?.UNICOD },
-    { title: "Unidade", subtitle: data?.CTRCLATIP_DES },
+    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
+    { title: "Torre", description: enterpriseSelect?.TORCOD },
+    { title: "Unidade", description: enterpriseSelect?.UNICOD },
+    { title: "Unidade", description: data?.CTRCLATIP_DES },
     {
       title: "Saldo devedor atual",
-      subtitle: balanceValue(dataParcelList?.data.result),
+      description: balanceValue(dataParcelList?.data.result),
     },
     {
       title: "Parcelas em aberto",
-      subtitle: dataParcelList?.data?.result.length,
+      description: dataParcelList?.data?.result.length,
     },
   ].filter((item) => {
-    return !!item?.subtitle;
+    return !!item?.description;
   });
 
   if (isLoading) {
@@ -79,7 +79,7 @@ export const DischargeInformation = ({
               return (
                 <ListDescription
                   title={item.title}
-                  subtitle={item?.subtitle?.toString()}
+                  description={item?.description?.toString()}
                 />
               );
             }}

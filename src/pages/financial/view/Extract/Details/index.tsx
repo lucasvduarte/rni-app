@@ -14,27 +14,27 @@ export const ExtractDetails = ({ route }: ExtractDetailsProps) => {
   const list = [
     {
       title: `Saldo em atraso até ${formatDatePtBr(new Date())}`,
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_ATRASO || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_ATRASO || 0),
     },
     {
       title: `Saldo a vencer até ${formatDatePtBr(new Date())}`,
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.VLR_PRES || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.VLR_PRES || 0),
     },
     {
       title: "Total devido para quitação",
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.SLD_DEVEDOR || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.SLD_DEVEDOR || 0),
     },
     {
       title: "Total taxas pago",
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX2 || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX2 || 0),
     },
     {
       title: "Total Honorário pago",
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX1 || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX1 || 0),
     },
     {
       title: `Total pago até ${formatDatePtBr(new Date())}`,
-      subtitle: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_PAGO || 0),
+      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_PAGO || 0),
     },
   ];
 
@@ -56,7 +56,7 @@ export const ExtractDetails = ({ route }: ExtractDetailsProps) => {
             return (
               <ListDescription
                 title={item.title}
-                subtitle={item?.subtitle?.toString()}
+                description={item?.description?.toString()}
               />
             );
           }}

@@ -45,20 +45,20 @@ export const PaymentInfo = () => {
   }, []);
 
   const list = [
-    { title: "Nome completo", subtitle: user?.cliente.nome },
-    { title: "CPF", subtitle: formatCpf(user?.cliente.cpfcnpj) },
-    { title: "Empreendimento", subtitle: enterpriseSelect?.EMPDESCOM },
+    { title: "Nome completo", description: user?.cliente.nome },
+    { title: "CPF", description: formatCpf(user?.cliente.cpfcnpj) },
+    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
     {
       title: "CNPJ",
-      subtitle: formatCnpj(data?.data.result?.IT_CABECALHO.item[0].EMP_CNPJ),
+      description: formatCnpj(data?.data.result?.IT_CABECALHO.item[0].EMP_CNPJ),
     },
     {
       title: "Razão Social",
-      subtitle: data?.data.result?.IT_CABECALHO.item[0].AUX1 || "",
+      description: data?.data.result?.IT_CABECALHO.item[0].AUX1 || "",
     },
     {
       title: "Valor total pago no ano de 2022",
-      subtitle: formatCurrency(data?.data.result?.IT_SAIDA?.item[0]?.TOTAL),
+      description: formatCurrency(data?.data.result?.IT_SAIDA?.item[0]?.TOTAL),
     },
   ];
 
@@ -78,7 +78,7 @@ export const PaymentInfo = () => {
             return (
               <ListDescription
                 title={item.title}
-                subtitle={item?.subtitle?.toString()}
+                description={item?.description?.toString()}
               />
             );
           }}

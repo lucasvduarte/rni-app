@@ -4,7 +4,6 @@ import {
   FlatList,
   ListDescription,
   Modal,
-  Text,
 } from "../../../../components";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
@@ -22,9 +21,9 @@ export const SelectContract = ({ navigation, route }: SelectContractProps) => {
   };
 
   const list = [
-    { title: "Empreendimento", subtitle: enterpriseSelect?.EMPDESCOM },
-    { title: "Torre", subtitle: enterpriseSelect?.TORCOD },
-    { title: "Unidade", subtitle: enterpriseSelect?.UNICOD },
+    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
+    { title: "Torre", description: enterpriseSelect?.TORCOD },
+    { title: "Unidade", description: enterpriseSelect?.UNICOD },
   ];
 
   if (!navigate) {
@@ -50,7 +49,7 @@ export const SelectContract = ({ navigation, route }: SelectContractProps) => {
           return (
             <ListDescription
               title={item.title}
-              subtitle={item?.subtitle?.toString()}
+              description={item?.description?.toString()}
             />
           );
         }}

@@ -27,7 +27,7 @@ export const DischargeSimulation = ({ route }: DischargeSimulationProps) => {
             return (
               <ListDescription
                 title={item.title}
-                subtitle={item?.subtitle?.toString()}
+                description={item?.description?.toString()}
               />
             );
           }}
