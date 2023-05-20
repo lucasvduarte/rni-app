@@ -2,7 +2,6 @@ import { api } from "../../../../config/axios";
 import { TTechnicalAssistance } from "../TechnicalAssistance/type";
 
 import {
-  TPostFeed,
   TFileAzure,
   TUpdateAttendance,
   TResponseSubject,
@@ -39,14 +38,21 @@ export const postAzure = (value: TFileAzure) => {
   }>("/storageazure", value);
 };
 
-export const postFeed = (value: TPostFeed) => {
+export const postCaseFeed = (Body: string, ParentId: string) => {
   return api.post<{
     detail: string;
     locale: string;
     message: string;
     originalMessage: { id: string; errors: any[]; success?: boolean };
     type: string;
-  }>(`${URL}/casefeed`, value);
+  }>(`${URL}/casefeed`, {
+    Body,
+    IsRichText: true,
+    LinkUrl: "",
+    ParentId,
+    Title: "",
+    Type: "TextPost",
+  });
 };
 
 export const getFeedTask = (id: string) => {

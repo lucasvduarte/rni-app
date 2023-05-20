@@ -4,7 +4,7 @@ import { SatisfactionAttendanceProps } from "../../../../../navigation/private/t
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Toast from "react-native-toast-message";
 import { useMutation } from "react-query";
-import { postFeed, putAttendance } from "../../../service/Attendance";
+import { postCaseFeed, putAttendance } from "../../../service/Attendance";
 
 export const SatisfactionAttendance = ({
   route,
@@ -30,14 +30,10 @@ export const SatisfactionAttendance = ({
 
   const { mutate: mutateCompany, isLoading: isLoadingCompany } = useMutation({
     mutationFn: async () =>
-      await postFeed({
-        Body: `<p>pergunta: Em uma escala de conceito de 1 (Um) a 9 (Nove), como classifica o atendimento da empresa de forma geral?”, resposta: ${company}</p>`,
-        IsRichText: true,
-        LinkUrl: "",
-        ParentId: data.id,
-        Title: "",
-        Type: "TextPost",
-      }).then(() => {
+      await postCaseFeed(
+        `<p>pergunta: Em uma escala de conceito de 1 (Um) a 9 (Nove), como classifica o atendimento da empresa de forma geral?”, resposta: ${company}</p>`,
+        data.id
+      ).then(() => {
         setTimeout(() => {
           navigation.navigate("Attendance");
         }, 2000);

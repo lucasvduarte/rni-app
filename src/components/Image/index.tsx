@@ -1,8 +1,7 @@
 import { ImageProps } from "./type";
 import * as VideoThumbnails from "expo-video-thumbnails";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageBackgroundStyled, ImageStyled } from "./style";
-import { Box } from "../Box";
 import { Skeleton } from "../Skeleton";
 
 export const Image = (props: ImageProps) => {

@@ -158,15 +158,6 @@ export type TResponseFeedTask = {
   totalSize: number;
 };
 
-export type TPostFeed = {
-  Body: string;
-  IsRichText: boolean;
-  ParentId: string;
-  LinkUrl?: string;
-  Title?: string;
-  Type: string;
-};
-
 export type TFileAzure = {
   userauth: string;
   ip: string;

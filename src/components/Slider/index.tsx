@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Slider } from "@rneui/themed";
 import { Box } from "../Box";
 import { Icon } from "../Icon";
