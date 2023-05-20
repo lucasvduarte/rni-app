@@ -269,7 +269,6 @@ export const AttendanceDetails = ({
 
       <Modal
         title="Deseja concluir esse chamado ?"
-        titleBody=""
         isVisible={visible}
         onBackdropPress={(value) => setVisible(value)}
         onPressSecondary={() => setVisible(false)}

@@ -119,7 +119,6 @@ export const AccountMenu = ({ navigation }: AccountMenuProps) => {
 
       <Modal
         title="Deseja realmente sair do APP?"
-        titleBody=""
         isVisible={visible}
         onBackdropPress={(value) => setVisible(value)}
         onPressSecondary={() => setVisible(false)}
