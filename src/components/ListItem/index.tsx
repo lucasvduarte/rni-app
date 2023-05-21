@@ -71,13 +71,13 @@ export const ListDescription = (props: ListItemAccordionProps) => {
         <ListItemTitle>
           <Text
             title={title}
-            color="blackSuvaGrey"
+            color="blackWhite"
             fontSize="3xl"
             fontWeight="bold"
           />
         </ListItemTitle>
         <ListItemSubtitle>
-          <Text title={description} color="blackSuvaGrey" fontSize="xl" />
+          <Text title={description} color="darkGrayGray78" fontSize="xl" />
         </ListItemSubtitle>
       </ListItemContent>
     </ListItem>

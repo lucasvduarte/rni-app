@@ -6,6 +6,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { TItem } from "../../redux/modules/auth/type";
 import { useEffect } from "react";
+import { TextDescription } from "../TextDescription";
 
 type TCardAttendance = {
   onPress: (value: TItem) => void;
@@ -39,7 +40,8 @@ export const Contract = ({ onPress }: TCardAttendance) => {
         fontSize="5xl"
       />
       <Text
-        mb="md"
+        mb="xl"
+        pt={2}
         fontSize="xl"
         title="Selecione abaixo o contrato que deseja consultar."
       />
@@ -57,7 +59,7 @@ export const Contract = ({ onPress }: TCardAttendance) => {
               borderColor="veryLightGray"
               borderWidth={1}
               onPress={() => onPress(item)}
-              mb="md"
+              mb="xl"
             >
               <Text
                 color="moderateGreen"
@@ -69,6 +71,46 @@ export const Contract = ({ onPress }: TCardAttendance) => {
           );
         }}
       />
+    </Box>
+  );
+};
+
+export const ContractInformation = () => {
+  const { enterpriseSelect } = useAppSelector((state: RootState) => {
+    return state.auth;
+  });
+
+  const list = [
+    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
+    { title: "Torre", description: enterpriseSelect?.TORCOD },
+    { title: "Unidade", description: enterpriseSelect?.UNICOD },
+  ];
+
+  return (
+    <Box my="xl" bg="veryLightGraySuvaGrey" borderRadius="xl" py="md" px="lg">
+      {list.map((item, index) => {
+        return (
+          <Box
+            key={item.title}
+            flexDir="row"
+            alignItems="flex-end"
+            pt={!index ? "none" : 2}
+          >
+            <Text
+              title={`${item.title}: `}
+              fontSize="3xl"
+              fontWeight="bold"
+              color="blackWhite"
+            />
+            <Text
+              title={item?.description?.toString()}
+              fontSize="xl"
+              flex={1}
+              color="darkGrayGray78"
+            />
+          </Box>
+        );
+      })}
     </Box>
   );
 };

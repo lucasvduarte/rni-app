@@ -14,7 +14,7 @@ export const TextInput = (props: TextInputProps) => {
   const {
     bg = "gray93",
     size = "medium",
-    color = "black",
+    color = "blackWhite",
     numberOfLines,
   } = props;
 

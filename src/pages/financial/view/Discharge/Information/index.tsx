@@ -6,8 +6,9 @@ import {
   Box,
   Button,
   Calendar,
-  FlatList,
+  ContractInformation,
   ListDescription,
+  Modal,
   Skeleton,
 } from "../../../../../components";
 import { formatDatePtBr } from "../../../../../config/utils";
@@ -34,10 +35,15 @@ export const DischargeInformation = ({
     setValues(initValueParcelList(enterpriseSelect, { incparfin: true }));
   }, []);
 
-  const { data: dataParcelList, isLoading } = useQuery({
+  const {
+    data: dataParcelList,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: "getParcelList",
     queryFn: () => getParcelList({ ...data }, { incparfin: true }),
-    onError: (error) => {
+    onError: (error: any) => {
       Toast.show({
         type: "error",
         props: { error },
@@ -46,10 +52,7 @@ export const DischargeInformation = ({
   });
 
   const list = [
-    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
-    { title: "Torre", description: enterpriseSelect?.TORCOD },
-    { title: "Unidade", description: enterpriseSelect?.UNICOD },
-    { title: "Unidade", description: data?.CTRCLATIP_DES },
+    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
     {
       title: "Saldo devedor atual",
       description: balanceValue(dataParcelList?.data.result),
@@ -70,21 +73,19 @@ export const DischargeInformation = ({
     <Box flex={1} px="xl" mb="2lg">
       <KeyboardAwareScrollView fadingEdgeLength={500}>
         <Box flex={1}>
-          <FlatList
-            data={list}
-            keyExtractor={(item) => item.title}
-            contentContainerStyle={{ paddingVertical: 24 }}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => {
-              return (
-                <ListDescription
-                  title={item.title}
-                  description={item?.description?.toString()}
-                />
-              );
-            }}
-          />
+          <ContractInformation />
+          {list.map((item) => {
+            return (
+              <ListDescription
+                title={item.title}
+                description={item?.description?.toString()}
+                key={item.title}
+              />
+            );
+          })}
+          <Box mt="lg" />
           <Calendar
+            label="Data de vencimento"
             onChangeText={(day) => {
               setValues({ ...values, dtbase: day });
             }}
@@ -100,6 +101,23 @@ export const DischargeInformation = ({
         onPress={() => navigation.navigate("DischargeSimulation", { data })}
         mt="md"
         loading={isLoading}
+      />
+      <Modal
+        title="Desculpe pelo nosso erro"
+        titleBody="Tente novamente mais tarde"
+        isVisible={isError}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
+      />
+      <Modal
+        title={error?.response?.data?.message || "Desculpe pelo nosso erro"}
+        titleBody={
+          error?.response?.data?.originalMessage?.message ||
+          error?.response?.data?.msgError?.message
+        }
+        isVisible={isError}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
       />
     </Box>
   );

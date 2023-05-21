@@ -31,6 +31,8 @@ export const CalendarStyle: React.FC<ICalendar> = (props) => {
     <Calendar
       theme={{
         calendarBackground: "transparent",
+        dayTextColor: colors.darkGrayGray78,
+        monthTextColor: colors.darkGrayGray78,
       }}
       markedDates={{
         ...formatMarkedDates,

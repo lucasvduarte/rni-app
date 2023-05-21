@@ -1,6 +1,7 @@
 import {
   Box,
-  FlatList,
+  Button,
+  ContractInformation,
   ListDescription,
   Text,
 } from "../../../../../components";
@@ -9,30 +10,38 @@ import { DischargeSimulationProps } from "../../../../../navigation/private/type
 export const DischargeSimulation = ({ route }: DischargeSimulationProps) => {
   const { data } = route.params;
 
+  const list = [
+    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
+    {
+      title: "Valor antecipado",
+      description: data?.CTRCLATIP_DES,
+    },
+    {
+      title: "Total de parcelas",
+      description: data?.CTRCLATIP_DES,
+    },
+    { title: "Vencimento", description: data?.CTRCLATIP_DES },
+    { title: "Novo saldo devedor", description: data?.CTRCLATIP_DES },
+    { title: "Parcelas", description: data?.CTRCLATIP_DES },
+  ].filter((item) => {
+    return !!item?.description;
+  });
+
   return (
     <Box flex={1} px="xl" mb="2lg">
       <Box flex={1}>
-        <Text
-          title="Informações do empreendimento"
-          fontSize="4xl"
-          fontWeight="bold"
-        />
-
-        {/*<FlatList
-          data={list}
-          keyExtractor={(item) => item.title}
-          contentContainerStyle={{ paddingVertical: 24 }}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <ListDescription
-                title={item.title}
-                description={item?.description?.toString()}
-              />
-            );
-          }}
-        />*/}
+        <ContractInformation />
+        {list.map((item) => {
+          return (
+            <ListDescription
+              title={item.title}
+              description={item?.description?.toString()}
+              key={item.title}
+            />
+          );
+        })}
       </Box>
+      <Button title="Confirma" onPress={() => {}} mt="md" />
     </Box>
   );
 };

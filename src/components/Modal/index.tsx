@@ -91,7 +91,7 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
       {titleBody && <Text title={titleBody} color="blackWhite" />}
       <Dialog.Actions>
         <Dialog.Button title={titleOnPressPrimary} onPress={onPressPrimary} />
-        {toggleOnPressSecondary && (
+        {onPressSecondary && (
           <Dialog.Button
             title={titleOnPressSecondary}
             onPress={toggleOnPressSecondary}

@@ -40,17 +40,17 @@ export const Select: React.FC<ISelect> = (props) => {
           setVisible(false);
         }}
       >
-        <Card mx="xs" mb="sm" borderRadius="lg" shadow="md">
+        <Card borderRadius="lg" borderWidth={2}>
           {title && (
             <Text
               title={title}
-              pb="md"
+              pb="sm"
               color="easternBlue"
-              fontSize="xl"
+              fontSize="3xl"
               fontWeight="bold"
             />
           )}
-          <Box mt="md">
+          <Box mt="md" pb="xl">
             {listValues.map((item, index) => (
               <ListItem
                 topDivider={!!index}
@@ -69,7 +69,11 @@ export const Select: React.FC<ISelect> = (props) => {
                 />
                 <ListItemContent>
                   <ListItemTitle>
-                    <Text title={item.title} color="matterhorn" fontSize="lg" />
+                    <Text
+                      title={item.title}
+                      color="matterhorn"
+                      fontSize="3xl"
+                    />
                   </ListItemTitle>
                 </ListItemContent>
               </ListItem>

@@ -5,6 +5,8 @@ export const formatCurrency = (value?: string | number) => {
     value = 0;
   }
 
+  value = value.toString().replace(/\D/g, "");
+
   return mask(value, "", "currency", {
     prefix: "R$ ",
     decimalSeparator: ",",

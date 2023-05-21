@@ -4,7 +4,7 @@ import {
   Box,
   Button,
   Calendar,
-  FlatList,
+  ContractInformation,
   ListDescription,
   Modal,
   Select,
@@ -43,10 +43,15 @@ export const AnticipationInformation = ({
     setValues(initValueParcelList(enterpriseSelect));
   }, []);
 
-  const { data: dataParcelList, isLoading } = useQuery({
+  const {
+    data: dataParcelList,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: "getParcelList",
     queryFn: () => getParcelList({ ...data }),
-    onError: (error) => {
+    onError: (error: any) => {
       Toast.show({
         type: "error",
         props: { error },
@@ -55,10 +60,7 @@ export const AnticipationInformation = ({
   });
 
   const list = [
-    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
-    { title: "Torre", description: enterpriseSelect?.TORCOD },
-    { title: "Unidade", description: enterpriseSelect?.UNICOD },
-    { title: "Unidade", description: data?.CTRCLATIP_DES },
+    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
     {
       title: "Saldo devedor atual",
       description: balanceValue(dataParcelList?.data.result),
@@ -68,7 +70,7 @@ export const AnticipationInformation = ({
       description: dataParcelList?.data?.result.length,
     },
   ].filter((item) => {
-    return !!item?.description;
+    return item?.description !== undefined;
   });
 
   const isValueValid = values.valor !== undefined;
@@ -96,25 +98,22 @@ export const AnticipationInformation = ({
     <Box flex={1} px="xl" mb="2lg">
       <KeyboardAwareScrollView fadingEdgeLength={500}>
         <Box flex={1}>
-          <FlatList
-            data={list}
-            keyExtractor={(item) => item.title}
-            contentContainerStyle={{ paddingVertical: 24 }}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => {
-              return (
-                <ListDescription
-                  title={item.title}
-                  description={item?.description?.toString()}
-                />
-              );
-            }}
-          />
-          {(data?.CTRCLATIP_DES || "").toLocaleUpperCase() ===
-            "contrato de venda" &&
+          <ContractInformation />
+          {list.map((item) => {
+            return (
+              <ListDescription
+                title={item.title}
+                description={item?.description?.toString()}
+                key={item.title}
+              />
+            );
+          })}
+          <Box mt="lg" />
+          {(data?.CTRCLATIP_DES || "").toLowerCase() === "contrato de venda" &&
             includesParcelOfTheType(dataParcelList?.data.result) && (
               <Select
                 label="Incluir parcelas do financiamento?"
+                title="Incluir parcelas do financiamento"
                 value={incparfin ? "sim" : "nao"}
                 onChangeText={(value) => setIncparfin(value === "sim")}
                 listValues={[
@@ -127,6 +126,7 @@ export const AnticipationInformation = ({
 
           <Select
             label="Antecipar por?"
+            title="Antecipar por"
             value={isValueValid ? "valor" : "parcelas"}
             onChangeText={(value) => {
               const isValue = value === "valor";
@@ -149,13 +149,14 @@ export const AnticipationInformation = ({
             } que deseja antecipar`}
             placeholder="Responder"
             size="large"
-            keyboardType="default"
+            keyboardType="number-pad"
             value={(isValueValid ? values.valor : values.parcelas)?.toString()}
             onChangeText={onChange}
             maxLength={16}
           />
 
           <Calendar
+            label="Data de vencimento"
             onChangeText={(day) => {
               setValues({ ...values, dtbase: day });
             }}
@@ -182,6 +183,17 @@ export const AnticipationInformation = ({
         onPressPrimary={() =>
           navigation.navigate("AnticipationSimulation", { data })
         }
+      />
+
+      <Modal
+        title={error?.response?.data?.message || "Desculpe pelo nosso erro"}
+        titleBody={
+          error?.response?.data?.originalMessage?.message ||
+          error?.response?.data?.msgError?.message
+        }
+        isVisible={isError}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
       />
     </Box>
   );
