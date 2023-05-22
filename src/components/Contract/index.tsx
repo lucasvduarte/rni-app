@@ -6,7 +6,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import { TItem } from "../../redux/modules/auth/type";
 import { useEffect } from "react";
-import { TextDescription } from "../TextDescription";
+import { CardProps } from "../Card/type";
 
 type TCardAttendance = {
   onPress: (value: TItem) => void;
@@ -75,7 +75,7 @@ export const Contract = ({ onPress }: TCardAttendance) => {
   );
 };
 
-export const ContractInformation = () => {
+export const ContractInformation = (props: CardProps) => {
   const { enterpriseSelect } = useAppSelector((state: RootState) => {
     return state.auth;
   });
@@ -87,7 +87,7 @@ export const ContractInformation = () => {
   ];
 
   return (
-    <Box my="xl" bg="veryLightGraySuvaGrey" borderRadius="xl" py="md" px="lg">
+    <Card bg="veryLightGraySuvaGrey" borderRadius="xl" py="md" {...props}>
       {list.map((item, index) => {
         return (
           <Box
@@ -111,6 +111,6 @@ export const ContractInformation = () => {
           </Box>
         );
       })}
-    </Box>
+    </Card>
   );
 };

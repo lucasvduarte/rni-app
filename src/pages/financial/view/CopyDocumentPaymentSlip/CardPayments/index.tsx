@@ -1,17 +1,17 @@
+import { useState } from "react";
 import Toast from "react-native-toast-message";
 import { useMutation } from "react-query";
 import { BottomSheet, Box, Card, Text } from "../../../../../components";
 import { formatCurrency, formatDatePtBr } from "../../../../../config/utils";
 import { postPaymentSlip } from "../../../services/Financial";
 import {
-  TItem,
   TResponsePaymentSlip,
   TPostPaymentSlip,
 } from "../../../services/Financial/type";
 import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
 import { formatContract } from "../../../../../config/request";
-import { useState } from "react";
+import QRCode from "react-native-qrcode-svg";
 
 type TCardPayment = {
   item: TResponsePaymentSlip;

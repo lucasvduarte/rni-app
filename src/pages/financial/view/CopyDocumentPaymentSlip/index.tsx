@@ -3,6 +3,8 @@ import {
   Box,
   Contract,
   FlatList,
+  InfoAlert,
+  Modal,
   Skeleton,
   Text,
 } from "../../../../components";
@@ -26,7 +28,7 @@ export const CopyDocumentPaymentSlip = ({
   const [data, setData] = useState<TResponsePaymentSlip[]>([]);
   const [ctrclatip, setCtrclatip] = useState("");
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async (value: TItem) => {
       await getPaymentSlip(
         user?.cliente.cpfcnpj || "",
@@ -35,11 +37,6 @@ export const CopyDocumentPaymentSlip = ({
         if (response.data.length) {
           setData(response.data);
           setCtrclatip(value.CTRCLATIP.toString());
-        } else {
-          Toast.show({
-            type: "info",
-            text2: "Não foram encontrados boletos pendentes para esse contrato",
-          });
         }
       });
     },
@@ -49,7 +46,6 @@ export const CopyDocumentPaymentSlip = ({
         props: { error },
       });
     },
-    onSuccess: (response) => {},
   });
 
   if (isLoading) {
@@ -59,14 +55,11 @@ export const CopyDocumentPaymentSlip = ({
   return (
     <Box flex={1} px="xl" mb="2lg">
       {!user?.cliente_sap[0].Z_ENVBOL && (
-        <Text
-          mb="sm"
+        <InfoAlert
           title="Deseja receber os boletos via e-mail? Clique aqui para autorizar seu
           Boleto Digital."
-          fontSize="3xl"
-          fontWeight="bold"
-          color="easternBlue"
           onPress={() => navigation.navigate("PaymentSlipAuthorization")}
+          mb="xl"
         />
       )}
       <Text
@@ -96,6 +89,14 @@ export const CopyDocumentPaymentSlip = ({
         renderItem={({ item }) => {
           return <CardPayment item={item} ctrclatip={ctrclatip} />;
         }}
+      />
+
+      <Modal
+        title="Aviso"
+        titleBody="Não foram encontrados boletos pendentes para esse contrato"
+        isVisible={isSuccess && !data.length}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
       />
     </Box>
   );
