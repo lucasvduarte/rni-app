@@ -74,7 +74,13 @@ export const setUser =
         email,
       });
       dispatch(putUser(user));
-
+      if (user?.item.filter((item) => item.CTRCLATIP === 1).length === 1) {
+        dispatch(
+          putEnterpriseSelect(
+            user?.item.filter((item) => item.CTRCLATIP === 1)[0]
+          )
+        );
+      }
       return true;
     } catch (error) {
       return false;

@@ -12,23 +12,22 @@ export const InfoAlert = (props: InfoAlert) => {
   const { title } = props;
   return (
     <Card borderRadius="xl" bg="success" {...props}>
-      <Box flexDir="row">
+      <Box flexDir="row" alignItems="center">
         <Text
           title={title}
           fontSize="3xl"
           fontWeight="bold"
           color="white"
-          pr="xs"
+          pr="md"
           flex={1}
         />
-        <Box pl="xs">
-          <Icon
-            name="alert-circle-outline"
-            type="material-community"
-            size={28}
-            iconColor="white"
-          />
-        </Box>
+
+        <Icon
+          name="alert-circle-outline"
+          type="material-community"
+          size={28}
+          iconColor="white"
+        />
       </Box>
     </Card>
   );

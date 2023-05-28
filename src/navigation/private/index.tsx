@@ -80,7 +80,8 @@ export const PrivateNavigation = () => {
         name="Menu"
         component={Menu}
         options={{
-          headerTitle: () => <HeaderTitle />,
+          headerLeft: () => <HeaderTitle />,
+          headerTitle: "",
           headerRight: () => <HeaderRightMenu />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

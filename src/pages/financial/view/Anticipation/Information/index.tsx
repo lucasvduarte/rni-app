@@ -49,7 +49,7 @@ export const AnticipationInformation = ({
     isError,
     error,
   } = useQuery({
-    queryKey: "getParcelList",
+    queryKey: "getParcelListAnticipation",
     queryFn: () => getParcelList({ ...data }),
     onError: (error: any) => {
       Toast.show({
@@ -181,7 +181,11 @@ export const AnticipationInformation = ({
         onBackdropPress={(value) => setVisible(value)}
         onPressSecondary={() => setVisible(false)}
         onPressPrimary={() =>
-          navigation.navigate("AnticipationSimulation", { data })
+          navigation.navigate("AnticipationSimulation", {
+            data,
+            dataParcelList: dataParcelList?.data.result || [],
+            values,
+          })
         }
       />
 
@@ -192,6 +196,13 @@ export const AnticipationInformation = ({
           error?.response?.data?.msgError?.message
         }
         isVisible={isError}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
+      />
+
+      <Modal
+        title={"Sem parcelas para antecipar"}
+        isVisible={!dataParcelList?.data.result.length && !isError}
         onBackdropPress={() => navigation.goBack()}
         onPressPrimary={() => navigation.goBack()}
       />

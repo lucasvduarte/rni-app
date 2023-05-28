@@ -65,16 +65,16 @@ export const Calendar: React.FC<ICalendar> = (props) => {
           }}
           initialDate={value}
         />
-        <Box flexDir="row" mt="md">
+        <Box flexDir="row-reverse" mt="md">
           <Button
             title="Selecionar"
-            size="sm"
+            size="md"
             type="clear"
             onPress={onPressSelect}
           />
           <Button
             title="Cancelar"
-            size="sm"
+            size="md"
             type="clear"
             onPress={onPressCancel}
             ml="sm"

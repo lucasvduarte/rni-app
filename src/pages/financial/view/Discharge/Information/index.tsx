@@ -41,7 +41,7 @@ export const DischargeInformation = ({
     isError,
     error,
   } = useQuery({
-    queryKey: "getParcelList",
+    queryKey: "getParcelListDischarge",
     queryFn: () => getParcelList({ ...data }, { incparfin: true }),
     onError: (error: any) => {
       Toast.show({
@@ -98,16 +98,15 @@ export const DischargeInformation = ({
 
       <Button
         title="Simular"
-        onPress={() => navigation.navigate("DischargeSimulation", { data })}
+        onPress={() =>
+          navigation.navigate("DischargeSimulation", {
+            data,
+            dataParcelList: dataParcelList?.data.result || [],
+            values,
+          })
+        }
         mt="md"
         loading={isLoading}
-      />
-      <Modal
-        title="Desculpe pelo nosso erro"
-        titleBody="Tente novamente mais tarde"
-        isVisible={isError}
-        onBackdropPress={() => navigation.goBack()}
-        onPressPrimary={() => navigation.goBack()}
       />
       <Modal
         title={error?.response?.data?.message || "Desculpe pelo nosso erro"}
@@ -116,6 +115,13 @@ export const DischargeInformation = ({
           error?.response?.data?.msgError?.message
         }
         isVisible={isError}
+        onBackdropPress={() => navigation.goBack()}
+        onPressPrimary={() => navigation.goBack()}
+        onPressSecondary={() => navigation.goBack()}
+      />
+      <Modal
+        title={"Sem parcelas pendentes para quitar"}
+        isVisible={!dataParcelList?.data.result.length && !isError}
         onBackdropPress={() => navigation.goBack()}
         onPressPrimary={() => navigation.goBack()}
       />

@@ -81,19 +81,20 @@ export const CopyDocumentPaymentSlip = ({
         </Box>
       )}
 
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.BELNR.toString()}
-        contentContainerStyle={{ paddingVertical: 24 }}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => {
-          return <CardPayment item={item} ctrclatip={ctrclatip} />;
-        }}
-      />
+      {!!data.length && (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.BELNR.toString()}
+          contentContainerStyle={{ paddingVertical: 24 }}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => {
+            return <CardPayment item={item} ctrclatip={ctrclatip} />;
+          }}
+        />
+      )}
 
       <Modal
-        title="Aviso"
-        titleBody="Não foram encontrados boletos pendentes para esse contrato"
+        title="Não foram encontrados boletos pendentes para esse contrato"
         isVisible={isSuccess && !data.length}
         onBackdropPress={() => navigation.goBack()}
         onPressPrimary={() => navigation.goBack()}

@@ -5,6 +5,7 @@ import { Text } from "../Text";
 import { GestureResponderEvent } from "react-native";
 import { DialogStyled } from "./style";
 import { useTheme } from "styled-components/native";
+import { Button } from "../Button";
 
 export const Modal: React.FunctionComponent<ModalProps> = (props) => {
   const {
@@ -88,13 +89,21 @@ export const Modal: React.FunctionComponent<ModalProps> = (props) => {
       bg={colors.whiteDarkGray as never}
     >
       <Dialog.Title title={title} titleStyle={{ color: colors.blackWhite }} />
-      {titleBody && <Text title={titleBody} color="blackWhite" />}
+      {titleBody && <Text title={titleBody} color="blackWhite" fontSize="xl" />}
       <Dialog.Actions>
-        <Dialog.Button title={titleOnPressPrimary} onPress={onPressPrimary} />
+        <Button
+          title={titleOnPressPrimary}
+          onPress={onPressPrimary}
+          size="md"
+          type="clear"
+          ml="sm"
+        />
         {onPressSecondary && (
-          <Dialog.Button
+          <Button
             title={titleOnPressSecondary}
             onPress={toggleOnPressSecondary}
+            size="md"
+            type="clear"
           />
         )}
       </Dialog.Actions>

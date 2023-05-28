@@ -11,7 +11,7 @@ import {
 export const defaultTheme = {
   sm: {
     height: 38,
-    fontSize: 16,
+    fontSize: 15,
     loadingSize: 20,
   },
   md: {

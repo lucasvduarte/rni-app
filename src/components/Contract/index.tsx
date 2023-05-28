@@ -93,7 +93,7 @@ export const ContractInformation = (props: CardProps) => {
           <Box
             key={item.title}
             flexDir="row"
-            alignItems="flex-end"
+            alignItems="flex-start"
             pt={!index ? "none" : 2}
           >
             <Text

@@ -50,7 +50,7 @@ export const Menu = ({ navigation }: MenuProps) => {
         sections={listCard}
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
-          <Box alignItems="flex-end" p="xl">
+          <Box alignItems="flex-end" px="xl" pb="xl" pt="sm">
             {enterpriseSelect ? (
               <Box flexDir="row">
                 <Box onPress={() => setVisible(true)}>
@@ -155,7 +155,10 @@ export const Menu = ({ navigation }: MenuProps) => {
         )}
       />
       <BottomSheet
-        visible={visible}
+        visible={
+          visible &&
+          (user?.item.filter((item) => item.CTRCLATIP === 1) || []).length > 1
+        }
         onBackdropPress={() => {
           if (!isSingIn) {
             setVisible(false);

@@ -3,7 +3,11 @@ import { TNotification } from "../../pages/notification/services/type";
 import { TSearch } from "../../pages/attendance/service/Search/type";
 import { TAttendance } from "../../pages/attendance/service/Attendance/type";
 import { TDocument } from "../../pages/property/services/Document/type";
-import { TExtratc } from "../../pages/financial/services/Financial/type";
+import {
+  TAnticipationParams,
+  TExtratc,
+  TParcelList,
+} from "../../pages/financial/services/Financial/type";
 import {
   TScheduling,
   TSchedulingResponse,
@@ -68,9 +72,17 @@ export type RootStackParamList = {
     navigate: "AnticipationInformation" | "DischargeInformation";
   };
   AnticipationInformation: { data: TItem };
-  AnticipationSimulation: { data: TItem };
+  AnticipationSimulation: {
+    data: TItem;
+    dataParcelList: TParcelList[];
+    values: TAnticipationParams;
+  };
   DischargeInformation: { data: TItem };
-  DischargeSimulation: { data: TItem };
+  DischargeSimulation: {
+    data: TItem;
+    dataParcelList: TParcelList[];
+    values: TAnticipationParams;
+  };
   Payments: { data: TItem; headerTitle: string };
 };
 

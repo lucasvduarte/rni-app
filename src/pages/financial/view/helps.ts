@@ -1,7 +1,7 @@
 import { formatCurrency } from "../../../config/utils";
 import { addDays } from "../../../config/utils/format/data";
 import { TItem } from "../../../redux/modules/auth/type";
-import { TAnticipationParams, TParcelList } from "../services/Financial/type";
+import { TParcelList } from "../services/Financial/type";
 
 export const includesParcelOfTheType = (data?: TParcelList[]) => {
   if (!data) {
@@ -34,6 +34,25 @@ export const balanceValue = (data?: TParcelList[]) => {
   }, 0);
 
   return formatCurrency(value);
+};
+
+export const balanceTwoValue = (
+  data?: TParcelList[],
+  data2?: TParcelList[]
+) => {
+  if (!data || !data2) {
+    return formatCurrency(0);
+  }
+
+  const value = data.reduce((acc, parcel) => {
+    return acc + parcel.SIPVLRANT;
+  }, 0);
+
+  const value2 = data2.reduce((acc, parcel) => {
+    return acc + parcel.SIPVLRANT;
+  }, 0);
+
+  return formatCurrency(value - value2);
 };
 
 export const initValueParcelList = (enterpriseSelect?: TItem, value?: any) => {
