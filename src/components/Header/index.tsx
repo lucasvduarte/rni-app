@@ -3,7 +3,7 @@ import { Box } from "../Box";
 import type { CompositeNavigationProp } from "@react-navigation/native";
 import { Text } from "../Text";
 import { RniPng } from "../../assets";
-import * as Animatable from "react-native-animatable";
+import { Image } from "../Image";
 import { Icon } from "../Icon";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
@@ -18,12 +18,7 @@ export const HeaderTitle = () => {
 
   return (
     <Box flexDir="row">
-      <Animatable.Image
-        source={RniPng}
-        animation="flipInY"
-        resizeMode="contain"
-        duration={1200}
-      />
+      <Image source={RniPng} resizeMode="contain" />
       <Box pt="sm" pl="xs">
         <Text title={`Olá, ${auth.user?.cliente.nome}`} color="blackWhite" />
         <Text

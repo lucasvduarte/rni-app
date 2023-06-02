@@ -58,20 +58,22 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
               shadowColor="moderateGreen"
               borderColor="veryLightGray"
               onPress={() => onPress(item)}
-              p="none"
+              p={item.imagem ? "none" : "xl"}
               mb="lg"
             >
               <Box flexDir="row" alignItems="center" pr="xl">
-                <Image
-                  source={{
-                    uri: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=1200&s=1",
-                    width: 88,
-                    height: 80,
-                  }}
-                  borderRadius={8}
-                  mr="xl"
-                  resizeMode="cover"
-                />
+                {item.imagem && (
+                  <Image
+                    source={{
+                      uri: item.imagem,
+                      width: 88,
+                      height: 80,
+                    }}
+                    borderRadius={8}
+                    mr="xl"
+                    resizeMode="cover"
+                  />
+                )}
 
                 <Text
                   title={item.titulo}

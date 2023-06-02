@@ -1,6 +1,5 @@
 import Toast from "react-native-toast-message";
-import { Box, Button, Icon, TextInput } from "../../../../components";
-import * as Animatable from "react-native-animatable";
+import { Box, Button, Icon, TextInput, Image } from "../../../../components";
 import React, { useState } from "react";
 import { LoginPng } from "../../../../assets";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -36,13 +35,13 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
 
   return (
     <KeyboardAwareScrollView fadingEdgeLength={500}>
-      <Box alignItems="center" justifyContent="center">
-        <Animatable.Image
-          source={LoginPng}
-          animation="flipInY"
-          resizeMode="contain"
-          duration={1200}
-        />
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        animation="flipInY"
+        duration={1200}
+      >
+        <Image source={LoginPng} resizeMode="contain" />
       </Box>
       <Box p="xl" pt="4xl" animation="fadeInUp" delay={500}>
         <TextInput

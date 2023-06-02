@@ -1,5 +1,11 @@
-import { Box, Button, Calendar, Icon, TextInput } from "../../../../components";
-import * as Animatable from "react-native-animatable";
+import {
+  Box,
+  Button,
+  Calendar,
+  Icon,
+  TextInput,
+  Image,
+} from "../../../../components";
 import React, { useState } from "react";
 import { LoginPng } from "../../../../assets";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -45,13 +51,13 @@ export const Register = ({ navigation }: RegisterProps) => {
   return (
     <Box flex={1} mb="2lg">
       <KeyboardAwareScrollView fadingEdgeLength={500}>
-        <Box alignItems="center" justifyContent="center">
-          <Animatable.Image
-            source={LoginPng}
-            animation="flipInY"
-            resizeMode="contain"
-            duration={1200}
-          />
+        <Box
+          alignItems="center"
+          justifyContent="center"
+          animation="flipInY"
+          duration={1200}
+        >
+          <Image source={LoginPng} resizeMode="contain" />
         </Box>
         <Box p="xl" pt="lg" animation="fadeInUp" delay={500}>
           <TextInput

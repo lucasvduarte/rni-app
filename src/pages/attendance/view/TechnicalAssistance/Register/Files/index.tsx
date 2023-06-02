@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Icon,
+  Modal,
 } from "../../../../../../components";
 import { TechnicalAssistanceFilesProps } from "../../../../../../navigation/private/types";
 import { useAppSelector } from "../../../../../../redux/hooks";
@@ -33,6 +34,7 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
   const { files, listRegister } = attendance;
   const { enterpriseSelect, user } = auth;
   const [listFile, setListFile] = useState<TListFile[]>([]);
+  const [visible, setVisible] = useState(-1);
 
   const { mutate, isLoading, isSuccess } = useMutation({
     mutationFn: async () =>
@@ -85,11 +87,16 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
     ]);
   };
 
-  const removeFile = (index: number) => {
+  const removeFile = () => {
     let listFileAux = [...listFile];
-    listFileAux.splice(index, 1);
-    removeSizeFile(listFile[index].uri);
+    listFileAux.splice(visible, 1);
+    removeSizeFile(listFile[visible].uri);
     setListFile(listFileAux);
+    setVisible(-1);
+    Toast.show({
+      type: "infoBottom",
+      text2: "Item removido",
+    });
   };
 
   return (
@@ -137,7 +144,7 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
                     type="material-community"
                     size={30}
                     iconColor="red"
-                    onPress={() => removeFile(index)}
+                    onPress={() => setVisible(index)}
                     mb="2xl"
                     pl={width / 4 - 32}
                   />
@@ -166,6 +173,13 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
         mt="md"
         loading={isLoading}
         disabled={isLoading || description.length < 20 || isSuccess}
+      />
+      <Modal
+        title="Deseja deletar esse item?"
+        isVisible={visible > -1}
+        onBackdropPress={() => setVisible(-1)}
+        onPressSecondary={() => setVisible(-1)}
+        onPressPrimary={removeFile}
       />
     </Box>
   );

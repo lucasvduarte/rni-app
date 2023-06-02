@@ -9,6 +9,7 @@ import {
   Icon,
   Select,
   Skeleton,
+  Modal,
 } from "../../../../../components";
 import { RegisterAttendanceProps } from "../../../../../navigation/private/types";
 import { useAppSelector } from "../../../../../redux/hooks";
@@ -37,6 +38,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
   const { files, listRegister } = attendance;
   const { enterpriseSelect, user } = auth;
   const [listFile, setListFile] = useState<TListFile[]>([]);
+  const [visible, setVisible] = useState(-1);
 
   const { data, isLoading } = useQuery({
     queryKey: "getSubject",
@@ -105,11 +107,16 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
     ]);
   };
 
-  const removeFile = (index: number) => {
+  const removeFile = () => {
     let listFileAux = [...listFile];
-    listFileAux.splice(index, 1);
-    removeSizeFile(listFile[index].uri);
+    listFileAux.splice(visible, 1);
+    removeSizeFile(listFile[visible].uri);
     setListFile(listFileAux);
+    setVisible(-1);
+    Toast.show({
+      type: "infoBottom",
+      text2: "Item removido",
+    });
   };
 
   if (isLoading) {
@@ -161,7 +168,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
                     type="material-community"
                     size={30}
                     iconColor="red"
-                    onPress={() => removeFile(index)}
+                    onPress={() => setVisible(index)}
                     mb="2xl"
                     pl={width / 4 - 32}
                   />
@@ -203,6 +210,13 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
         mt="md"
         loading={isLoadingMutate}
         disabled={isLoadingMutate || description.length < 20 || isSuccess}
+      />
+      <Modal
+        title="Deseja deletar esse item?"
+        isVisible={visible > -1}
+        onBackdropPress={() => setVisible(-1)}
+        onPressSecondary={() => setVisible(-1)}
+        onPressPrimary={removeFile}
       />
     </Box>
   );

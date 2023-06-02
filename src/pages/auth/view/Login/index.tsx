@@ -6,8 +6,8 @@ import {
   Icon,
   TextInput,
   Text,
+  Image,
 } from "../../../../components";
-import * as Animatable from "react-native-animatable";
 import React, { useLayoutEffect, useState } from "react";
 import { LoginPng } from "../../../../assets";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
@@ -75,13 +75,13 @@ export const Login = ({ navigation }: LoginProps) => {
 
   return (
     <KeyboardAwareScrollView fadingEdgeLength={500}>
-      <Box alignItems="center" justifyContent="center">
-        <Animatable.Image
-          source={LoginPng}
-          animation="flipInY"
-          resizeMode="contain"
-          duration={1200}
-        />
+      <Box
+        alignItems="center"
+        justifyContent="center"
+        animation="flipInY"
+        duration={1200}
+      >
+        <Image source={LoginPng} resizeMode="contain" />
       </Box>
       <Box p="xl" pt="4xl" animation="fadeInUp" delay={500}>
         <TextInput

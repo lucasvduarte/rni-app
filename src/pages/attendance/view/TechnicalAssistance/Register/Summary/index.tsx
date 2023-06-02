@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Text,
@@ -7,17 +7,33 @@ import {
   Button,
   Image,
   Icon,
+  Modal,
 } from "../../../../../../components";
 import { TechnicalAssistanceSummaryProps } from "../../../../../../navigation/private/types";
 import { useAppDispatch, useAppSelector } from "../../../../../../redux/hooks";
 import { RootState } from "../../../../../../redux/store";
 import { setRemoveRegister } from "../../../../../../redux/modules/attendance/action";
+import Toast from "react-native-toast-message";
 
 export const Summary = ({ navigation }: TechnicalAssistanceSummaryProps) => {
   const dispatch = useAppDispatch();
+  const [visible, setVisible] = useState(-1);
   const { listRegister } = useAppSelector((state: RootState) => {
     return state.attendance;
   });
+
+  const onPress = (index: number) => {
+    setVisible(index);
+  };
+
+  const removeRegister = () => {
+    dispatch(setRemoveRegister(visible));
+    setVisible(-1);
+    Toast.show({
+      type: "infoBottom",
+      text2: "Item removido",
+    });
+  };
 
   return (
     <Box px="lg" pb="2lg" flex={1}>
@@ -59,20 +75,22 @@ export const Summary = ({ navigation }: TechnicalAssistanceSummaryProps) => {
                     type="material-community"
                     size={30}
                     iconColor="red"
-                    onPress={() => dispatch(setRemoveRegister(index))}
+                    onPress={() => onPress(index)}
                   />
                 </Box>
                 <Box flexDir="row" alignItems="center" pr="xl" pb="xl" mt="-lg">
-                  <Image
-                    source={{
-                      uri: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/ba/29/5c/img-worlds-of-adventure.jpg?w=1200&h=1200&s=1",
-                      width: 88,
-                      height: 80,
-                    }}
-                    borderRadius={8}
-                    mr="xl"
-                    resizeMode="cover"
-                  />
+                  {item.item.imagem && (
+                    <Image
+                      source={{
+                        uri: item.item.imagem,
+                        width: 88,
+                        height: 80,
+                      }}
+                      borderRadius={8}
+                      mr="xl"
+                      resizeMode="cover"
+                    />
+                  )}
 
                   <Text
                     title={item.item.titulo}
@@ -105,6 +123,13 @@ export const Summary = ({ navigation }: TechnicalAssistanceSummaryProps) => {
         title="Continuar"
         onPress={() => navigation.navigate("TechnicalAssistanceFiles")}
         mt="md"
+      />
+      <Modal
+        title="Deseja deletar esse item?"
+        isVisible={visible > -1}
+        onBackdropPress={() => setVisible(-1)}
+        onPressSecondary={() => setVisible(-1)}
+        onPressPrimary={removeRegister}
       />
     </Box>
   );

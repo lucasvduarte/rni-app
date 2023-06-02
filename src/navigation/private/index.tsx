@@ -512,6 +512,7 @@ export const PrivateNavigation = () => {
         options={{
           headerTitle: "Resumo",
           headerRight: () => <HeaderRight />,
+          headerLeft: () => <></>,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,
           headerStyle: { backgroundColor: colors.whiteBlack },
