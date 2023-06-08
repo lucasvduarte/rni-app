@@ -71,17 +71,13 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
     if (files.length > 5 || !result) {
       return;
     }
-
+    const type = result.type === "video" ? "video" : "image";
     setListFile((previus) => [
       ...previus,
       {
         filename: filename,
         uri: result.uri,
-        arquivo:
-          result.type === "video"
-            ? `data:video/${typeFile};base64,${fileSystem}`
-            : `data:image/${typeFile};base64,${result.base64}`,
-
+        arquivo: `data:${type}/${typeFile};base64,${fileSystem}`,
         type: `${result.type}/${typeFile}`,
       },
     ]);

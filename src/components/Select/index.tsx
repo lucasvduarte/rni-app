@@ -10,9 +10,9 @@ import { Card } from "../Card";
 import { BottomSheet } from "../BottomSheet";
 
 export const Select: React.FC<ISelect> = (props) => {
-  const { onChangeText, isVisible, listValues, title } = props;
+  const { onChangeText, isVisible, listValues, title, value } = props;
   const [visible, setVisible] = useState(isVisible || false);
-  const [valueSelect, setValueSelect] = useState<string | undefined>(undefined);
+  const [valueSelect, setValueSelect] = useState<string | undefined>(value);
 
   const onPressSelect = (value: string) => {
     onChangeText(value || "");
@@ -25,7 +25,7 @@ export const Select: React.FC<ISelect> = (props) => {
       <Pressable onPress={() => setVisible(true)} style={{ width: "100%" }}>
         <TextInput
           {...props}
-          value={valueSelect}
+          value={valueSelect || value}
           disabled
           disabledInputStyle={{
             opacity: 1,

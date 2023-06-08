@@ -40,7 +40,8 @@ export const ToastStyled = () => {
       const text1Api = props.props?.error?.response?.data?.message;
       const text2Api =
         props.props?.error?.response?.data?.originalMessage?.message ||
-        props.props?.error?.response?.data?.msgError?.message;
+        props.props?.error?.response?.data?.msgError?.message ||
+        props.props?.error?.response?.data?.originalMessage?.body[0]?.message;
 
       return (
         <ErrorToast

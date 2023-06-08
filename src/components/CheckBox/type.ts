@@ -24,4 +24,5 @@ export interface CheckBoxProps
     Pick<FlexPropsType, "flex">,
     VariantPropsType {
   color?: keyof typeof themes.light.colors;
+  title?: string;
 }

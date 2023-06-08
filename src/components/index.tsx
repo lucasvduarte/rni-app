@@ -34,3 +34,4 @@ export { Select } from "./Select";
 export { Sliders } from "./Slider";
 export { Image } from "./Image";
 export { InfoAlert } from "./InfoAlert";
+export { CheckBoxList } from "./CheckBoxList";
