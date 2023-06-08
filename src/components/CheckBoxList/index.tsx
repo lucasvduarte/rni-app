@@ -2,29 +2,34 @@ import { CheckBox } from "../CheckBox";
 import { CheckBoxListProps } from "./type";
 import { Text } from "../Text";
 import { useMemo } from "react";
+import { Box } from "../Box";
 
 export const CheckBoxList = (props: CheckBoxListProps) => {
-  const { title, listValues, value } = props;
+  const { label, listValues, value } = props;
 
   const titleCheckBox = useMemo(() => {
-    if (!title) return null;
+    if (!label) return null;
     return (
       <Text
-        title={title}
+        title={label}
         pb="sm"
         color="easternBlue"
         fontSize="3xl"
         fontWeight="bold"
       />
     );
-  }, [title]);
+  }, [label]);
 
   return (
-    <>
+    <Box mb="md">
       {titleCheckBox}
       {listValues.map((item) => (
-        <CheckBox {...props} checked={item.value === value} />
+        <CheckBox
+          {...props}
+          title={item.title}
+          checked={item.value === value}
+        />
       ))}
-    </>
+    </Box>
   );
 };
