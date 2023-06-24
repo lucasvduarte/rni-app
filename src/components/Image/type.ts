@@ -1,4 +1,7 @@
-import { ImageProps as ImagePropsRN } from "react-native";
+import {
+  GestureResponderEvent,
+  ImageProps as ImagePropsRN,
+} from "react-native";
 import {
   BackgroundPropsType,
   DimensionPropsType,
@@ -32,4 +35,5 @@ export interface ImageProps
   height?: number;
   width?: number;
   children?: React.ReactNode;
+  onPressSecondy?: ((event: GestureResponderEvent) => void) | undefined;
 }

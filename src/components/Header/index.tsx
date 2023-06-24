@@ -7,6 +7,7 @@ import { Image } from "../Image";
 import { Icon } from "../Icon";
 import { useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
+import { Platform } from "react-native";
 
 type ScreenNavigationProp = CompositeNavigationProp<any, any>;
 
@@ -39,6 +40,20 @@ export const HeaderRight = () => {
       size={30}
       iconColor="prussianBlueWhite"
       onPress={() => navigate("Menu")}
+    />
+  );
+};
+
+export const HeaderLeft = () => {
+  const { goBack } = useNavigation<ScreenNavigationProp>();
+  return (
+    <Icon
+      type="material"
+      name={Platform.OS !== "android" ? "arrow-back-ios" : "arrow-back"}
+      size={24}
+      iconColor="prussianBlueWhite"
+      onPress={() => goBack()}
+      mr="xl"
     />
   );
 };

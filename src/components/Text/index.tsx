@@ -35,7 +35,7 @@ export const Text = (props: TextProps) => {
             name={iconName}
             size={iconSize}
             iconColor={color}
-            pr="sm"
+            mr="sm"
           />
         )}
         <TextStyled {...props} color={colors[color] as never}>
@@ -53,7 +53,7 @@ export const Text = (props: TextProps) => {
             name={iconName}
             size={iconSize}
             iconColor={color}
-            pr="sm"
+            mr="sm"
           />
         )}
         <TextStyled {...props} color={colors[color] as never}>

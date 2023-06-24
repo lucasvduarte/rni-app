@@ -6,7 +6,7 @@ export { Button } from "./Button";
 export { TextInput } from "./TextInput";
 export { CheckBox } from "./CheckBox";
 export { Card } from "./Card";
-export { HeaderTitle, HeaderRight } from "./Header";
+export { HeaderTitle, HeaderRight, HeaderLeft } from "./Header";
 export { Icon } from "./Icon";
 export { Calendar } from "./Calendar";
 export { Modal } from "./Modal";

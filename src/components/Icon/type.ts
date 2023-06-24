@@ -12,12 +12,14 @@ import {
   VariantPropsType,
   ShadowPropsType,
   AnimatableProperties,
+  PositionPropsType,
 } from "../Ui/type";
 
 export interface IconProps
   extends SpacingPropsType,
     BorderPropsType,
     DimensionPropsType,
+    PositionPropsType,
     OverflowPropsType,
     OpacityPropsType,
     ZIndexPropsType,

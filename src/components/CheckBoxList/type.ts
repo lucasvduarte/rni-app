@@ -5,6 +5,7 @@ export interface CheckBoxListProps extends Omit<CheckBoxProps, "checked"> {
   onChangeText: (value: string) => void;
   listValues: TListValues[];
   label?: string;
+  description?: string;
 }
 export type TListValues = {
   title: string;
