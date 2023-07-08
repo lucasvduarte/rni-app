@@ -35,3 +35,4 @@ export { Sliders } from "./Slider";
 export { Image } from "./Image";
 export { InfoAlert } from "./InfoAlert";
 export { CheckBoxList } from "./CheckBoxList";
+export { Pdf } from "./Pdf";

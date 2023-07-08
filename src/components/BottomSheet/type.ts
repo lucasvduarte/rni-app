@@ -15,6 +15,7 @@ import {
   ShadowPropsType,
   AnimatableProperties,
 } from "../Ui/type";
+import { PdfPropd } from "../Pdf";
 
 export interface BottomSheetProps
   extends SpacingPropsType,
@@ -27,19 +28,13 @@ export interface BottomSheetProps
     ZIndexPropsType,
     ShadowPropsType,
     FlexPropsType,
+    PdfPropd,
     AnimatableProperties<{}>,
     Pick<BackgroundPropsType, "bg">,
     VariantPropsType {
   children?: ReactNode;
   visible?: boolean;
   type?: "pdf";
-  source?: {
-    uri?: string;
-    base64?: string;
-    headers?: {
-      [key: string]: string;
-    };
-  };
   setVisible?: (value: boolean) => void;
   shareData?: {
     title: string;

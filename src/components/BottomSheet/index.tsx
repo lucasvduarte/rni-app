@@ -1,14 +1,13 @@
 import React, { useLayoutEffect, useState } from "react";
 import { BottomSheetProps } from "./type";
 import { BottomSheet as RNBottomSheet } from "@rneui/themed";
-import PDFReader from "rn-pdf-reader-js";
 import { Box } from "../Box";
 import { Dimensions } from "react-native";
-import { useTheme } from "styled-components/native";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
 import { useDownload } from "../../hooks";
-const { width, height } = Dimensions.get("window");
+import { Pdf } from "../Pdf";
+const { height } = Dimensions.get("window");
 
 export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
   props
@@ -22,7 +21,6 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
     shareData,
   } = props;
   const [isVisible, setIsVisible] = useState(false);
-  const { colors } = useTheme();
   const { share } = useDownload();
 
   useLayoutEffect(() => {
@@ -76,34 +74,7 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
               pb="2xl"
             />
 
-            <PDFReader
-              source={{ ...source }}
-              style={{
-                width,
-                height: height,
-              }}
-              customStyle={{
-                readerContainer: { backgroundColor: colors.whiteBlack },
-                readerContainerDocument: {
-                  backgroundColor: "transparent",
-                  height: height,
-                },
-                readerContainerNumbers: {
-                  backgroundColor: colors.transparent,
-                },
-                readerContainerZoomContainer: {
-                  backgroundColor: colors.transparent,
-                },
-                readerContainerZoomContainerButton: {
-                  color: colors.blackWhite,
-                },
-                readerContainerNumbersContent: {
-                  color: colors.blackWhite,
-                  backgroundColor: colors.veryLightGraySuvaGrey,
-                },
-              }}
-              webviewStyle={{ backgroundColor: colors.whiteBlack }}
-            />
+            <Pdf source={{ ...source }} />
           </Box>
         </RNBottomSheet>
       </Box>
