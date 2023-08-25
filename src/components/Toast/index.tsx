@@ -6,6 +6,29 @@ import Toast, {
 } from "react-native-toast-message";
 import { useTheme } from "styled-components/native";
 
+type TBodyError =
+  | {
+      message: string;
+      errorCode: string;
+      fields: string[];
+    }
+  | undefined;
+
+type TOriginalMessage = {
+  errorCode: string;
+  body: TBodyError[];
+  statusCode: number;
+};
+
+type TMsgError = {
+  type: string;
+  locale: string;
+  message?: string;
+  originalMessage?: TOriginalMessage;
+  detail: string;
+  msgError?: any;
+};
+
 export const ToastStyled = () => {
   const { colors } = useTheme();
 
@@ -37,11 +60,17 @@ export const ToastStyled = () => {
     ),
 
     error: (props: ToastShowParams) => {
-      const text1Api = props.props?.error?.response?.data?.message;
+      const error: TMsgError = props.props?.error?.response?.data;
+
+      let originalMessage: TBodyError = undefined;
+      if (error?.originalMessage?.body) {
+        originalMessage = error.originalMessage.body.at(0);
+      }
+      const text1Api = originalMessage?.message || error.message;
       const text2Api =
-        props.props?.error?.response?.data?.originalMessage?.message ||
-        props.props?.error?.response?.data?.msgError?.message ||
-        props.props?.error?.response?.data?.originalMessage?.body[0]?.message;
+        originalMessage?.fields.at(0) ||
+        error?.msgError?.message ||
+        error?.msgError;
 
       return (
         <ErrorToast
@@ -120,45 +149,7 @@ export const ToastStyled = () => {
         </Text>
       </View>
     ),
-    infoBottom: () => {
-      return true;
-    },
   };
 
-  const toastConfig2 = {
-    infoBottom: (props: ToastShowParams) => {
-      return (
-        <ErrorToast
-          {...props}
-          style={{
-            borderLeftColor: colors.easternBlue,
-            backgroundColor: colors.white,
-            height: "auto",
-            minHeight: 60,
-            paddingVertical: 8,
-            width: "90%",
-            borderRadius: 10,
-          }}
-          text1Style={{
-            fontSize: 16,
-            fontWeight: "400",
-          }}
-          text2Style={{
-            fontSize: 14,
-            fontWeight: "300",
-          }}
-          text2NumberOfLines={4}
-          text1={props.text1 || "Aviso"}
-          text2={props.text2 || "Sua solicitação foi efetuada com sucesso"}
-        />
-      );
-    },
-  };
-  return (
-    <Toast
-      config={toastConfig.infoBottom() ? toastConfig2 : toastConfig}
-      visibilityTime={5000}
-      position={toastConfig.infoBottom() ? "bottom" : "top"}
-    />
-  );
+  return <Toast config={toastConfig} visibilityTime={5000} position={"top"} />;
 };

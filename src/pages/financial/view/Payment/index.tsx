@@ -6,38 +6,80 @@ import {
   ListDescription,
   Skeleton,
 } from "../../../../components";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
-import { postPaymentInfo } from "../../services/Financial";
-import { formatContract } from "../../../../config/request";
+import {
+  getPaymentSlip,
+  postPaymentInfo,
+  postPaymentSlip,
+} from "../../services/Financial";
+import {
+  formatContract,
+  formatContractSmall,
+} from "../../../../config/request";
 import { useEffect } from "react";
 import { formatCpf, formatCurrency } from "../../../../config/utils";
 import { formatCnpj } from "../../../../config/utils/format/cpf";
 import { PaymentsProps } from "../../../../navigation/private/types";
+import { TItem, TResponsePaymentSlip } from "../../services/Financial/type";
+
+type TMutation = {
+  item: TResponsePaymentSlip;
+  ctrclatip: string;
+};
 
 export const Payments = ({ navigation, route }: PaymentsProps) => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
     return state.auth;
   });
-  const { headerTitle } = route.params;
+  const { headerTitle, data } = route.params;
 
   useEffect(() => {
     navigation.setOptions({ headerTitle });
   }, []);
 
-  const { mutate, isLoading, data } = useMutation({
-    mutationFn: async () =>
-      await postPaymentInfo({
-        I_ANO: "2022",
-        I_CPF: user?.cliente.cpfcnpj || "",
-        I_EMPCOD: enterpriseSelect?.EMPCOD || "",
-        I_NSCCOD: enterpriseSelect?.NSCCOD || "",
-        I_TORCOD: enterpriseSelect?.TORCOD || "",
-        I_UNICOD: enterpriseSelect?.UNICOD || "",
-        I_UNITIP: enterpriseSelect?.UNITIP || "",
-        Id_Contrato__c: formatContract(enterpriseSelect),
-      }),
+  const {
+    mutate,
+    isLoading: isLoadingMutation,
+    data: dataMutation,
+  } = useMutation({
+    mutationFn: async ({ item, ctrclatip }: TMutation) => {
+      await postPaymentSlip({
+        empresa: item.BUKRS,
+        conta: item.HBKID,
+        cliente: item.KUNNR,
+        dtvenc: item.DTVENC,
+        valor: item.WRBTR,
+        xref3: item.XREF3,
+        cpfcnpj: user?.cliente.cpfcnpj || "",
+        Id_Contrato__c: formatContract(enterpriseSelect, ctrclatip),
+      });
+    },
+    onError: (error) => {
+      Toast.show({
+        type: "error",
+        props: { error },
+      });
+    },
+  });
+
+  const { isLoading, refetch } = useQuery({
+    queryKey: "getPaymentSlipPayments",
+    enabled: false,
+    queryFn: () =>
+      getPaymentSlip(
+        user?.cliente.cpfcnpj || "",
+        formatContractSmall(data.CTRCLATIP.toString(), enterpriseSelect)
+      ),
+    onSuccess: ({ data }) => {
+      /*const ticketAux  = data.find(
+         (item) =>
+           item.DTVENC === dtbase && item.WRBTR === valueSimulation
+       );
+      mutate()
+      */
+    },
     onError: (error) => {
       Toast.show({
         type: "error",
@@ -47,62 +89,16 @@ export const Payments = ({ navigation, route }: PaymentsProps) => {
   });
 
   useEffect(() => {
-    mutate();
+    refetch();
   }, []);
 
-  const list = [
-    { title: "Nome completo", description: user?.cliente.nome },
-    { title: "CPF", description: formatCpf(user?.cliente.cpfcnpj) },
-    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
-    {
-      title: "CNPJ",
-      description: formatCnpj(data?.data.result?.IT_CABECALHO.item[0].EMP_CNPJ),
-    },
-    {
-      title: "Razão Social",
-      description: data?.data.result?.IT_CABECALHO.item[0].AUX1 || "",
-    },
-    {
-      title: "Valor total pago no ano de 2022",
-      description: formatCurrency(data?.data.result?.IT_SAIDA?.item[0]?.TOTAL),
-    },
-  ];
-
-  if (isLoading) {
+  if (isLoading || isLoadingMutation) {
     return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
   }
 
   return (
     <Box flex={1} px="xl" mb="2lg">
-      <Box flex={1}>
-        <FlatList
-          data={list}
-          keyExtractor={(item) => item.title}
-          contentContainerStyle={{ paddingVertical: 24 }}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return (
-              <ListDescription
-                title={item.title}
-                description={item?.description?.toString()}
-              />
-            );
-          }}
-        />
-      </Box>
-
-      {data?.data?.result?.pdfBase64 && (
-        <BottomSheet
-          source={{
-            base64: `data:application/pdf;base64,${data?.data?.result?.pdfBase64}`,
-          }}
-          shareData={{
-            title: "informePagamento",
-            mimetype: "pdf",
-            base64: data?.data?.result?.pdfBase64,
-          }}
-        />
-      )}
+      <Box flex={1}></Box>
     </Box>
   );
 };

@@ -23,6 +23,9 @@ const defaultTheme = {
   "2xl": {
     padding: 20,
   },
+  top: {
+    padding: 0,
+  },
 };
 
 export const Card = (props: CardProps) => {

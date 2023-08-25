@@ -281,7 +281,7 @@ export interface OverflowPropsType {
 
 export const zIndexProps = ["zIndex"] as const;
 export interface ZIndexPropsType {
-  zIndex?: number;
+  zIndex?: number | string;
 }
 
 export const loadingProps = ["loading", "loaderSize", "loaderColor"] as const;
@@ -370,7 +370,7 @@ export interface ThemeType {
 
 type TSizesNumber = number;
 
-export type TShadow = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+export type TShadow = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "top";
 
 export type TFontSize =
   | "xs"

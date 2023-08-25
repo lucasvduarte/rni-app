@@ -36,3 +36,5 @@ export { Image } from "./Image";
 export { InfoAlert } from "./InfoAlert";
 export { CheckBoxList } from "./CheckBoxList";
 export { Pdf } from "./Pdf";
+export { ModalSelect } from "./ModalSelect";
+export { SpeedDial } from "./SpeedDial";

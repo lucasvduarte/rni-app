@@ -80,6 +80,15 @@ export const defaultTheme: ThemeType = {
 
       elevation: 20,
     },
+    top: {
+      shadowOffset: {
+        width: 0,
+        height: -1,
+      },
+      shadowOpacity: 0.51,
+      shadowRadius: 8,
+      elevation: 24,
+    },
   },
 
   borderRadius: {
