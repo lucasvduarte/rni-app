@@ -182,4 +182,6 @@ export type TUpdateAttendance = {
   Avaliacao_cliente_canais__c?: string;
   Status_atendimento__c?: string;
   quem_esta_vistoria__c?: string;
+  status?: string;
+  faseparam__c?: string;
 };

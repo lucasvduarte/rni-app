@@ -1,6 +1,6 @@
 import { WebViewPage } from "../../../../components";
 
-const uri = "https://blog.rni.com.br/";
+const uri = "https://rni.com.br/blog";
 
 export const Blog = () => {
   return (

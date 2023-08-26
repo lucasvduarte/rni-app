@@ -57,6 +57,8 @@ export const TechnicalAssistanceDetails = ({
       await putAttendance({
         id: data.id,
         visualizado_pelo_cliente__c: true,
+        status: "Concluído",
+        faseparam__c: "Caso concluído",
         ...value,
       }).then(() => {
         if (value?.resolvido_portal__c) {
