@@ -1,1 +1,1 @@
-# rni-app
+# RNI - APP
