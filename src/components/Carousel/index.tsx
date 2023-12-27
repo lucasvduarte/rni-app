@@ -46,8 +46,9 @@ export const Carousel = <T extends object>({
       animated: true,
       index: parseInt(currentIndex) + (isBack ? -1 : 1),
     });
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setCurrentIndex(currentIndex + (isBack ? -1 : 1));
+      clearTimeout(timeoutId);
     }, 1000);
   };
 

@@ -24,7 +24,7 @@ export const includesParcelOfTheType = (data?: TParcelList[]) => {
   });
 };
 
-export const balanceValue = (data?: TParcelList[]) => {
+export const balanceValue = (data?: TParcelList[], notFormat?: boolean) => {
   if (!data) {
     return formatCurrency(0);
   }
@@ -33,6 +33,9 @@ export const balanceValue = (data?: TParcelList[]) => {
     return acc + parcel.SIPVLRANT;
   }, 0);
 
+  if (notFormat) {
+    return value;
+  }
   return formatCurrency(value);
 };
 
@@ -67,4 +70,25 @@ export const initValueParcelList = (enterpriseSelect?: TItem, value?: any) => {
     pvncod: enterpriseSelect?.AUX3 || "",
     ...value,
   };
+};
+
+export const formatInformationDataList = (
+  description: string | undefined,
+  parcelList: TParcelList[] | undefined
+) => {
+  const list = [
+    { title: "Tipo do contrato", description: description || "" },
+    {
+      title: "Saldo devedor atual",
+      description: balanceValue(parcelList),
+    },
+    {
+      title: "Parcelas em aberto",
+      description: parcelList?.length,
+    },
+  ].filter((item) => {
+    return !!item?.description;
+  });
+
+  return list;
 };

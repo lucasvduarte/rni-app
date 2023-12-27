@@ -49,7 +49,7 @@ export const useDownload = () => {
           })
           .catch((e) => {
             Toast.show({
-              type: "error",
+              type: "errorToast",
               text2: e,
             });
           });

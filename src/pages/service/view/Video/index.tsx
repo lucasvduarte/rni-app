@@ -11,14 +11,14 @@ export const Video = () => {
     queryFn: () => getVideos(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton size={4} height={200} m="xl" borderRadius="xl" />;
+    return <Skeleton size={4} height={200} m="xl" />;
   }
 
   return (

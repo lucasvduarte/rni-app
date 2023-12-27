@@ -1,4 +1,5 @@
 import { TListValues } from "../../../../../components/Select/type";
+import { TQuestions } from "../../../service/Search/type";
 
 export const Segment: TListValues[] = [
   { title: "0", value: "0" },
@@ -18,3 +19,13 @@ export const YesNo: TListValues[] = [
   { title: "Sim", value: "sim" },
   { title: "Não", value: "nao" },
 ];
+
+export const formatList = (listQuestions: TQuestions[]) => {
+  const list = listQuestions.map((item: TQuestions) => {
+    let answer = item.tiporesposta === "SimNao" ? "sim" : "0";
+    answer = item.tiporesposta === "Texto" ? "" : answer;
+    return { pesquisaperguntasguid: "", resposta: "" };
+  }, []);
+
+  return list;
+};

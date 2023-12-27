@@ -26,11 +26,13 @@ import { getSubject } from "../../../service/Attendance";
 
 const { width } = Dimensions.get("screen");
 
+const MAX_SIZE = 25000000;
+
 export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
   const [description, setDescription] = useState("");
   const [subject, setSubject] = useState("");
   const { uploadFile, sizeCurrentFile, removeSizeFile } = useImagePicker({
-    maxSize: 25000000,
+    maxSize: MAX_SIZE,
   });
   const { auth, attendance } = useAppSelector((state: RootState) => {
     return state;
@@ -45,7 +47,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
     queryFn: () => getSubject(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -74,7 +76,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
 
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -87,24 +89,13 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
   });
 
   const handleFile = async () => {
-    const { result, fileSystem, filename, typeFile } = await uploadFile();
+    const { result, formattedFile } = await uploadFile();
+
     if (files.length > 5 || !result) {
       return;
     }
 
-    setListFile((previus) => [
-      ...previus,
-      {
-        filename: filename,
-        uri: result.uri,
-        arquivo:
-          result.type === "video"
-            ? `data:video/${typeFile};base64,${fileSystem}`
-            : `data:image/${typeFile};base64,${result.base64}`,
-
-        type: `${result.type}/${typeFile}`,
-      },
-    ]);
+    setListFile((previus) => [...previus, { ...formattedFile }]);
   };
 
   const removeFile = () => {
@@ -120,7 +111,7 @@ export const RegisterAttendance = ({ navigation }: RegisterAttendanceProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

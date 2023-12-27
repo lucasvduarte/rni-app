@@ -15,14 +15,14 @@ export const NotificationDetails = ({ route }: NotificationDetailsProps) => {
     queryFn: () => getNotificationText(notification.guidcontrol),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

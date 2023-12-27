@@ -28,7 +28,7 @@ export const Category = ({ navigation }: TechnicalAssistanceCategoryProps) => {
     queryFn: () => getCategory(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -61,7 +61,7 @@ export const Category = ({ navigation }: TechnicalAssistanceCategoryProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} />;
   }
 
   return (

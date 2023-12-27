@@ -19,7 +19,8 @@ import { TItem } from "../../../../redux/modules/auth/type";
 import { listCard } from "./helps";
 import { MenuProps } from "../../../../navigation/private/types";
 import { Dimensions, SectionList } from "react-native";
-
+import { useQuery } from "react-query";
+import { getContract } from "../../services/Contract";
 const { width } = Dimensions.get("window");
 
 export const Menu = ({ navigation }: MenuProps) => {
@@ -37,17 +38,32 @@ export const Menu = ({ navigation }: MenuProps) => {
     }
   }, [isSingIn]);
 
+  const { data, refetch, isRefetching } = useQuery({
+    queryKey: "getContract",
+    enabled: false,
+    queryFn: () => getContract(enterpriseSelect),
+  });
+
   const onPressSelect = (item: TItem) => {
     dispatch(setEnterpriseSelect(item));
+    refetch();
     setTimeout(() => {
       setVisible(false);
     }, 300);
   };
 
+  if (isRefetching) {
+    return null;
+  }
+
   return (
     <Box flex={1}>
       <SectionList
-        sections={listCard}
+        sections={listCard(
+          enterpriseSelect,
+          user?.item,
+          data?.data.records[0]?.cedido_cyrella_virgo__c
+        )}
         keyExtractor={(item) => item.name}
         ListHeaderComponent={
           <Box alignItems="flex-end" px="xl" pb="xl" pt="sm">

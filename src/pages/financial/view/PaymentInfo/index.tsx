@@ -12,8 +12,7 @@ import { RootState } from "../../../../redux/store";
 import { postPaymentInfo } from "../../services/Financial";
 import { formatContract } from "../../../../config/request";
 import { useEffect } from "react";
-import { formatCpf, formatCurrency } from "../../../../config/utils";
-import { formatCnpj } from "../../../../config/utils/format/cpf";
+import { formatDataList } from "./help";
 
 export const PaymentInfo = () => {
   const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
@@ -34,7 +33,7 @@ export const PaymentInfo = () => {
       }),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -44,33 +43,15 @@ export const PaymentInfo = () => {
     mutate();
   }, []);
 
-  const list = [
-    { title: "Nome completo", description: user?.cliente.nome },
-    { title: "CPF", description: formatCpf(user?.cliente.cpfcnpj) },
-    { title: "Empreendimento", description: enterpriseSelect?.EMPDESCOM },
-    {
-      title: "CNPJ",
-      description: formatCnpj(data?.data.result?.IT_CABECALHO.item[0].EMP_CNPJ),
-    },
-    {
-      title: "Razão Social",
-      description: data?.data.result?.IT_CABECALHO.item[0].AUX1 || "",
-    },
-    {
-      title: "Valor total pago no ano de 2022",
-      description: formatCurrency(data?.data.result?.IT_SAIDA?.item[0]?.TOTAL),
-    },
-  ];
-
   if (isLoading) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (
     <Box flex={1} px="xl" mb="2lg">
       <Box flex={1}>
         <FlatList
-          data={list}
+          data={formatDataList(user, enterpriseSelect, data?.data.result)}
           keyExtractor={(item) => item.title}
           contentContainerStyle={{ paddingVertical: 24 }}
           showsVerticalScrollIndicator={false}

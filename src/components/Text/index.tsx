@@ -15,6 +15,7 @@ export const Text = (props: TextProps) => {
     iconType = "material-community",
     iconSize = 18,
     alignItemsIcon = "center",
+    iconColor,
   } = props;
   const { colors } = useTheme();
 
@@ -34,7 +35,7 @@ export const Text = (props: TextProps) => {
             type={iconType}
             name={iconName}
             size={iconSize}
-            iconColor={color}
+            iconColor={iconColor || color}
             mr="sm"
           />
         )}
@@ -52,8 +53,8 @@ export const Text = (props: TextProps) => {
             type={iconType}
             name={iconName}
             size={iconSize}
-            iconColor={color}
-            mr="sm"
+            iconColor={iconColor || color}
+            mr="xs"
           />
         )}
         <TextStyled {...props} color={colors[color] as never}>
@@ -64,7 +65,11 @@ export const Text = (props: TextProps) => {
   }
 
   return (
-    <TextStyled {...props} color={colors[color] as never}>
+    <TextStyled
+      fontFamily="Inter_400Regular"
+      {...props}
+      color={colors[color] as never}
+    >
       {title || children}
     </TextStyled>
   );

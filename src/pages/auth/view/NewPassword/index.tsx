@@ -25,7 +25,7 @@ export const NewPassword = ({ navigation, route }: NewPasswordProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

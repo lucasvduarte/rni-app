@@ -5,38 +5,12 @@ import {
   ListDescription,
   Text,
 } from "../../../../../components";
-import { formatCurrency, formatDatePtBr } from "../../../../../config/utils";
 import { ExtractDetailsProps } from "../../../../../navigation/private/types";
+import { formatData } from "./helps";
 
 export const ExtractDetails = ({ route }: ExtractDetailsProps) => {
   const { data } = route.params;
-
-  const list = [
-    {
-      title: `Saldo em atraso até ${formatDatePtBr(new Date())}`,
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_ATRASO || 0),
-    },
-    {
-      title: `Saldo a vencer até ${formatDatePtBr(new Date())}`,
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.VLR_PRES || 0),
-    },
-    {
-      title: "Total devido para quitação",
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.SLD_DEVEDOR || 0),
-    },
-    {
-      title: "Total taxas pago",
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX2 || 0),
-    },
-    {
-      title: "Total Honorário pago",
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.AUX1 || 0),
-    },
-    {
-      title: `Total pago até ${formatDatePtBr(new Date())}`,
-      description: formatCurrency(data.OUTPUT?.E_RODAPE[0]?.TOT_PAGO || 0),
-    },
-  ];
+  const dataList = data.OUTPUT?.E_RODAPE;
 
   return (
     <Box flex={1} px="xl" mb="2lg">
@@ -48,7 +22,7 @@ export const ExtractDetails = ({ route }: ExtractDetailsProps) => {
         />
 
         <FlatList
-          data={list}
+          data={formatData(dataList?.length ? dataList[0] : undefined)}
           keyExtractor={(item) => item.title}
           contentContainerStyle={{ paddingVertical: 24 }}
           showsVerticalScrollIndicator={false}

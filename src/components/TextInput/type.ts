@@ -30,4 +30,5 @@ export interface TextInputProps
     Pick<FlexPropsType, "flex">,
     VariantPropsType {
   size?: SizeProps;
+  observation?: string;
 }

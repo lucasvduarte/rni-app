@@ -10,6 +10,15 @@ export const requestFields = <T extends object>(fields?: T) => {
   };
 };
 
+export const requestFieldsCreate = <T extends object>(fields?: T) => {
+  return {
+    devicecreate: "Aplicativo",
+    ipupdate: getIpStorage(),
+    usercreate: "rni.portaldocliente@gmail.com",
+    fields,
+  };
+};
+
 export const formatContract = (
   enterpriseSelect?: TItem,
   ctrclatip?: string

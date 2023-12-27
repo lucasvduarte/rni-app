@@ -15,6 +15,7 @@ export const Skeleton = (props: SkeletonProps) => {
     height = 32,
     listHeight,
     listWidth,
+    isBottom,
   } = props;
   const [list, setList] = useState<number[]>([]);
 
@@ -46,13 +47,48 @@ export const Skeleton = (props: SkeletonProps) => {
     );
   }
 
+  if (isBottom) {
+    return (
+      <Box flexDir={flexDir} flex={1} pb="2lg">
+        <Box flex={1}>
+          {list.map((item) => {
+            return (
+              <SkeletonStyled
+                animation="pulse"
+                {...props}
+                width={
+                  listWidth?.length && listWidth.length > item
+                    ? listWidth[item]
+                    : width
+                }
+                height={listHeight?.length ? listHeight[item] : height}
+                key={item}
+                mr={item === list.length - 1 ? "none" : mr}
+              />
+            );
+          })}
+        </Box>
+        <SkeletonStyled
+          animation="pulse"
+          width={width}
+          height={height}
+          {...props}
+        />
+      </Box>
+    );
+  }
+
   return (
     <Box flexDir={flexDir}>
       {list.map((item) => {
         return (
           <SkeletonStyled
             animation="pulse"
-            width={listWidth?.length ? listWidth[item] : width}
+            width={
+              listWidth?.length && listWidth.length > item
+                ? listWidth[item]
+                : width
+            }
             height={listHeight?.length ? listHeight[item] : height}
             key={item}
             mr={item === list.length - 1 ? "none" : mr}

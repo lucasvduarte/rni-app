@@ -72,7 +72,7 @@ export type TAttendance = {
   assunto_portal__c: string;
   casecomments?: string;
   casenumber: number;
-  contrato__r: TContrato;
+  contrato__r?: TContrato;
   createddate: string;
   data_hora_do_agendamento_da_visita__c?: string;
   description: string;

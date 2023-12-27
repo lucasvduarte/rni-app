@@ -4,20 +4,32 @@ import {
   Box,
   Button,
   ContractInformation,
+  Icon,
   ListDescription,
   Modal,
   Skeleton,
 } from "../../../../../components";
 import { DischargeSimulationProps } from "../../../../../navigation/private/types";
-import { getParcelList } from "../../../services/Financial";
+import {
+  getParcelList,
+  postParcelSend,
+  postSalesForce,
+} from "../../../services/Financial";
 import { balanceValue } from "../../helps";
-import { formatDatePtBr } from "../../../../../config/utils";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { RootState } from "../../../../../redux/store";
+import { formatDataList } from "./help";
+import { useState } from "react";
 
 export const DischargeSimulation = ({
   route,
   navigation,
 }: DischargeSimulationProps) => {
   const { data, dataParcelList, values } = route.params;
+  const [onSubmit, setOnSubmit] = useState(false);
+  const { user, enterpriseSelect } = useAppSelector((state: RootState) => {
+    return state.auth;
+  });
 
   const {
     data: dataListSimulation,
@@ -29,58 +41,67 @@ export const DischargeSimulation = ({
     queryFn: () => getParcelList({ ...data }, { ...values }),
     onError: (error: any) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   const { mutate, isLoading: isLoadingMutation } = useMutation({
-    //mutationFn: async () => await postParcelSend(user?.cliente),
-    onSuccess: () => {},
+    mutationFn: async () =>
+      await postParcelSend(
+        user?.cliente.cpfcnpj,
+        data.CTRCLATIP_DES,
+        "Quitacao",
+        values?.dtbase,
+        dataParcelList
+      ),
+    onSuccess: () => {
+      mutateSalesForce();
+    },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
-  const {} = useMutation({
-    //mutationFn: async () => await postSalesForce(user?.cliente),
-    onSuccess: () => {},
-    onError: (error) => {
-      Toast.show({
-        type: "error",
-        props: { error },
-      });
-    },
-  });
+  const { mutate: mutateSalesForce, isLoading: isLoadingSalesForce } =
+    useMutation({
+      mutationFn: async () =>
+        await postSalesForce(
+          enterpriseSelect,
+          user?.cliente.cpfcnpj,
+          balanceValue(dataListSimulation?.data.result, true) as number,
+          false,
+          values
+        ),
+      onSuccess: () => {
+        navigationPayments();
+      },
+      onError: () => {
+        navigationPayments();
+      },
+    });
 
-  const list = [
-    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
-    {
-      title: "Saldo devedor atual",
-      description: balanceValue(dataListSimulation?.data.result),
-    },
-    { title: "Vencimento", description: formatDatePtBr(values?.dtbase) },
-    {
-      title: "Incluir parcelas do financiamento?",
-      description: !!values?.incparfin ? "Sim" : "Não",
-    },
-  ].filter((item) => {
-    return !!item?.description;
-  });
+  const navigationPayments = () => {
+    navigation.navigate("Payments", { data, headerTitle: "" });
+  };
 
   if (isLoading) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (
     <Box flex={1} px="xl" mb="2lg">
       <Box flex={1}>
         <ContractInformation />
-        {list.map((item) => {
+        {formatDataList(
+          data?.CTRCLATIP_DES,
+          dataListSimulation?.data.result,
+          values
+        ).map((item) => {
           return (
             <ListDescription
               title={item.title}
@@ -89,8 +110,35 @@ export const DischargeSimulation = ({
             />
           );
         })}
+        <Button
+          title="Detalhe das Parcelas"
+          onPress={() =>
+            navigation.navigate("DetailsParcel", {
+              data: dataParcelList,
+            })
+          }
+          type="clear"
+          w={182}
+          iconPosition="right"
+          fullWidth={false}
+          isBold
+          icon={
+            <Icon
+              type="material-community"
+              name="chevron-right"
+              size={26}
+              iconColor="easternBlue"
+              pr="xs"
+            />
+          }
+        />
       </Box>
-      <Button title="Confirma" onPress={() => {}} mt="md" />
+      <Button
+        title="Confirma"
+        onPress={() => setOnSubmit(true)}
+        mt="md"
+        loading={isLoadingMutation || isLoadingSalesForce}
+      />
       <Modal
         title={error?.response?.data?.message || "Desculpe pelo nosso erro"}
         titleBody={
@@ -100,6 +148,14 @@ export const DischargeSimulation = ({
         isVisible={isError}
         onBackdropPress={() => navigation.goBack()}
         onPressPrimary={() => navigation.goBack()}
+      />
+
+      <Modal
+        title="Atenção: Ao clicar em Gerar Antecipação será gerado um boleto com as parcelas que deseja antecipar no vencimento selecionado."
+        isVisible={onSubmit}
+        onBackdropPress={(value) => setOnSubmit(value)}
+        onPressSecondary={() => setOnSubmit(false)}
+        onPressPrimary={() => mutate()}
       />
     </Box>
   );

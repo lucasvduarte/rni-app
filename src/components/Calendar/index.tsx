@@ -36,7 +36,14 @@ export const Calendar: React.FC<ICalendar> = (props) => {
   };
 
   if (type === "fixed") {
-    return <CalendarStyle {...props} />;
+    return (
+      <CalendarStyle
+        {...props}
+        onDayPress={(day) => {
+          onChangeText(day.dateString);
+        }}
+      />
+    );
   }
 
   return (

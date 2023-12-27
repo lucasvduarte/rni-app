@@ -7,6 +7,7 @@ import { Icon } from "../Icon";
 import { Button } from "../Button";
 import { useDownload } from "../../hooks";
 import { Pdf } from "../Pdf";
+import { WebViewPage } from "../WebView";
 const { height } = Dimensions.get("window");
 
 export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
@@ -15,10 +16,10 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
   const {
     children,
     visible = false,
-    type,
     source,
-    setVisible,
     shareData,
+    titleView,
+    html,
   } = props;
   const [isVisible, setIsVisible] = useState(false);
   const { share } = useDownload();
@@ -27,21 +28,31 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
     setIsVisible(visible);
   }, [visible]);
 
-  if (!type && !children && !shareData) {
+  if (!children && !shareData && !html) {
     console.warn("children is required");
     return null;
   }
 
-  if (shareData) {
+  if (source) {
     return (
       <Box>
-        <Button
-          title="Visualizar"
-          onPress={() => setIsVisible(true)}
-          type="outline"
-          mb="xl"
-        />
-        {shareData?.base64 && (
+        {titleView && (
+          <Button
+            title={titleView}
+            onPress={() => setIsVisible(true)}
+            type="clear"
+            mb="xl"
+          />
+        )}
+        {!titleView && (
+          <Button
+            title="Visualizar"
+            onPress={() => setIsVisible(true)}
+            type="outline"
+            mb="xl"
+          />
+        )}
+        {shareData?.base64 && !titleView && (
           <Button
             title="Compartilhar"
             onPress={() => {
@@ -75,6 +86,53 @@ export const BottomSheet: React.FunctionComponent<BottomSheetProps> = (
             />
 
             <Pdf source={{ ...source }} />
+          </Box>
+        </RNBottomSheet>
+      </Box>
+    );
+  }
+
+  if (html) {
+    return (
+      <Box>
+        {titleView && (
+          <Button
+            title={titleView}
+            onPress={() => setIsVisible(true)}
+            type="clear"
+            mb="xl"
+          />
+        )}
+        {!titleView && (
+          <Button
+            title="Visualizar"
+            onPress={() => setIsVisible(true)}
+            type="outline"
+            mb="xl"
+          />
+        )}
+        <RNBottomSheet
+          modalProps={{}}
+          isVisible={isVisible}
+          containerStyle={{
+            backgroundColor: "transparent",
+          }}
+          onBackdropPress={() => setIsVisible(false)}
+          {...props}
+        >
+          <Box h={height} bg="whiteBlack" alignItems="flex-end">
+            <Icon
+              type="material"
+              name="close"
+              size={30}
+              iconColor="prussianBlueWhite"
+              onPress={() => setIsVisible(false)}
+              p="xl"
+              pt="2xl"
+              pb="2xl"
+            />
+
+            <WebViewPage {...props.webViewProps} source={{ html }} />
           </Box>
         </RNBottomSheet>
       </Box>

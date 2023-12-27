@@ -16,10 +16,12 @@ import {
   AnimatableProperties,
 } from "../Ui/type";
 import { PdfPropd } from "../Pdf";
+import { IWebViewProps } from "../WebView/type";
 
 export interface BottomSheetProps
   extends SpacingPropsType,
     RnBottomSheetProps,
+    PdfPropd,
     RadiusPropsType,
     BorderPropsType,
     DimensionPropsType,
@@ -28,17 +30,18 @@ export interface BottomSheetProps
     ZIndexPropsType,
     ShadowPropsType,
     FlexPropsType,
-    PdfPropd,
     AnimatableProperties<{}>,
     Pick<BackgroundPropsType, "bg">,
     VariantPropsType {
   children?: ReactNode;
   visible?: boolean;
-  type?: "pdf";
   setVisible?: (value: boolean) => void;
   shareData?: {
     title: string;
     mimetype: string;
     base64: string;
   };
+  titleView?: string;
+  html?: string;
+  webViewProps?: IWebViewProps;
 }

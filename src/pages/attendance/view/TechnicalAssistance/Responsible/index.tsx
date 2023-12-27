@@ -43,7 +43,7 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
 
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -73,7 +73,7 @@ export const Responsible = ({ route, navigation }: ResponsibleProps) => {
 
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

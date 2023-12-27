@@ -16,6 +16,7 @@ const light = {
     moderateGreen: "#8DC63F",
     pantone: "#FF671F",
     transparent: "transparent",
+    opacity03: "rgba(0,0,0,0.3)",
     // Error
     error: "#F84F47",
     warning: "#ff9892",
@@ -32,6 +33,7 @@ const light = {
     blackWhite: "#111111",
     gray66Gray78: "#a8a8a8",
     veryLightGraySuvaGrey: "#e4e4e4",
+    veryLightGrayDarkGray: "#e4e4e4",
   },
 };
 

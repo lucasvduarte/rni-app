@@ -11,16 +11,14 @@ export const TipsFinancing = () => {
     queryFn: () => getTips(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return (
-      <Skeleton m="xl" size={2} listHeight={[40, 400]} borderRadius="xl" />
-    );
+    return <Skeleton m="xl" size={2} listHeight={[40, 400]} />;
   }
 
   return (

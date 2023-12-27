@@ -55,23 +55,28 @@ export const Login = ({ navigation }: LoginProps) => {
       }
     },
     onError: (error: any) => {
-      Toast.show({
-        type: "error",
-        props: { error },
-      });
-      const msgError =
-        error.response?.data.msgError.message || error.response?.data.msgError;
-      if (msgError === "Login não está ativo!") {
-        return setTimeout(() => {
-          navigation.navigate("OtpPage", {
-            headerTitle: "Validar primeiro acesso",
-            cpfcnpj: value.login,
-            navigate: "Login",
-          });
-        }, 2000);
-      }
+      onError(error);
     },
   });
+
+  const onError = (error: any) => {
+    const msgError =
+      error.response?.data?.msgError?.message || error.response?.data?.msgError;
+    if (msgError === "Login não está ativo!") {
+      return setTimeout(() => {
+        navigation.navigate("OtpPage", {
+          headerTitle: "Validar primeiro acesso",
+          cpfcnpj: value.login,
+          navigate: "Login",
+        });
+      }, 2000);
+    }
+
+    return Toast.show({
+      type: "errorToast",
+      props: { error },
+    });
+  };
 
   return (
     <KeyboardAwareScrollView fadingEdgeLength={500}>

@@ -1,11 +1,19 @@
 import * as ImagePicker from "expo-image-picker";
 import * as FileSystem from "expo-file-system";
 import { Platform, Alert } from "react-native";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Toast from "react-native-toast-message";
 
 type TUseImagePicker = {
   maxSize?: number;
+};
+
+type TFormattedFile = {
+  filename: string;
+  uri: string;
+  arquivo: string;
+  type: string;
+  pasta: string;
 };
 
 const updateFailed = {
@@ -14,24 +22,21 @@ const updateFailed = {
   fileSize: 0,
   filename: "",
   typeFile: "",
+  formattedFile: undefined,
 };
 
 export const useImagePicker = ({ maxSize = 0 }: TUseImagePicker) => {
   const [size, setSize] = useState(0);
 
-  const permissions = useCallback(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== "granted") {
-          Alert.alert(
-            "Desculpe, precisamos de permissões da câmera para funcionar"
-          );
-        }
+  const permissions = async () => {
+    if (Platform.OS !== "web") {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permitir acesso a midia nesse dispositivo");
       }
-    })();
-  }, []);
+    }
+  };
 
   useEffect(() => {
     permissions();
@@ -70,6 +75,15 @@ export const useImagePicker = ({ maxSize = 0 }: TUseImagePicker) => {
 
     const filename: string = result.assets[0].uri.split("/").pop() as string;
     const typeFile = filename.split(".")[1];
+    const type = result.assets[0].type;
+
+    const formattedFile: TFormattedFile = {
+      filename: filename,
+      uri: result.assets[0].uri,
+      arquivo: `data:${type}/${typeFile};base64,${fileSystem}`,
+      type: `${type}/${typeFile}`,
+      pasta: "portaisrni",
+    };
 
     return {
       fileSystem,
@@ -77,6 +91,7 @@ export const useImagePicker = ({ maxSize = 0 }: TUseImagePicker) => {
       fileSize: fileInfo?.size,
       filename,
       typeFile,
+      formattedFile,
     };
   };
 

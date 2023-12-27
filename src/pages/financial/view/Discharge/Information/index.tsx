@@ -17,7 +17,7 @@ import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
 import { getParcelList } from "../../../services/Financial";
 import { TAnticipationParams } from "../../../services/Financial/type";
-import { initValueParcelList, balanceValue } from "../../helps";
+import { formatInformationDataList, initValueParcelList } from "../../helps";
 
 export const DischargeInformation = ({
   route,
@@ -45,28 +45,14 @@ export const DischargeInformation = ({
     queryFn: () => getParcelList({ ...data }, { incparfin: true }),
     onError: (error: any) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
-  const list = [
-    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
-    {
-      title: "Saldo devedor atual",
-      description: balanceValue(dataParcelList?.data.result),
-    },
-    {
-      title: "Parcelas em aberto",
-      description: dataParcelList?.data?.result.length,
-    },
-  ].filter((item) => {
-    return !!item?.description;
-  });
-
   if (isLoading) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (
@@ -74,7 +60,10 @@ export const DischargeInformation = ({
       <KeyboardAwareScrollView fadingEdgeLength={500}>
         <Box flex={1}>
           <ContractInformation />
-          {list.map((item) => {
+          {formatInformationDataList(
+            data?.CTRCLATIP_DES,
+            dataParcelList?.data.result
+          ).map((item) => {
             return (
               <ListDescription
                 title={item.title}

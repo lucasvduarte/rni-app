@@ -3,7 +3,7 @@ import { Box } from "../Box";
 import { Text } from "../Text";
 import { ISelect } from "./type";
 import { TextInput } from "../TextInput";
-import { Pressable } from "react-native";
+import { Pressable, View } from "react-native";
 import { CheckBox } from "../CheckBox";
 import { ListItem, ListItemContent, ListItemTitle } from "../ListItem";
 import { Card } from "../Card";
@@ -17,20 +17,42 @@ export const Select: React.FC<ISelect> = (props) => {
   const onPressSelect = (value: string) => {
     onChangeText(value || "");
     setValueSelect(value);
-    setVisible(false);
+    setTimeoutVisible();
+  };
+
+  const setTimeoutVisible = () => {
+    const timeoutId = setTimeout(() => {
+      setVisible(false);
+      clearTimeout(timeoutId);
+    }, 500);
   };
 
   return (
-    <>
-      <Pressable onPress={() => setVisible(true)} style={{ width: "100%" }}>
+    <View
+      style={{
+        zIndex: 999,
+        flex: 1,
+      }}
+    >
+      <Pressable
+        onPress={() => setVisible(true)}
+        style={{
+          width: "100%",
+          zIndex: 99999,
+          elevation: 2,
+        }}
+      >
         <TextInput
           {...props}
           value={valueSelect || value}
           disabled
           disabledInputStyle={{
             opacity: 1,
+            zIndex: -999,
           }}
           placeholder="Selecione"
+          style={{ zIndex: -9999 }}
+          inputStyle={{ zIndex: -9999 }}
         />
       </Pressable>
 
@@ -81,6 +103,6 @@ export const Select: React.FC<ISelect> = (props) => {
           </Box>
         </Card>
       </BottomSheet>
-    </>
+    </View>
   );
 };

@@ -32,14 +32,14 @@ export const Extract = ({ navigation }: ExtractProps) => {
 
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (

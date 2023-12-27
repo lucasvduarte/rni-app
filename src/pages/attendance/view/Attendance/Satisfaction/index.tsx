@@ -22,7 +22,7 @@ export const SatisfactionAttendance = ({
       }),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -40,7 +40,7 @@ export const SatisfactionAttendance = ({
       }),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

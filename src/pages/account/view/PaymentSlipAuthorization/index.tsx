@@ -22,7 +22,7 @@ export const PaymentSlipAuthorization = () => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

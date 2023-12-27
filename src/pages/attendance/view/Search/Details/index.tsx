@@ -1,7 +1,7 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Box, Button, FlatList, Text } from "../../../../../components";
 import { SearchDetailsProps } from "../../../../../navigation/private/types";
-import { TAnswers, TQuestions } from "../../../service/Search/type";
+import { TAnswers } from "../../../service/Search/type";
 import Toast from "react-native-toast-message";
 import { useMutation } from "react-query";
 import { postSearch } from "../../../service/Search";
@@ -9,6 +9,7 @@ import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
 import { useEffect, useState } from "react";
 import { SearchItem } from "./Item";
+import { formatList } from "./helps";
 
 export const SearchDetails = ({ route }: SearchDetailsProps) => {
   const { data } = route.params;
@@ -30,7 +31,7 @@ export const SearchDetails = ({ route }: SearchDetailsProps) => {
       ),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -41,16 +42,6 @@ export const SearchDetails = ({ route }: SearchDetailsProps) => {
       });
     },
   });
-
-  const formatList = (listQuestions: TQuestions[]) => {
-    const list = listQuestions.map((item: TQuestions) => {
-      let answer = item.tiporesposta === "SimNao" ? "sim" : "0";
-      answer = item.tiporesposta === "Texto" ? "" : answer;
-      return { pesquisaperguntasguid: "", resposta: "" };
-    }, []);
-
-    return list;
-  };
 
   const handleChange = (value: string, index: number) => {
     let answersAux: TAnswers[] = [...answers];

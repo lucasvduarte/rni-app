@@ -26,7 +26,7 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
     queryFn: () => getSectionFilter(category?.id || 0),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -45,7 +45,7 @@ export const Section = ({ navigation }: TechnicalAssistanceSectionProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} />;
   }
 
   return (

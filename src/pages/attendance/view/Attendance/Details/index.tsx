@@ -44,7 +44,7 @@ export const AttendanceDetails = ({
     queryFn: () => getFeedTask(data.id),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -70,7 +70,7 @@ export const AttendanceDetails = ({
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -92,7 +92,7 @@ export const AttendanceDetails = ({
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -122,7 +122,7 @@ export const AttendanceDetails = ({
   const isFile = !!dataFeed?.data?.records[0]?.feeds?.records.length;
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

@@ -25,7 +25,7 @@ export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
       ),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -36,7 +36,7 @@ export const DocumentProperty = ({ navigation }: DocumentPropertyProps) => {
   }, []);
 
   if (isLoading) {
-    return <Skeleton size={4} height={60} mx="xl" my="lg" borderRadius="xl" />;
+    return <Skeleton size={4} height={60} mx="xl" my="lg" />;
   }
 
   return (

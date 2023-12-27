@@ -2,6 +2,7 @@ import React from "react";
 import PDFReader from "rn-pdf-reader-js";
 import { Dimensions } from "react-native";
 import { useTheme } from "styled-components/native";
+import { Skeleton } from "../Skeleton";
 const { height } = Dimensions.get("window");
 
 export type PdfPropd = {
@@ -12,15 +13,20 @@ export type PdfPropd = {
       [key: string]: string;
     };
   };
+  loading?: boolean;
 };
 
 export const Pdf: React.FunctionComponent<PdfPropd> = (props) => {
-  const { source } = props;
+  const { source, loading } = props;
   const { colors } = useTheme();
 
   if (!source) {
     console.warn("source is required");
     return null;
+  }
+
+  if (loading) {
+    return <Skeleton mt="xl" height={height * 0.6} />;
   }
 
   return (

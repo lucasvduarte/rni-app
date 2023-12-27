@@ -26,7 +26,7 @@ export const useBiometric = () => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -43,7 +43,7 @@ export const useBiometric = () => {
   const fallBackToDefaultAuth = useCallback(() => {
     console.warn("fall back to password authentication");
     Toast.show({
-      type: "error",
+      type: "errorToast",
       text2: "fall back to password authentication",
     });
   }, []);

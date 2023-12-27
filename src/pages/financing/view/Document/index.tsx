@@ -9,16 +9,14 @@ export const DocumentFinancing = () => {
     queryFn: () => getDocument(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return (
-      <Skeleton size={2} listHeight={[30, 400]} m="xl" borderRadius="xl" />
-    );
+    return <Skeleton size={2} listHeight={[30, 400]} m="xl" />;
   }
 
   return (

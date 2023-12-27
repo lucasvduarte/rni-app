@@ -19,7 +19,7 @@ export const SharingAuthorization = () => {
     queryFn: () => getLgpd(user?.cliente.cpfcnpj || ""),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -31,14 +31,14 @@ export const SharingAuthorization = () => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

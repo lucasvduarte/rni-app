@@ -33,6 +33,11 @@ export const CalendarStyle: React.FC<ICalendar> = (props) => {
         calendarBackground: "transparent",
         dayTextColor: colors.darkGrayGray78,
         monthTextColor: colors.darkGrayGray78,
+        textDayFontFamily: "Inter_400Regular",
+        textMonthFontFamily: "Inter_400Regular",
+        todayButtonFontFamily: "Inter_400Regular",
+        textDayHeaderFontFamily: "Inter_400Regular",
+        textDisabledColor: colors.veryLightGrayDarkGray,
       }}
       markedDates={{
         ...formatMarkedDates,

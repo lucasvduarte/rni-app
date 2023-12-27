@@ -54,7 +54,7 @@ export const Image = (props: ImageProps) => {
         <Skeleton
           width={Number(w?.toString().replace(/\D/g, ""))}
           height={Number(h?.toString().replace(/\D/g, ""))}
-          borderRadius={props.borderRadius}
+          //borderRadius={props.borderRadius}
           mr={props.mr}
         />
       );

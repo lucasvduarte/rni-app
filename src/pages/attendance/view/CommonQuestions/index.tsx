@@ -15,14 +15,14 @@ export const CommonQuestions = () => {
     queryFn: () => getCommonQuestions(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton size={6} m="xl" height={40} borderRadius="xl" />;
+    return <Skeleton size={6} m="xl" height={40} />;
   }
 
   return (

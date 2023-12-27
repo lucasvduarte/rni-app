@@ -25,7 +25,7 @@ export const RedefinePassword = () => {
       await putRedefinePassword(value.senha, user?.cliente.guidcontrol || ""),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

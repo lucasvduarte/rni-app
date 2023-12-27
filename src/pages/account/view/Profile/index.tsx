@@ -17,7 +17,7 @@ export const Profile = () => {
     mutationFn: async () => await putPersonalData(user?.cliente),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

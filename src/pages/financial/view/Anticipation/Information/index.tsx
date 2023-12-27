@@ -15,7 +15,7 @@ import { AnticipationInformationProps } from "../../../../../navigation/private/
 import { getParcelList } from "../../../services/Financial";
 import { useEffect, useState } from "react";
 import {
-  balanceValue,
+  formatInformationDataList,
   includesParcelOfTheType,
   initValueParcelList,
 } from "../../helps";
@@ -53,24 +53,10 @@ export const AnticipationInformation = ({
     queryFn: () => getParcelList({ ...data }),
     onError: (error: any) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
-  });
-
-  const list = [
-    { title: "Tipo do contrato", description: data?.CTRCLATIP_DES },
-    {
-      title: "Saldo devedor atual",
-      description: balanceValue(dataParcelList?.data.result),
-    },
-    {
-      title: "Parcelas em aberto",
-      description: dataParcelList?.data?.result.length,
-    },
-  ].filter((item) => {
-    return item?.description !== undefined;
   });
 
   const isValueValid = values.valor !== undefined;
@@ -91,7 +77,7 @@ export const AnticipationInformation = ({
   };
 
   if (isLoading) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (
@@ -99,7 +85,10 @@ export const AnticipationInformation = ({
       <KeyboardAwareScrollView fadingEdgeLength={500}>
         <Box flex={1}>
           <ContractInformation />
-          {list.map((item) => {
+          {formatInformationDataList(
+            data?.CTRCLATIP_DES,
+            dataParcelList?.data.result
+          ).map((item) => {
             return (
               <ListDescription
                 title={item.title}
@@ -142,7 +131,6 @@ export const AnticipationInformation = ({
             ]}
             size="large"
           />
-
           <TextInput
             label={`Informe abaixo ${
               isValueValid ? "o valor" : "o nº de parcelas"

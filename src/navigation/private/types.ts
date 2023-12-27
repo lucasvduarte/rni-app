@@ -84,6 +84,7 @@ export type RootStackParamList = {
     values: TAnticipationParams;
   };
   Payments: { data: TItem; headerTitle: string };
+  DetailsParcel: { data: TParcelList[] };
 };
 
 export type MenuProps = NativeStackScreenProps<RootStackParamList, "Menu">;
@@ -243,4 +244,9 @@ export type DischargeSimulationProps = NativeStackScreenProps<
 export type PaymentsProps = NativeStackScreenProps<
   RootStackParamList,
   "Payments"
+>;
+
+export type DetailsParcelProps = NativeStackScreenProps<
+  RootStackParamList,
+  "DetailsParcel"
 >;

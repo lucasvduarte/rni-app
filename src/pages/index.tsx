@@ -63,5 +63,6 @@ export {
   AnticipationSimulation,
   DischargeInformation,
   DischargeSimulation,
-  Payment,
+  Payments,
+  DetailsParcel,
 } from "./financial/view";

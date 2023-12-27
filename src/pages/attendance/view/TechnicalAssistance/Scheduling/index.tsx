@@ -18,6 +18,7 @@ import {
   formatHr,
 } from "../../../../../config/utils/format/data";
 import { useTheme } from "styled-components/native";
+import { searchDate } from "../helps";
 
 export const Scheduling = ({ route, navigation }: SchedulingProps) => {
   const { colors } = useTheme();
@@ -25,29 +26,18 @@ export const Scheduling = ({ route, navigation }: SchedulingProps) => {
   const [selectedDate, setSelectedDate] = useState(
     addDays(new Date(), 2, true)
   );
-  const [schedulingDate, setSchedulingDate] = useState<TScheduling | undefined>(
-    undefined
-  );
+  const [schedulingDate, setSchedulingDate] = useState<TScheduling>();
 
   const { data: dataScheduling, isLoading } = useQuery({
     queryKey: "getScheduling",
     queryFn: () => getScheduling(data.id),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
-
-  const searcheDate = (date: string, listDates?: TScheduling[]) => {
-    if (!listDates?.length) {
-      return [];
-    }
-    return listDates.filter(
-      (item) => formatDatePtBr(item.startTime, true) === date
-    );
-  };
 
   const onPress = () => {
     if (schedulingDate) {
@@ -60,7 +50,7 @@ export const Scheduling = ({ route, navigation }: SchedulingProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (
@@ -88,7 +78,7 @@ export const Scheduling = ({ route, navigation }: SchedulingProps) => {
         />
         <Box flexDir="row" flexWrap="wrap" justifyContent="flex-start" mb="lg">
           {!dataScheduling?.data?.case?.data_hora_do_agendamento_da_visita__c &&
-            searcheDate(selectedDate, dataScheduling?.data?.scheduling).map(
+            searchDate(selectedDate, dataScheduling?.data?.scheduling).map(
               (item) => {
                 const isSelect = schedulingDate?.startTime === item.startTime;
                 return (

@@ -2,7 +2,10 @@ import { GestureResponderEvent } from "react-native";
 import { Card } from "..";
 import { Box } from "../../Box";
 import { Text } from "../../Text";
-import { TAttendance } from "../../../pages/attendance/service/Attendance/type";
+import {
+  TAttendance,
+  TContrato,
+} from "../../../pages/attendance/service/Attendance/type";
 import { formatDatePtBr, formatDatePtBrHr } from "../../../config/utils";
 import { isSchedulingText, isConfirmSchedule, isToSchedule } from "./helps";
 
@@ -15,6 +18,21 @@ type TCardAttendance = {
 
 export const CardAttendance = (props: TCardAttendance) => {
   const { onPress, onPressScheduleVisit, onPressConfirm, data } = props;
+
+  const formatText = (contract?: TContrato) => {
+    if (!contract) return "";
+
+    const { Torre_Quadra__r, Unidade__r, Empreendimento__r } = contract!;
+    const isLine = !!Torre_Quadra__r?.Name || !!Unidade__r?.Name;
+    const nameEnterprise = Empreendimento__r?.Empreendimento__c || "";
+    const nameTorre = Torre_Quadra__r?.Name || "";
+
+    if (isLine) {
+      return `${nameEnterprise} - ${nameTorre} ${Unidade__r?.Name}`;
+    }
+
+    return `${nameEnterprise} ${nameTorre} ${Unidade__r?.Name || ""}`;
+  };
 
   return (
     <Card
@@ -81,7 +99,7 @@ export const CardAttendance = (props: TCardAttendance) => {
           />
         </Box>
         <Text
-          title={`${data.contrato__r?.Empreendimento__r?.Empreendimento__c} - ${data.contrato__r?.Torre_Quadra__r?.Name} ${data.contrato__r?.Unidade__r?.Name}`}
+          title={formatText(data.contrato__r)}
           color="prussianBlue"
           py="sm"
           fontSize="2xl"

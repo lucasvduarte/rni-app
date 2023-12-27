@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthStorage } from "../../storage";
 
 let instance = axios.create({
-  baseURL: "https://api-integraportais-hml.azurewebsites.net/api",
+  baseURL: "https://hml-api-integraportais.rni.com.br/api",
   headers: {
     "Content-type": "application/json",
   },

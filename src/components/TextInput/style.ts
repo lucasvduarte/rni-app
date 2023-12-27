@@ -28,4 +28,5 @@ export const TextInputStyled = styled(Input).attrs<InputProps>({
   ${(props) => createPosition(props)};
   ${(props) => createFlex(props)};
   ${(props) => createDimension(props)};
+  font-family: "Inter_400Regular";
 `;

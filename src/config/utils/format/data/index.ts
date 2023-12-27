@@ -1,3 +1,5 @@
+//import { utcToZonedTime } from "date-fns-tz";
+
 type TDate = string | Date | undefined;
 
 export const formatDatePtBr = (date: TDate, defaultDate?: boolean) => {
@@ -48,8 +50,8 @@ export const formatHr = (date: TDate) => {
   if (!date) {
     return "";
   }
-  const hours = new Date(date).getHours();
-  const minutes = new Date(date).getMinutes();
+  const hours = formatTimeZoneSaoPaulo(date).getHours();
+  const minutes = formatTimeZoneSaoPaulo(date).getMinutes();
   return (
     `00${hours}`.slice(-2) +
     ":" +
@@ -63,7 +65,7 @@ export const addDays = (date: TDate, days: number, defaultDate?: boolean) => {
     return "";
   }
 
-  const dateAux = new Date(formatDatePtBr(date, true));
+  const dateAux = formatTimeZoneSaoPaulo(formatDatePtBr(date, true));
   dateAux.setDate(dateAux.getDate() + days + 1);
   return formatDatePtBr(dateAux, defaultDate);
 };
@@ -80,4 +82,12 @@ export const comparatorDate = (a: TDate, b: TDate) => {
   }
   // a must be equal to b
   return 0;
+};
+
+const formatTimeZoneSaoPaulo = (date: string | number | Date) => {
+  return new Date(date); //utcToZonedTime(date, "America/Sao_Paulo");
+};
+
+export const formatDateCurrent = (defaultDate?: boolean) => {
+  return formatDatePtBr(new Date(), defaultDate);
 };

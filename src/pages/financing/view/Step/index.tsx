@@ -11,16 +11,14 @@ export const Step = () => {
     queryFn: () => getStep(),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return (
-      <Skeleton m="xl" size={2} listHeight={[80, 400]} borderRadius="xl" />
-    );
+    return <Skeleton m="xl" size={2} listHeight={[80, 400]} />;
   }
 
   return (

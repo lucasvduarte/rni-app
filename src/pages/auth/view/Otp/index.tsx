@@ -26,7 +26,7 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -39,7 +39,7 @@ export const OtpPage = ({ route, navigation }: OtpPageProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

@@ -27,7 +27,7 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
     queryFn: () => getItemFilter(section?.id || 0),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -39,7 +39,7 @@ export const Item = ({ navigation }: TechnicalAssistanceItemProps) => {
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={80} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={80} />;
   }
 
   return (

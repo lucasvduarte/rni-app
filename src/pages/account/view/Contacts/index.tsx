@@ -26,7 +26,7 @@ export const Contacts = () => {
     enabled: false,
     onError: (error: any) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -50,7 +50,7 @@ export const Contacts = () => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

@@ -23,7 +23,7 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
     queryFn: () => getAttendance(user?.cliente.cpfcnpj || ""),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -33,16 +33,21 @@ export const Attendance = ({ navigation }: AttendanceProps) => {
     if (!value) {
       return [];
     }
+    if (user?.cliente.sindico) {
+      return value;
+    }
+
     return value.filter(
       (item) =>
         item.assunto_portal__c !==
           "Assistência Técnica - Pesquisa Satisfação" &&
-        item.assunto_portal__c !== "Assistência Técnica"
+        item.assunto_portal__c !== "Assistência Técnica" &&
+        !item.description.includes("Download")
     );
   };
 
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={100} />;
   }
 
   return (

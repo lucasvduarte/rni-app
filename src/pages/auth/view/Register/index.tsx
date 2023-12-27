@@ -40,7 +40,7 @@ export const Register = ({ navigation }: RegisterProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

@@ -58,7 +58,7 @@ export const Payments = ({ navigation, route }: PaymentsProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -82,7 +82,7 @@ export const Payments = ({ navigation, route }: PaymentsProps) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -93,7 +93,7 @@ export const Payments = ({ navigation, route }: PaymentsProps) => {
   }, []);
 
   if (isLoading || isLoadingMutation) {
-    return <Skeleton size={5} height={80} m="xl" borderRadius="xl" />;
+    return <Skeleton size={5} height={80} m="xl" />;
   }
 
   return (

@@ -11,7 +11,7 @@ import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
 import { getAttendance } from "../../service/Attendance";
 import { TechnicalAssistanceProps } from "../../../../navigation/private/types";
-import { TAttendance } from "../../service/Attendance/type";
+import { formatList } from "./helps";
 
 export const TechnicalAssistance = ({
   navigation,
@@ -25,26 +25,14 @@ export const TechnicalAssistance = ({
     queryFn: () => getAttendance(user?.cliente.cpfcnpj || ""),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
-  const formatList = (value: TAttendance[] | undefined) => {
-    if (!value) {
-      return [];
-    }
-    return value.filter(
-      (item) =>
-        item.assunto_portal__c !==
-          "Assistência Técnica - Pesquisa Satisfação" &&
-        item.assunto_portal__c === "Assistência Técnica"
-    );
-  };
-
   if (isLoading) {
-    return <Skeleton m="xl" size={6} height={100} borderRadius="xl" />;
+    return <Skeleton m="xl" size={6} height={100} />;
   }
 
   return (

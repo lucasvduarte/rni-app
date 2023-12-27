@@ -22,7 +22,7 @@ export const DocumentDetailsProperty = ({
       ),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -35,7 +35,7 @@ export const DocumentDetailsProperty = ({
   });
 
   if (!uri || isLoading) {
-    return <Skeleton height={200} m="xl" borderRadius="2lg" />;
+    return <Skeleton height={200} m="xl" />;
   }
 
   return (

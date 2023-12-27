@@ -34,7 +34,7 @@ export const ChangeEmail = () => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

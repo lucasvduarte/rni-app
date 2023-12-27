@@ -6,6 +6,7 @@ import {
   createSpacing,
   createBorderWidth,
   createShadow,
+  createText,
 } from "../Ui";
 
 export const CheckBoxStyled = styled(CheckBox).attrs<CheckBoxProps>(
@@ -24,6 +25,8 @@ export const CheckBoxStyled = styled(CheckBox).attrs<CheckBoxProps>(
       ...createSpacing(props, true),
       ...createBorderWidth(props, true),
       ...createShadow(props),
+      ...createText(props, true),
     },
+    fontFamily: "Inter_700Bold",
   })
 )<CheckBoxProps>``;

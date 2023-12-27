@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useLayoutEffect } from "react";
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from "styled-components";
-import { ToastStyled } from "./components";
+import { FullLoading, ToastStyled } from "./components";
 import { PrivateNavigation, PublicNavigation } from "./navigation";
 import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import { getLogin, getTheme, setToken } from "./redux/modules/auth/action";
@@ -14,6 +14,7 @@ import { useQuery } from "react-query";
 import * as Network from "expo-network";
 import { setIpStorage } from "./storage";
 import * as SplashScreen from "expo-splash-screen";
+import Toast from "react-native-toast-message";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,12 +28,20 @@ export default function App() {
   const { isLoading } = useQuery({
     queryKey: "getToken",
     queryFn: getToken,
-    //refetchInterval: 50 * 60 * 1000,
     staleTime: 50 * 60 * 1000,
-    refetchIntervalInBackground: false,
+    refetchInterval: 51 * 60 * 1000,
+    refetchIntervalInBackground: true,
+    retry: 3,
     onSuccess: async ({ token }) => {
       await SplashScreen.hideAsync();
       dispatch(setToken(token));
+    },
+    onError: (error) => {
+      Toast.show({
+        type: "errorToast",
+        props: { error },
+        autoHide: false,
+      });
     },
   });
 
@@ -63,7 +72,7 @@ export default function App() {
 
   const themeSelect = auth.theme || deviceTheme || "light";
 
-  if (isLoading && !auth.token) {
+  if (!auth.token) {
     return null;
   }
 
@@ -78,6 +87,7 @@ export default function App() {
         <StatusBar style={themeSelect === "dark" ? "light" : "dark"} />
       </NavigationContainer>
       <ToastStyled />
+      {isLoading && <FullLoading />}
     </ThemeProvider>
   );
 }

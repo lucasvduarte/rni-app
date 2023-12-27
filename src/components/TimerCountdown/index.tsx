@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { TimerCountdownProps } from "./type";
 import { Box } from "../Box";
 
-const SECONDS = 120;
+const SECONDS = 300;
 
 export const TimerCountdown = (props: TimerCountdownProps) => {
   const {

@@ -58,9 +58,10 @@ import {
   AnticipationSimulation,
   DischargeInformation,
   DischargeSimulation,
+  Payments,
+  DetailsParcel,
 } from "../../pages";
 import { HeaderRightMenu } from "../../components/Header";
-import { Payments } from "../../pages/financial/view/Payment";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -677,6 +678,17 @@ export const PrivateNavigation = () => {
         component={Payments}
         options={{
           headerTitle: "",
+          headerRight: () => <HeaderRight />,
+          headerShadowVisible: false,
+          headerTintColor: colors.blackWhite,
+          headerStyle: { backgroundColor: colors.whiteBlack },
+        }}
+      />
+      <Stack.Screen
+        name="DetailsParcel"
+        component={DetailsParcel}
+        options={{
+          headerTitle: "Detalhes das Parcelas",
           headerRight: () => <HeaderRight />,
           headerShadowVisible: false,
           headerTintColor: colors.blackWhite,

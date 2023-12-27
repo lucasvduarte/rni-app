@@ -41,7 +41,7 @@ export const CardPayment = ({ item, ctrclatip }: TCardPayment) => {
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },

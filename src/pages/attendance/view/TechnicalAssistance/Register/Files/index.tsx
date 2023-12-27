@@ -23,10 +23,12 @@ import { TListFile } from "../../../../service/TechnicalAssistance/type";
 
 const { width } = Dimensions.get("screen");
 
+const MAX_SIZE = 25000000;
+
 export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
   const [description, setDescription] = useState("");
   const { uploadFile, sizeCurrentFile, removeSizeFile } = useImagePicker({
-    maxSize: 25000000,
+    maxSize: MAX_SIZE,
   });
   const { auth, attendance } = useAppSelector((state: RootState) => {
     return state;
@@ -54,7 +56,7 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
 
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -67,20 +69,12 @@ export const Files = ({ navigation }: TechnicalAssistanceFilesProps) => {
   });
 
   const handleFile = async () => {
-    const { result, fileSystem, filename, typeFile } = await uploadFile();
+    const { result, formattedFile } = await uploadFile();
+
     if (files.length > 5 || !result) {
       return;
     }
-    const type = result.type === "video" ? "video" : "image";
-    setListFile((previus) => [
-      ...previus,
-      {
-        filename: filename,
-        uri: result.uri,
-        arquivo: `data:${type}/${typeFile};base64,${fileSystem}`,
-        type: `${result.type}/${typeFile}`,
-      },
-    ]);
+    setListFile((previus) => [...previus, { ...formattedFile }]);
   };
 
   const removeFile = () => {

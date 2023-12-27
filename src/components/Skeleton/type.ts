@@ -19,4 +19,5 @@ export interface SkeletonProps
   size?: number;
   listWidth?: number[];
   listHeight?: number[];
+  isBottom?: boolean;
 }

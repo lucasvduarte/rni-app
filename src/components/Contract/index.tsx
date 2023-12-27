@@ -87,7 +87,7 @@ export const ContractInformation = (props: CardProps) => {
   ];
 
   return (
-    <Card bg="veryLightGraySuvaGrey" borderRadius="xl" py="md" {...props}>
+    <Card bg="veryLightGraySuvaGrey" borderRadius="xl" p="md" {...props}>
       {list.map((item, index) => {
         return (
           <Box

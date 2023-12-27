@@ -19,7 +19,7 @@ export const TechnicalAssistanceConcluded = ({
             <CardAttendance
               data={item}
               onPress={() => {
-                navigation.navigate("AttendanceDetails", {
+                navigation.navigate("TechnicalAssistanceDetails", {
                   data: item,
                   isConcluded: true,
                 });

@@ -46,7 +46,7 @@ export const TechnicalAssistanceDetails = ({
     queryFn: () => getFeedTask(data.id),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -74,7 +74,7 @@ export const TechnicalAssistanceDetails = ({
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -102,7 +102,7 @@ export const TechnicalAssistanceDetails = ({
     },
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
@@ -126,7 +126,7 @@ export const TechnicalAssistanceDetails = ({
   const isFile = !!dataFeed?.data?.records[0]?.feeds?.records.length;
 
   if (isLoading || isLoadingMutate) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

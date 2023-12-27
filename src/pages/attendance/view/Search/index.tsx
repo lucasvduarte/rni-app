@@ -18,14 +18,14 @@ export const Search = ({ navigation }: SearchProps) => {
       getSearch(user?.cliente.cpfcnpj || "", enterpriseSelect?.EMPCOD || ""),
     onError: (error) => {
       Toast.show({
-        type: "error",
+        type: "errorToast",
         props: { error },
       });
     },
   });
 
   if (isLoading) {
-    return <Skeleton m="xl" height={400} borderRadius="xl" />;
+    return <Skeleton m="xl" height={400} />;
   }
 
   return (

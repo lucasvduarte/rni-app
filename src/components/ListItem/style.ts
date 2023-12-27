@@ -20,4 +20,6 @@ export const ListItemStyled = styled(ListItem).attrs<ListItemProps>(
       ...createText(props, true),
     },
   })
-)<ListItemProps>``;
+)<ListItemProps>`
+  font-family: "Inter_100Thin";
+`;

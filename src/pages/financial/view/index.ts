@@ -7,4 +7,5 @@ export { AnticipationInformation } from "./Anticipation/Information";
 export { AnticipationSimulation } from "./Anticipation/Simulation";
 export { DischargeInformation } from "./Discharge/Information";
 export { DischargeSimulation } from "./Discharge/Simulation";
-export { Payment } from "./Payment";
+export { Payments } from "./Payment";
+export { DetailsParcel } from "./DetailsParcel";

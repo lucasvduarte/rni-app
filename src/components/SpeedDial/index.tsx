@@ -30,6 +30,8 @@ export const SpeedDial: React.FunctionComponent<SpeedDialProps> = (props) => {
               item.onPress();
             }}
             color={colors.easternBlue}
+            titleStyle={{ fontFamily: "Inter_400Regular" }}
+            key={item.title}
           />
         );
       })}

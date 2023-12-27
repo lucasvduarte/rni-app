@@ -35,6 +35,7 @@ export const ButtonStyled = styled(Button).attrs<ButtonProps>((props) => ({
   titleStyle: {
     fontWeight: props.isBold ? "bold" : "normal",
     fontSize: defaultTheme[props.size || "lg"].fontSize,
+    fontFamily: "Inter_400Regular",
     ...(props.titleStyle as any),
   },
   buttonStyle: {
